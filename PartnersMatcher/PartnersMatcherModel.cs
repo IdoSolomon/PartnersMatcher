@@ -20,7 +20,7 @@ namespace PartnersMatcher
         private ObservableCollection<string> numOfParticipates;
         private ObservableCollection<string> frequency;
         private ObservableCollection<string> difficulty;
-        private string user;
+        private string user = "dbpd2016@gmail.com";
         public OleDbConnection connection;
         
         #region email settings
@@ -37,7 +37,6 @@ namespace PartnersMatcher
         public PartnersMatcherModel()
         {
             InitStructures();
-            user = "dbpd2016@gmail.com";
         }
 
         #region db
