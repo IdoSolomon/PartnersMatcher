@@ -1,0 +1,90 @@
+﻿<Window x:Class="GUI.Windows.ChatWindows.SeeAllConversationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.Windows.ChatWindows"
+        mc:Ignorable="d"
+        Title="SeeAllConversationsWindow" Height="800" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="FloralWhite"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Style="{StaticResource GridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" MinWidth="10"/>
+            <ColumnDefinition Width="0.4*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.4*" MinWidth="10"/>
+            <ColumnDefinition Width="0.05*" MinWidth="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.05*" MinHeight="20"/>
+            <RowDefinition Height="0.6*" MinHeight="20"/>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="3" Style="{StaticResource FieldDescriptionStyle}">View message from:</Label>
+        <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" x:Name="GroupComboBox" Margin="5" Style="{StaticResource ComboBoxStyle}" DropDownClosed="GroupComboBox_DropDownClosed">
+        </ComboBox>
+        <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" IsHitTestVisible="False" Text="Select activity..." VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=GroupComboBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="FontSize" Value="24" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <DataGrid  x:Name="MessagesGrid" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource DataGridStyle}" >
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="SeparatorBrush" Value="Orange" />
+                    <Setter Property="Background" Value="#FFFFE398"/>
+                    <Setter Property="FontWeight" Value="Black" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="FontSize" Value="18" />
+                    <Setter Property="Background" Value="FloralWhite"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Last Name" IsReadOnly="True" Width="*" Binding="{Binding LastName}" />
+                <DataGridTextColumn Header="First Name" IsReadOnly="True" Width="*" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Header="Subject" IsReadOnly="True" Width="*" Binding="{Binding Subject}"/>
+                <DataGridTextColumn Header="Send Date" IsReadOnly="True" Width="*" Binding="{Binding SendDate}"/>
+                <DataGridTextColumn Header="Contents" IsReadOnly="True" Width="3*" Binding="{Binding Contents}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button x:Name="MessageBtn" Grid.Column="1" Grid.Row="6" Margin="85,5,85,5"  Style="{StaticResource ButtonStyle}" Click="MessageBtn_Click">
+            <TextBlock Text="Send a message to group" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+        </Button>
+
+        <Button x:Name="CancelBtn" Grid.Column="3" Grid.Row="6" Margin="85,5,85,5" Style="{StaticResource ButtonStyle}" Click="CancelBtn_Click">
+            <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+        </Button>
+
+    </Grid>
+</Window>

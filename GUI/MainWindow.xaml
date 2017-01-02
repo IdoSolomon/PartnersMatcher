@@ -1,0 +1,227 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        Title="PartnersMatcher" Height="500" Width="700"
+        WindowStyle="SingleBorderWindow"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" >
+    <Window.Resources>
+        <Style x:Key="MyDockPanelStyle" TargetType="{x:Type DockPanel}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFFFD158" Opacity="1"/>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style x:Key="MyMenuStyle" TargetType="{x:Type Menu}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFFFBB58" Opacity="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style x:Key="MainMenuItemStyle" TargetType="{x:Type MenuItem}">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFFFBB58" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFFFBB58" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="0,0,75,0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style x:Key="MyMenuItemStyle" TargetType="{x:Type MenuItem}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFFFBB58" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <SolidColorBrush Color="#FFFFBB58" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style x:Key="LableStyle" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="0,0,15,0"/>
+        </Style>
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="IsEditable" Value="True"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,15,0"/>
+
+
+
+
+
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Background" Value="Orange"/>
+            <Setter Property="BorderThickness" Value="3"/>
+        </Style>
+        <Style x:Key="RecommendedActivitiesStyle" TargetType="DataGrid">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="FloralWhite"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid x:Name="mainGrid" Background="FloralWhite">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*" MinHeight="15" MaxHeight="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="0.5*"/>
+
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="pack://application:,,,/Resources/Logo.png"/>
+        <DockPanel LastChildFill="True" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10">
+            <DockPanel.Style>
+                <Style TargetType="{x:Type DockPanel}">
+                </Style>
+            </DockPanel.Style>
+            <Menu DockPanel.Dock="Top" Style="{StaticResource MyMenuStyle}">
+                <MenuItem Header="Your Account" Style="{StaticResource MainMenuItemStyle}">
+                    <MenuItem Header="Edit Your Profile" Style="{StaticResource MyMenuItemStyle}" Click="EditYourProfile_Click"/>
+                    <MenuItem Header="Change Your Password" Style="{StaticResource MyMenuItemStyle}" Click="ChangeYourPassword_Click"/>
+                    <MenuItem Header="Update Your Email" Style="{StaticResource MyMenuItemStyle}" Click="UpdateYourEmail_Click"/>
+                    <MenuItem Header="Update Your Activites Preferences" Style="{StaticResource MyMenuItemStyle}" Click="UpdatePreferences_Click" />
+                    <MenuItem Header="Log Out" Style="{StaticResource MyMenuItemStyle}" Click="LogOut_Click"/>
+
+                </MenuItem>
+                <MenuItem Header="Activities" Style="{StaticResource MainMenuItemStyle}">
+                    <MenuItem Header="Create New Activity" Style="{StaticResource MyMenuItemStyle}"  Click="CreateNewActivity_Click" />
+                    <MenuItem Header="Search" Style="{StaticResource MyMenuItemStyle}"  Click="Search_Click" />
+                    <MenuItem Header="Advanced Search" Style="{StaticResource MyMenuItemStyle}"  Click="AdvancedSearch_Click" />
+                    <MenuItem Header="Watch Your Pending Requests" Style="{StaticResource MyMenuItemStyle}"  Click="WatchYourPendingRequests_Click" />
+                </MenuItem>
+                <MenuItem Header="Activites You`re Partner In" Style="{StaticResource MainMenuItemStyle}" >
+                    <MenuItem Header="Watch All Activities You`re Partner In" Style="{StaticResource MyMenuItemStyle}"  Click="WatchAllActivitiesYourePartnerIn_Click" />
+                    <MenuItem Header="Approve/Disapprove Pending Requests" Style="{StaticResource MyMenuItemStyle}"  Click="ApprovePendingRequestsAsPaertner_Click" />
+                    <MenuItem Header="Add Bill To Activirty" Style="{StaticResource MyMenuItemStyle}"  Click="AddBillToActivirty_Click" />
+                    <MenuItem Header="Pending Payments" Style="{StaticResource MyMenuItemStyle}"  Click="PendingPayments_Click" />
+                    <MenuItem Header="Watch Your Payments History" Style="{StaticResource MyMenuItemStyle}"  Click="WatchYourPaymentsHistory_Click" />
+                    <MenuItem Header="Pending Contracts" Style="{StaticResource MyMenuItemStyle}" Click="PendingContracts_Click" />
+                    <MenuItem Header="Watch All Contracts You Signed" Style="{StaticResource MyMenuItemStyle}" Click="WatchAllContractsYouSigned_Click" />
+                </MenuItem>
+                <MenuItem Header="Activites You Manage" Style="{StaticResource MainMenuItemStyle}">
+                    <MenuItem Header="Watch All Activities You Manage" Style="{StaticResource MyMenuItemStyle}"  Click="WatchActivitesYouManage_Click" />
+                    <MenuItem Header="Approve/Disapprove Pending Requests" Style="{StaticResource MyMenuItemStyle}"  Click="ApprovePendingRequestsAsManager_Click" />
+                    <MenuItem Header="Add New Contract To Activity" Style="{StaticResource MyMenuItemStyle}" Click="AddNewContractToActivity_Click" />
+                    <MenuItem Header="Set New Payment In Activity" Style="{StaticResource MyMenuItemStyle}" Click="SetNewPaymentInActivity_Click" />
+                </MenuItem>
+                <MenuItem Header="Chat" Style="{StaticResource MainMenuItemStyle}">
+                    <MenuItem Header="See All Conversations" Style="{StaticResource MyMenuItemStyle}" Click="SeeAllConversations_Click" />
+                    <MenuItem Header="Write New Group Message" Style="{StaticResource MyMenuItemStyle}"  Click="WriteNewGroupMessage_Click"  />
+                </MenuItem>
+                <MenuItem Header="Notifications" Style="{StaticResource MainMenuItemStyle}">
+                    <MenuItem Header="You were approved to join &quot;Playing Tennis In Wimbeldon&quot; by its Manager!" Style="{StaticResource MyMenuItemStyle}" />
+                    <MenuItem Header="Bar Refaely From &quot;Dating Bar Refaely&quot; sent you Payment!" Style="{StaticResource MyMenuItemStyle}" />
+
+                </MenuItem>
+
+
+            </Menu>
+        </DockPanel>
+        <DockPanel LastChildFill="True" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10" Style="{StaticResource MyDockPanelStyle}">
+            <Label Content="Search Activity"  HorizontalAlignment="Center" Style="{StaticResource LableStyle}" Margin="15,8,25,0"/>
+            <ComboBox x:Name="domainComboBox" Text="--Domain--" HorizontalAlignment="Center"  Style="{StaticResource ComboBoxStyle}" Margin="0,0,25,0" />
+            <ComboBox x:Name="locationComboBox" Text="--Location--"  HorizontalAlignment="Center"  Style="{StaticResource ComboBoxStyle}" Margin="0,0,25,0"/>
+            <Button Content="Search" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" Height="40" Click="SearchBtn_Click" Margin="0,0,30,0" />
+            <Label Content="Your Conversations"  HorizontalAlignment="Center" Style="{StaticResource LableStyle}" Margin="90,8,25,0"/>
+            <Button Content="Conversations" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" Height="40" Margin="0,0,150,0" />
+        </DockPanel>
+        <Label Content="New Activites You May Like!" Grid.Row="3" Grid.ColumnSpan="10"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LableStyle}" FontWeight="Bold"/>
+        <DataGrid  x:Name="RecommendedActivitiesGrid" AutoGenerateColumns="False" Grid.Row="4" Grid.RowSpan="4" Grid.ColumnSpan="10" Style="{StaticResource RecommendedActivitiesStyle}" >
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="SeparatorBrush" Value="Orange" />
+                    <Setter Property="Background" Value="#FFFFE398"/>
+                    <Setter Property="FontWeight" Value="Black" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="FontSize" Value="18" />
+                    <Setter Property="Background" Value="FloralWhite"/>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Catagory" IsReadOnly="True" Width="*" Binding="{Binding Catagory}" />
+                <DataGridTextColumn Header="Activity" IsReadOnly="True" Width="*" Binding="{Binding Activity}" />
+                <DataGridTextColumn Header="Description" IsReadOnly="True" Width="3*" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Place" IsReadOnly="True" Width="*" Binding="{Binding Place}"/>
+                <DataGridTextColumn Header="Starts on" IsReadOnly="True" Width="*" Binding="{Binding StartsOn}"/>
+                <DataGridTextColumn Header="Frequency" IsReadOnly="True" Width="*" Binding="{Binding Frequency}"/>
+                <DataGridTemplateColumn Width="*" Header="Details">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="More Details" Style="{StaticResource ButtonStyle}" FontSize="18" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="Select">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Send Joining Requests"  Style="{StaticResource ButtonStyle}" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" Click="SendJoiningRequestsButton_Click" />
+
+
+
+
+
+    </Grid>
+</Window>

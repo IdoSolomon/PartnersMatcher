@@ -1,0 +1,38 @@
+﻿<Window x:Class="GUI.Windows.ActivitiesWindows.CreateNewActivityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
+        mc:Ignorable="d"
+        Title="CreateNewActivityWindow" Height="300" Width="300"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+        </Grid.RowDefinitions>
+        
+        
+        
+    </Grid>
+</Window>
