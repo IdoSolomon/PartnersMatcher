@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Data.OleDb;
+using System.Data;
 
 namespace GUI
 {
@@ -67,10 +68,13 @@ namespace GUI
 
             if (model.dbConnect())
             {
-                OleDbDataAdapter command = model.InsertToUserTable();
-                command.InsertCommand.Connection = model.connection;
-                command.InsertCommand.ExecuteNonQuery();
+                //model.InsertToUserTable();
+                //string pass = model.RetrieveUserLogin("email@email.email");
+                //DataSet ds = model.Search("Tel Aviv", "Blimps");
                 model.dbClose();
+                //int num = 11;
+                //MessageBox.Show("ID: " + ds.Tables[0].Rows[0].ItemArray[0].ToString() + " Name: " + ds.Tables[0].Rows[0].ItemArray[1].ToString(), "Activity Details", MessageBoxButton.OK, MessageBoxImage.Information);
+                //ds.Dispose();
             }
             else MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }

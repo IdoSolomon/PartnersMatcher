@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Data;
 
 namespace PartnersMatcher
 {
@@ -32,7 +33,7 @@ namespace PartnersMatcher
         #endregion
 
 
-
+        
 
         public PartnersMatcherModel()
         {
@@ -65,29 +66,60 @@ Persist Security Info=False;";
             connection.Close();
         }
 
-        public OleDbDataAdapter InsertToUserTable()
+        public void InsertToUserTable()
         {
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
 
             //Create the InsertCommand.
             command = new OleDbCommand(
-                "INSERT INTO Users (Email, FirstName, LastName, Passward, BirthDate, Sex, PhoneNumber, Location, Smokes, Pet, Resume) " +
-                "VALUES (@Email, @FirstName, @LastName, @Passward, @BirthDate, @Sex, @PhoneNumber, @Location, @Smokes, @Pet, @Resume)");
+                "INSERT INTO Users ([Email], [First Name], [Last Name], [Password], [Birth Date], [Sex], [Phone Number], [Location], [Smokes], [Pet], [Resume]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
 
-            command.Parameters.Add("Email", OleDbType.Char, 255, "Email");
-            command.Parameters.Add("First Name", OleDbType.VarChar, 255, "First Name");
-            command.Parameters.Add("Last Name", OleDbType.VarChar, 255, "Last Name");
-            command.Parameters.Add("Passward", OleDbType.VarChar, 255, "Passward");
-            command.Parameters.Add("Birth Date", OleDbType.VarChar, 255, "Birth Date");
-            command.Parameters.Add("Sex", OleDbType.VarChar, 1, "Sex");
-            command.Parameters.Add("Phone Number", OleDbType.VarChar, 10, "Phone Number");
-            command.Parameters.Add("Location", OleDbType.VarChar, 255, "Location");
-            command.Parameters.Add("Smokes", OleDbType.Binary, 1, "Smokes");
-            command.Parameters.Add("Pet", OleDbType.Binary, 1, "Pet");
-            command.Parameters.Add("Resume", OleDbType.Char, 255, "Resume");
+            command.Parameters.AddWithValue("@Email", "email@email.email");
+            command.Parameters.AddWithValue("@First Name", "Israel");
+            command.Parameters.AddWithValue("@Last Name", "Israeli");
+            command.Parameters.AddWithValue("@Password", "12345678");
+            command.Parameters.AddWithValue("@Birth Date", new DateTime(1991, 12, 29));
+            command.Parameters.AddWithValue("@Sex", "M");
+            command.Parameters.AddWithValue("@Phone Number", "085555555");
+            command.Parameters.AddWithValue("@Location", "Tel Aviv");
+            command.Parameters.AddWithValue("@Smokes", false);
+            command.Parameters.AddWithValue("@Pet", true);
+            command.Parameters.AddWithValue("@Resume", "I'm a test dummy!");
+
             adapter.InsertCommand = command;
-            return adapter;
+            adapter.InsertCommand.ExecuteNonQuery();
+            return;
+        }
+
+        public string RetrieveUserLogin(string email)
+        {
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT [Password] FROM Users WHERE [Email] = '" + email + "'", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            return ds.Tables[0].Rows[0].ItemArray[0].ToString();
+        }
+
+        public DataSet Search(string geographicArea, string field)
+        {
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT * FROM Activities WHERE [Field] = '" + field + "' AND [Location] = '" + geographicArea + "'", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            return ds;
         }
 
         #endregion
@@ -284,10 +316,7 @@ Persist Security Info=False;";
         /// <param name="geographicArea"></param>
         /// <param name="field"></param>
         /// <returns>returns a set of matches activities    SHOULD CHANGE THE RETURN VALUE TYPE!!</returns>
-        public bool Search(string geographicArea, string field)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 }
