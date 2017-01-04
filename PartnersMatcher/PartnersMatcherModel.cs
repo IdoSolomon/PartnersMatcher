@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
+using System.IO;
 
 namespace PartnersMatcher
 {
@@ -22,6 +23,7 @@ namespace PartnersMatcher
         private ObservableCollection<string> frequency;
         private ObservableCollection<string> difficulty;
         public OleDbConnection connection;
+        private string dbPath;
         
         #region email settings
         private string sender = "dbpd2016@gmail.com";
@@ -36,6 +38,7 @@ namespace PartnersMatcher
         public PartnersMatcherModel()
         {
             InitStructures();
+            dbPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\PartnersMatcher.accdb";
         }
 
         #region db
@@ -46,8 +49,7 @@ namespace PartnersMatcher
         public Boolean dbConnect()
         {
             connection = new OleDbConnection();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|DB\PartnersMatcher.accdb;
-Persist Security Info=False;";
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="+dbPath+"; Persist Security Info=False;";
             try
             {
                 connection.Open();
