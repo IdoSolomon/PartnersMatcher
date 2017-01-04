@@ -201,7 +201,7 @@ namespace GUI
                 MessageBox.Show("Missing data. You have to choose a place, an activity field, an activity and a start time!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                DataSet db = model.Search(locationComboBox.SelectedItem, domainComboBox.SelectedItem);
+                DataSet db = model.Search(locationComboBox.SelectedItem.ToString(), domainComboBox.SelectedItem.ToString());
                 SearchResultsWindow sr = new SearchResultsWindow(db);
                 sr.ShowDialog();
                 db.Dispose();
