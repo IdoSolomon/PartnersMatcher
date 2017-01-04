@@ -39,25 +39,30 @@ namespace GUI
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(UserNameBox.Text == "")
+            //for testing purposes
+            if (UserNameBox.Text != "guest" || PasswordBox.Password != "guest")
             {
-                System.Windows.MessageBox.Show("Please enter your Email address.", "No Email", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            if (!model.emailCheck(UserNameBox.Text))
-            {
-                System.Windows.MessageBox.Show("Please enter a valid Email address.", "Invalid Email", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            if (PasswordBox.Password == "")
-            {
-                System.Windows.MessageBox.Show("Please enter your password.", "No Password", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-            if(!model.ValidateUser(UserNameBox.Text, PasswordBox.Password))
-            {
-                System.Windows.MessageBox.Show("The user name and/or password entered are incorrect.", "Wrong Username or Password", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
+
+                if (UserNameBox.Text == "")
+                {
+                    System.Windows.MessageBox.Show("Please enter your Email address.", "No Email", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+                if (!model.emailCheck(UserNameBox.Text))
+                {
+                    System.Windows.MessageBox.Show("Please enter a valid Email address.", "Invalid Email", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+                if (PasswordBox.Password == "")
+                {
+                    System.Windows.MessageBox.Show("Please enter your password.", "No Password", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+                if(!model.ValidateUser(UserNameBox.Text, PasswordBox.Password))
+                {
+                    System.Windows.MessageBox.Show("The user name and/or password entered are incorrect.", "Wrong Username or Password", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
             }
             MainWindow main = new MainWindow(ref model);
             main.Show();
