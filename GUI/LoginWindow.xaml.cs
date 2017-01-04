@@ -29,7 +29,10 @@ namespace GUI
             UserNameBox.Text = "guest";
             PasswordBox.Password = "guest";
             if (!model.dbConnect())
+            {
                 MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                //Close();
+            }
             else model.dbClose();
         }
 
@@ -37,7 +40,12 @@ namespace GUI
         {
             if(UserNameBox.Text == "")
             {
-                System.Windows.MessageBox.Show("Please enter your user name.", "No Username", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                System.Windows.MessageBox.Show("Please enter your Email address.", "No Email", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
+            if (!model.emailCheck(UserNameBox.Text))
+            {
+                System.Windows.MessageBox.Show("Please enter a valid Email address.", "Invalid Email", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
             if (PasswordBox.Password == "")
@@ -47,7 +55,7 @@ namespace GUI
             }
             if(!model.ValidateUser(UserNameBox.Text, PasswordBox.Password))
             {
-                System.Windows.MessageBox.Show("The user name and/or password are incorrect.", "Wrong Username or Password", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                System.Windows.MessageBox.Show("The user name and/or password entered are incorrect.", "Wrong Username or Password", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
             MainWindow main = new MainWindow(ref model);

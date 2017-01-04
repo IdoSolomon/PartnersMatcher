@@ -26,6 +26,7 @@ namespace GUI
     {
         PartnersMatcherModel model;
         BackgroundWorker bgworker;
+        string user;
         public SignUpWindow(ref PartnersMatcherModel PMModel)
         {
             InitializeComponent();
@@ -38,9 +39,9 @@ namespace GUI
 
         private void bgworker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Boolean sent = model.SendRegistrationMail();
+            Boolean sent = model.SendRegistrationMail(user);
             if(!sent)
-                System.Windows.MessageBox.Show("SMTP service is blocked on this computer." + System.Environment.NewLine + "Please check your anti-virus software blocking rules.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show("SMTP service is blocked on this computer." + System.Environment.NewLine + "Please check your anti-virus software blocking rules.", "SMTP Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
@@ -51,32 +52,27 @@ namespace GUI
             data[2] = EmailTextBox.Text;
             data[3] = PasswordBox1.Password;
             data[4] = PasswordBox2.Password;
-            data[5] = DatePick.SelectedDate.ToString();
+            data[5] = DatePick.SelectedDate.Value.Date.ToShortDateString();
             data[6] = SexComboBox.Text;
             data[7] = PhoneTextBox.Text;
             data[8] = LocationComboBox.Text;
             data[9] = SmokingComboBox.Text;
             data[10] = PetComboBox.Text;
             data[11] = ResumeTextBox.Text;
-            //some activity object
+
             if (!ValidateFields(data))
                 return;
-            bgworker_DoWork(sender, null);
-            //send to model for further validation
-            //System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-            //System.Windows.MessageBox.Show("The complete system will feature an Activity Domain Selection window after sign up.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
 
             if (model.dbConnect())
             {
-                //model.InsertToUserTable();
-                //string pass = model.RetrieveUserLogin("email@email.email");
-                //DataSet ds = model.Search("Tel Aviv", "Blimps");
+                model.InsertToUserTable(data);
                 model.dbClose();
-                //int num = 11;
-                //MessageBox.Show("ID: " + ds.Tables[0].Rows[0].ItemArray[0].ToString() + " Name: " + ds.Tables[0].Rows[0].ItemArray[1].ToString(), "Activity Details", MessageBoxButton.OK, MessageBoxImage.Information);
-                //ds.Dispose();
+                user = data[2];
+                bgworker_DoWork(sender, null);
             }
             else MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            
+            System.Windows.MessageBox.Show("The complete system will feature an Activity Domain Selection window after sign up.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         #region validation
@@ -92,9 +88,14 @@ namespace GUI
                 System.Windows.MessageBox.Show("Please enter your last name.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            if (data[2] == "")
+            if (data[2] == "" || !model.emailCheck(data[2]))
             {
-                System.Windows.MessageBox.Show("Please enter your Email.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                System.Windows.MessageBox.Show("Please enter a valid Email address.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return false;
+            }
+            if (model.emailExists(data[2]))
+            {
+                System.Windows.MessageBox.Show("This Email address is already in use.", "Email Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
             if (data[3] == "")
@@ -149,6 +150,7 @@ namespace GUI
             }
             return true;
         }
+
         #endregion
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

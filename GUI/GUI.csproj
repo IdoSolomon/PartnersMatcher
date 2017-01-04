@@ -71,6 +71,9 @@
     <Compile Include="Windows\ActivitiesWindows\CreateNewActivityWindow.xaml.cs">
       <DependentUpon>CreateNewActivityWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ActivitiesWindows\SearchResultsWindow.xaml.cs">
+      <DependentUpon>SearchResultsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ActivitiesWindows\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ActivitiesWindows\CreateNewActivityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ActivitiesWindows\SearchResultsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

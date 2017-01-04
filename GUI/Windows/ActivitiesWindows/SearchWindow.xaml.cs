@@ -1,6 +1,7 @@
 ﻿using PartnersMatcher;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -32,13 +33,16 @@ namespace GUI.Windows.ActivitiesWindows
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (areaComboBox.SelectedItem == null || fieldsComboBox.SelectedItem == null)
+            if (areaComboBox.Text == "" || fieldsComboBox.Text == "")
             {
-                MessageBox.Show("Missing date. You have to choose a place and an activity field!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Missing data. Please choose a place and an activity field.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
-                model.Search(areaComboBox.SelectedItem.ToString(), fieldsComboBox.SelectedItem.ToString());
+                DataSet db = model.Search(areaComboBox.Text, fieldsComboBox.Text);
+                SearchResultsWindow sr = new SearchResultsWindow(db);
+                sr.ShowDialog();
+                db.Dispose();
             }
         }
 

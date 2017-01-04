@@ -21,7 +21,6 @@ namespace PartnersMatcher
         private ObservableCollection<string> numOfParticipates;
         private ObservableCollection<string> frequency;
         private ObservableCollection<string> difficulty;
-        private string user = "dbpd2016@gmail.com";
         public OleDbConnection connection;
         
         #region email settings
@@ -29,7 +28,6 @@ namespace PartnersMatcher
         private string sender_pass = "ISSE2016";
         private string smtp = "smtp.gmail.com";
         private int port = 587;
-        private string target = "dbpd2016@gmail.com";
         #endregion
 
 
@@ -66,7 +64,7 @@ Persist Security Info=False;";
             connection.Close();
         }
 
-        public void InsertToUserTable()
+        public void InsertToUserTable(params string[] data)
         {
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
@@ -75,17 +73,35 @@ Persist Security Info=False;";
             command = new OleDbCommand(
                 "INSERT INTO Users ([Email], [First Name], [Last Name], [Password], [Birth Date], [Sex], [Phone Number], [Location], [Smokes], [Pet], [Resume]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
 
-            command.Parameters.AddWithValue("@Email", "email@email.email");
-            command.Parameters.AddWithValue("@First Name", "Israel");
-            command.Parameters.AddWithValue("@Last Name", "Israeli");
-            command.Parameters.AddWithValue("@Password", "12345678");
-            command.Parameters.AddWithValue("@Birth Date", new DateTime(1991, 12, 29));
-            command.Parameters.AddWithValue("@Sex", "M");
-            command.Parameters.AddWithValue("@Phone Number", "085555555");
-            command.Parameters.AddWithValue("@Location", "Tel Aviv");
-            command.Parameters.AddWithValue("@Smokes", false);
-            command.Parameters.AddWithValue("@Pet", true);
-            command.Parameters.AddWithValue("@Resume", "I'm a test dummy!");
+            command.Parameters.AddWithValue("@Email", data[2]);
+            command.Parameters.AddWithValue("@First Name", data[0]);
+            command.Parameters.AddWithValue("@Last Name", data[1]);
+            command.Parameters.AddWithValue("@Password", data[3]);
+            //convert data[3] to datetime here
+            string[] date = data[3].Split('/');
+            DateTime dt = new DateTime(Convert.ToInt32(date[2]), Convert.ToInt32(date[1]), Convert.ToInt32(date[0]));
+            command.Parameters.AddWithValue("@Birth Date", dt);
+            //convert data[t] to M/F here
+            string sex;
+            if (data[9] == "Male")
+                sex = "M";
+            else sex = "F";
+            command.Parameters.AddWithValue("@Sex", sex);
+            command.Parameters.AddWithValue("@Phone Number", data[7]);
+            command.Parameters.AddWithValue("@Location", data[8]);
+            //convert data[9] to bool here
+            bool smokes;
+            if (data[9] == "Yes")
+                smokes = true;
+            else smokes = false;
+            command.Parameters.AddWithValue("@Smokes", smokes);
+            //convert data[10] to bool here
+            bool pet;
+            if (data[10] == "Yes")
+                pet = true;
+            else pet = false;
+            command.Parameters.AddWithValue("@Pet", pet);
+            command.Parameters.AddWithValue("@Resume", data[11]);
 
             adapter.InsertCommand = command;
             adapter.InsertCommand.ExecuteNonQuery();
@@ -104,7 +120,10 @@ Persist Security Info=False;";
 
             adapter.SelectCommand = command;
             adapter.Fill(ds);
-            return ds.Tables[0].Rows[0].ItemArray[0].ToString();
+            string login = "";
+            if (ds.Tables[0].Rows.Count != 0)
+                login = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+            return login;
         }
 
         public DataSet Search(string geographicArea, string field)
@@ -122,6 +141,24 @@ Persist Security Info=False;";
             return ds;
         }
 
+        public Boolean emailExists(string email)
+        {
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT [Email] FROM Users WHERE [Email] = '" + email + "'", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            if (ds.Tables[0].Rows.Count == 0)
+                return true;
+
+            return false;
+        }
+
         #endregion
 
         #region Init
@@ -135,7 +172,7 @@ Persist Security Info=False;";
             geographicAreas = new ObservableCollection<string>();
             geographicAreas.Add("Jerusalem");
             geographicAreas.Add("Tel Aviv");
-            geographicAreas.Add("Beer Sheva");
+            geographicAreas.Add("Be'er Sheva");
             geographicAreas.Add("Haifa");
             geographicAreas.Add("Eilat");
             activities = new Dictionary<string, ObservableCollection<string>>();
@@ -268,15 +305,41 @@ Persist Security Info=False;";
 
         public Boolean ValidateUser(string user, string pass)
         {
+            //for testing purposes
             if (user == "guest" && pass == "guest")
                 return true;
-            return false;
+            else if(!emailExists(user))
+            {
+                return false;
+            }
+            else if (pass != RetrieveUserLogin(user))
+            {
+                return false;
+            }
+            return true;
         }
 
-        public Boolean SendRegistrationMail()
+        public Boolean emailCheck(string email)
         {
-           // new Thread(() =>
-            //{
+            if (!email.Contains("@"))
+                return false;
+            string[] split = email.Split('@');
+            if (split.Length != 2)
+                return false;
+            if (split[0].Length == 0)
+                return false;
+            if (!split[1].Contains("."))
+                return false;
+            string[] split2 = split[1].Split('.');
+            if (split2.Length != 2)
+                return false;
+            if (split2[0].Length == 0 || split2[1].Length == 0)
+                return false;
+            return true;
+        }
+
+        public Boolean SendRegistrationMail(string target)
+        {
                 Thread.CurrentThread.IsBackground = true;
                 SmtpClient SmtpServer = new SmtpClient(smtp, port);
                 SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -289,7 +352,7 @@ Persist Security Info=False;";
                 mail.To.Add(new MailAddress(target));
                 mail.IsBodyHtml = false;
                 mail.Subject = "Your PartnersMatcher™ account has been created!";
-                mail.Body = "Your PartnersMatcher™ account, " + user + ", has been created and is ready to use." + System.Environment.NewLine + System.Environment.NewLine + "You may now sign in to PartnersMatcher™ using your new account.";
+                mail.Body = "Your PartnersMatcher™ account, " + target + ", has been created and is ready to use." + System.Environment.NewLine + System.Environment.NewLine + "You may now sign in to PartnersMatcher™ using your new account.";
 
 
                 try
@@ -306,16 +369,7 @@ Persist Security Info=False;";
                     mail.Dispose();
                 }
                 return true;
-            //}).Start();
         }
-
-
-        /// <summary>
-        /// the function serch in the database for a match activity
-        /// </summary>
-        /// <param name="geographicArea"></param>
-        /// <param name="field"></param>
-        /// <returns>returns a set of matches activities    SHOULD CHANGE THE RETURN VALUE TYPE!!</returns>
         
     }
 

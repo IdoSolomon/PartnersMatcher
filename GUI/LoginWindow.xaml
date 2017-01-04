@@ -32,7 +32,7 @@
         </Grid.RowDefinitions >
 
         <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="pack://application:,,,/Resources/Logo.png"/>
-        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Username:</Label>
+        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Email:</Label>
         <TextBox x:Name="UserNameBox"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2"  Style="{StaticResource TextBoxStyle}" Margin="20"></TextBox>
         <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Password:</Label>
         <PasswordBox x:Name="PasswordBox" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4"   Style="{StaticResource PasswordBoxStyle}" Margin="20"></PasswordBox>

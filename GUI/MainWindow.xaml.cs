@@ -33,7 +33,7 @@ namespace GUI
     public partial class MainWindow : Window
     {
         PartnersMatcherModel model;
-        ObservableCollection<RecommendedActivityRecord> RecommendedActivities;
+        ObservableCollection<ActivityRecord> RecommendedActivities;
         
 
         public MainWindow(ref PartnersMatcherModel PMModel)
@@ -49,10 +49,10 @@ namespace GUI
 
         private void InitRecommendedActivities()
         {
-            RecommendedActivities = new ObservableCollection<RecommendedActivityRecord>();
-            RecommendedActivityRecord activity1 = new RecommendedActivityRecord("Sport", "Playing soccer", "Playing soccer for beginners", "Beer Sheva", new DateTime(2017, 1, 1), "Weekly", "Sunday");
-            RecommendedActivityRecord activity2 = new RecommendedActivityRecord("Relationship", "Dating", "I`m single attractive man and I want to meet someone", "Beer Sheva", new DateTime(2017, 12, 5), "One time event", "Monday");
-            RecommendedActivityRecord activity3 = new RecommendedActivityRecord("Residence", "Roomates", "I`m single attractive man and I want to live with someone", "Beer Sheva", new DateTime(2017, 1, 1), "Conitnuos", "Friday");
+            RecommendedActivities = new ObservableCollection<ActivityRecord>();
+            ActivityRecord activity1 = new ActivityRecord("Sport", "Playing soccer", "Playing soccer for beginners", "Beer Sheva", new DateTime(2017, 1, 1), "Weekly", "Sunday");
+            ActivityRecord activity2 = new ActivityRecord("Relationship", "Dating", "I`m single attractive man and I want to meet someone", "Beer Sheva", new DateTime(2017, 12, 5), "One time event", "Monday");
+            ActivityRecord activity3 = new ActivityRecord("Residence", "Roomates", "I`m single attractive man and I want to live with someone", "Beer Sheva", new DateTime(2017, 1, 1), "Conitnuos", "Friday");
             RecommendedActivities.Add(activity1);
             RecommendedActivities.Add(activity2);
             RecommendedActivities.Add(activity3);
