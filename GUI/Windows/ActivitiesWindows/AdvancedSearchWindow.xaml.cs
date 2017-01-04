@@ -27,8 +27,10 @@ namespace GUI.Windows.ActivitiesWindows
             model = PMModel;
             areaComboBox.ItemsSource = model.GeographicAreas;
             fieldsComboBox.ItemsSource = model.Fields;
-            startOnComboBox.ItemsSource = model.StartOn;
-            endOnComboBox.ItemsSource = model.StartOn;
+            //achange to data time
+            /*startOnComboBox.ItemsSource = model.StartOn;
+            endOnComboBox.ItemsSource = model.StartOn;*/
+
             numOfParticipatesComboBox.ItemsSource = model.NumOfParticipates;
             frequencyComboBox.ItemsSource = model.Frequency;
             difficultyComboBox.ItemsSource = model.Difficulty;
@@ -61,14 +63,9 @@ namespace GUI.Windows.ActivitiesWindows
             Close();
         }
 
-        private void fieldsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void startsOnDatePick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
-        }
-
-        private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            endsOnDatePick.DisplayDateStart = startsOnDatePick.SelectedDate;
         }
     }
 }

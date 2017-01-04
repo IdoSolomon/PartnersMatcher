@@ -20,10 +20,7 @@ using GUI.Windows.PartnerInActivitiesWindows;
 using GUI.Windows.ChatWindows;
 using GUI.Windows.ActivitiesYouManageWindows;
 using GUI.Windows.ActivitiesWindows;
-
-
-
-
+using System.Data;
 
 namespace GUI
 {
@@ -203,7 +200,12 @@ namespace GUI
             if (domainComboBox.SelectedItem == null || locationComboBox.SelectedItem == null)
                 MessageBox.Show("Missing data. You have to choose a place, an activity field, an activity and a start time!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
-                MessageBox.Show("MUST TO IMPLEMENT!!!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            {
+                DataSet db = model.Search(locationComboBox.SelectedItem, domainComboBox.SelectedItem);
+                SearchResultsWindow sr = new SearchResultsWindow(db);
+                sr.ShowDialog();
+                db.Dispose();
+            }     
         }
 
         private void SendJoiningRequestsButton_Click(object sender, RoutedEventArgs e)

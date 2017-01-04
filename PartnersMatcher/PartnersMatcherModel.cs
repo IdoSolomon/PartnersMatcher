@@ -68,6 +68,7 @@ namespace PartnersMatcher
 
         public void InsertToUserTable(params string[] data)
         {
+            dbConnect();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
 
@@ -104,14 +105,15 @@ namespace PartnersMatcher
             else pet = false;
             command.Parameters.AddWithValue("@Pet", pet);
             command.Parameters.AddWithValue("@Resume", data[11]);
-
             adapter.InsertCommand = command;
             adapter.InsertCommand.ExecuteNonQuery();
+            dbClose();
             return;
         }
 
         public string RetrieveUserLogin(string email)
         {
+            dbConnect();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
             DataSet ds = new DataSet();
@@ -125,11 +127,13 @@ namespace PartnersMatcher
             string login = "";
             if (ds.Tables[0].Rows.Count != 0)
                 login = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+            dbClose();
             return login;
         }
 
         public DataSet Search(string geographicArea, string field)
         {
+            dbConnect();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
             DataSet ds = new DataSet();
@@ -140,11 +144,13 @@ namespace PartnersMatcher
 
             adapter.SelectCommand = command;
             adapter.Fill(ds);
+            dbClose();
             return ds;
         }
 
         public Boolean emailExists(string email)
         {
+            dbConnect();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
             DataSet ds = new DataSet();
@@ -155,6 +161,7 @@ namespace PartnersMatcher
 
             adapter.SelectCommand = command;
             adapter.Fill(ds);
+            dbClose();
             if (ds.Tables[0].Rows.Count == 0)
                 return true;
 
@@ -166,37 +173,10 @@ namespace PartnersMatcher
         #region Init
         public void InitStructures()
         {
-            fields = new ObservableCollection<string>();
-            fields.Add("Sport");
-            fields.Add("Relationship");
-            fields.Add("Residence");
-
-            geographicAreas = new ObservableCollection<string>();
-            geographicAreas.Add("Jerusalem");
-            geographicAreas.Add("Tel Aviv");
-            geographicAreas.Add("Be'er Sheva");
-            geographicAreas.Add("Haifa");
-            geographicAreas.Add("Eilat");
-            activities = new Dictionary<string, ObservableCollection<string>>();
-
-            ObservableCollection<string> activitiesInSport = new ObservableCollection<string>();
-            activitiesInSport.Add("Playing soccer");
-            activitiesInSport.Add("Playing basketball");
-            activitiesInSport.Add("Ping pong");
-            activities.Add("Sport", activitiesInSport);
-            ObservableCollection<string> activitiesInDating = new ObservableCollection<string>();
-            activitiesInDating.Add("Dating");
-            activities.Add("Relationship", activitiesInDating);
-            ObservableCollection<string> activitiesInResidence = new ObservableCollection<string>();
-            activitiesInResidence.Add("Roomates");
-            activities.Add("Residence", activitiesInResidence);
-            activities.Add("None", new ObservableCollection<string>());
-
-
-            startOn = new ObservableCollection<DateTime>();
-            startOn.Add(new DateTime(2017, 1, 1));
-            startOn.Add(new DateTime(2017, 12, 5));
-            startOn.Add(new DateTime(2017, 6, 12));
+            //Create the InsertCommand.
+            InitFields();
+            InitGeographicAreas();
+            InitActivities();
 
             numOfParticipates = new ObservableCollection<string>();
             numOfParticipates.Add("2");
@@ -207,14 +187,67 @@ namespace PartnersMatcher
 
             frequency = new ObservableCollection<string>();
             frequency.Add("Weekly");
-            frequency.Add("One time event");
-            frequency.Add("Conitnuos");
+            frequency.Add("One-off");
+            frequency.Add("Continuous");
 
             difficulty = new ObservableCollection<string>();
-            difficulty.Add("easy");
-            difficulty.Add("medium");
-            difficulty.Add("hard");
-            difficulty.Add("very hard");
+            difficulty.Add("Easy");
+            difficulty.Add("Medium");
+            difficulty.Add("Hard");
+            difficulty.Add("Very hard");
+        }
+
+        private void InitActivities()
+        {
+            dbConnect();
+            DataSet ds = new DataSet();
+            activities = new Dictionary<string, ObservableCollection<string>>();
+            OleDbCommand command;
+            foreach (string field in Fields)
+            {
+                command = new OleDbCommand(
+                "SELECT [Activity Name] FROM Activities WHERE [Field] = '" + field + "'", connection);
+                OleDbDataAdapter adapter = new OleDbDataAdapter();
+                adapter.SelectCommand = command;
+                adapter.Fill(ds);
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    activities[field].Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+                ds.Clear();
+            }
+            dbClose();
+        }
+
+        private void InitGeographicAreas()
+        {
+            dbConnect();
+
+            geographicAreas = new ObservableCollection<string>();
+            DataSet ds = new DataSet();
+            OleDbCommand command = new OleDbCommand(
+                "SELECT [Location] FROM Activities", connection);
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                geographicAreas.Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+            dbClose();
+
+        }
+
+        private void InitFields()
+        {
+            dbConnect();
+            DataSet ds = new DataSet();
+            OleDbCommand command = new OleDbCommand(
+                "SELECT [Field Name] FROM Fields", connection);
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            fields = new ObservableCollection<string>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                fields.Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+            dbClose();
+
         }
 
         #endregion

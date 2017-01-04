@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GUI.DataGridRecords;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -20,10 +22,17 @@ namespace GUI.Windows.ActivitiesWindows
     /// </summary>
     public partial class SearchResultsWindow : Window
     {
+        ObservableCollection<ActivityRecord> RecommendedActivities = new ObservableCollection<ActivityRecord>();
+
         public SearchResultsWindow(DataSet dbSearchResults)
         {
             InitializeComponent();
-            //if(dbSearchResults.Tables[0].Rows.Count == 0)
+            for (int i = 0; i < dbSearchResults.Tables[0].Rows.Count; i++)
+            {
+                ActivityRecord activity = new ActivityRecord(dbSearchResults.Tables[0].Rows[i]);
+                RecommendedActivities.Add(activity);
+            }
+            RecommendedActivitiesGrid.ItemsSource = RecommendedActivities;
         }
     }
 }

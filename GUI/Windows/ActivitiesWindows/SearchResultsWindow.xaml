@@ -24,6 +24,8 @@
             <RowDefinition Height="0.01*" MinHeight="20"/>
         </Grid.RowDefinitions>
 
+        <Label Grid.Column="1" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Search Results:</Label>
+        
         <DataGrid  x:Name="RecommendedActivitiesGrid" AutoGenerateColumns="False" Grid.Row="2" Grid.RowSpan="4">
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
@@ -47,14 +49,13 @@
                 <DataGridTextColumn Header="Participates" IsReadOnly="True" Width="*" Binding="{Binding NumOfParticipate}" />
                 <DataGridTextColumn Header="Place" IsReadOnly="True" Width="*" Binding="{Binding Place}"/>
                 <DataGridTextColumn Header="Start Date" IsReadOnly="True" Width="*" Binding="{Binding StartsOn}"/>
-                <DataGridTextColumn Header="Finish Date" IsReadOnly="True" Width="*" Binding="{Binding StartsOn}"/>
-                <DataGridTextColumn Header="Start Hour" IsReadOnly="True" Width="*" Binding="{Binding Place}"/>
-                <DataGridTextColumn Header="Finish Hour" IsReadOnly="True" Width="*" Binding="{Binding StartsOn}"/>
-                <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Width="*" Binding="{Binding Frequency}"/>
+                <DataGridTextColumn Header="Finish Date" IsReadOnly="True" Width="*" Binding="{Binding FinishOn}"/>
+                <DataGridTextColumn Header="Start Hour" IsReadOnly="True" Width="*" Binding="{Binding StartHour}"/>
+                <DataGridTextColumn Header="Finish Hour" IsReadOnly="True" Width="*" Binding="{Binding FinishHour}"/>
+                <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Width="*" Binding="{Binding Difficulty}"/>
                 <DataGridTextColumn Header="Frequency" IsReadOnly="True" Width="*" Binding="{Binding Frequency}"/>
-                <DataGridTextColumn Header="Price" IsReadOnly="True" Width="*" Binding="{Binding Frequency}"/>
-                <DataGridTextColumn Header="Days" IsReadOnly="True" Width="*" Binding="{Binding Frequency}"/>
-
+                <DataGridTextColumn Header="Price" IsReadOnly="True" Width="*" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Days" IsReadOnly="True" Width="*" Binding="{Binding Days}"/>
 
                 <DataGridTemplateColumn Width="*" Header="Select">
                     <DataGridTemplateColumn.CellTemplate>

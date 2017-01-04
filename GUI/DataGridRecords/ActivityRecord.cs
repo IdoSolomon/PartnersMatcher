@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace GUI.DataGridRecords
 {
     public class ActivityRecord
     {
+        private DataRow dataRow;
+
         public string Activity { get; set; }
         public string Catagory { get; set; }
         public int NumOfParticipate { get; set; }
@@ -16,7 +19,9 @@ namespace GUI.DataGridRecords
         public DateTime FinishOn { get; set; }
         public TimeSpan StartHour { get; set; }
         public TimeSpan FinishHour { get; set; }
+        public string Difficulty { get; set; }
         public string Frequency { get; set; }
+        public string Price { get; set; }
         public bool Sunday { get; set; }
         public bool Monday { get; set; }
         public bool Tuesday { get; set; }
@@ -40,7 +45,7 @@ namespace GUI.DataGridRecords
             Days = days;
         }
 
-        public ActivityRecord(string activity, string catagory, int numOfParticipate, string place, DateTime startsOn, DateTime finishOn, TimeSpan startHour, TimeSpan finishHour, string frequency, bool sunday, bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday)
+        public ActivityRecord(string activity, string catagory, int numOfParticipate, string place, DateTime startsOn, DateTime finishOn, TimeSpan startHour, TimeSpan finishHour, string difficulty, string frequency, string price, bool sunday, bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday)
         {
             Activity = activity;
             Catagory = catagory;
@@ -50,7 +55,9 @@ namespace GUI.DataGridRecords
             FinishOn = finishOn;
             StartHour = startHour;
             FinishHour = finishHour;
+            Difficulty = difficulty;
             Frequency = frequency;
+            Price = price;
             Sunday = sunday;
             Monday = monday;
             Tuesday = tuesday;
@@ -58,7 +65,31 @@ namespace GUI.DataGridRecords
             Thursday = thursday;
             Friday = friday;
             Saturday = saturday;
+            Days = "";
 
+        }
+
+        public ActivityRecord(DataRow dataRow)
+        {
+            Activity = (string)dataRow[0];
+            Catagory = (string)dataRow[1];
+            NumOfParticipate = (int)dataRow[2];
+            Place = (string)dataRow[3];
+            StartsOn = (DateTime)dataRow[4];
+            FinishOn = (DateTime)dataRow[5];
+            StartHour = (TimeSpan)dataRow[6];
+            FinishHour = (TimeSpan)dataRow[7];
+            Difficulty = (string)dataRow[8];
+            Frequency = (string)dataRow[9];
+            Price = (string)dataRow[10];
+            Sunday = false;
+            Monday = false;
+            Tuesday = false;
+            Wednesday = false;
+            Thursday = false;
+            Friday = false;
+            Saturday = false;
+            Days = "";
         }
     }
 }
