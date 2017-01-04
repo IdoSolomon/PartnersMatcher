@@ -307,10 +307,7 @@ namespace PartnersMatcher
 
         public Boolean ValidateUser(string user, string pass)
         {
-            //for testing purposes
-            if (user == "guest" && pass == "guest")
-                return true;
-            else if(!emailExists(user))
+            if(!emailExists(user))
             {
                 return false;
             }
