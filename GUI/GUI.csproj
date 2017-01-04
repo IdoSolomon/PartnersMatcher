@@ -58,7 +58,7 @@
     </Compile>
     <Compile Include="DataGridRecords\ActivityCatagory.cs" />
     <Compile Include="DataGridRecords\GroupMessageRecord.cs" />
-    <Compile Include="DataGridRecords\RecommendedActivityRecord.cs" />
+    <Compile Include="DataGridRecords\ActivityRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
