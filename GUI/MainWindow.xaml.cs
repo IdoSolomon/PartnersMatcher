@@ -202,8 +202,14 @@ namespace GUI
             else
             {
                 DataSet db = model.Search(locationComboBox.SelectedItem.ToString(), domainComboBox.SelectedItem.ToString());
-                SearchResultsWindow sr = new SearchResultsWindow(db);
-                sr.ShowDialog();
+                if(db.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("No matching Activities were found.", "No Results", MessageBoxButton.OK, MessageBoxImage.Information);
+                } else
+                {
+                    SearchResultsWindow sr = new SearchResultsWindow(db);
+                    sr.ShowDialog();
+                }
                 db.Dispose();
             }     
         }

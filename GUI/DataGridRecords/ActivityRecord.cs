@@ -66,7 +66,6 @@ namespace GUI.DataGridRecords
             Friday = friday;
             Saturday = saturday;
             Days = "";
-
         }
 
         public ActivityRecord(DataRow dataRow)
@@ -75,12 +74,12 @@ namespace GUI.DataGridRecords
             Catagory = (string)dataRow[2];
             NumOfParticipate = (int)dataRow[3];
             Place = (string)dataRow[4];
-            StartsOn = (DateTime)dataRow[5];
-            FinishOn = (DateTime)dataRow[6];
-            StartHour = new TimeSpan(((DateTime)dataRow[7]).Ticks);
-            FinishHour = new TimeSpan(((DateTime)dataRow[8]).Ticks);
+            StartsOn = ((DateTime)dataRow[5]).Date;
+            FinishOn = ((DateTime)dataRow[6]).Date;
+            StartHour = ((DateTime)dataRow[7]).TimeOfDay;
+            FinishHour = ((DateTime)dataRow[8]).TimeOfDay;
             Difficulty = (string)dataRow[9];
-            Price = Convert.ToString(((string)dataRow[10]));
+            Price = ((decimal)dataRow[10]).ToString();
             Frequency = (string)dataRow[11];
             Sunday = false;
             Monday = false;

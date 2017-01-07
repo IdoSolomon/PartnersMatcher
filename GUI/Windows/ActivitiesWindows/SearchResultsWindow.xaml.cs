@@ -33,6 +33,7 @@ namespace GUI.Windows.ActivitiesWindows
                 RecommendedActivities.Add(activity);
             }
             RecommendedActivitiesGrid.ItemsSource = RecommendedActivities;
+
         }
     }
 }

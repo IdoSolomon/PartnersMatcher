@@ -6,7 +6,8 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
         mc:Ignorable="d"
-        Title="SearchWindow" Height="450" Width="450">
+        Title="SearchWindow" Height="450" Width="450"
+        WindowStartupLocation="CenterScreen">
     <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>

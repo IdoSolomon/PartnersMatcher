@@ -66,9 +66,12 @@ namespace PartnersMatcher
             connection.Close();
         }
 
-        public void InsertToUserTable(params string[] data)
+        public Boolean InsertToUserTable(params string[] data)
         {
-            dbConnect();
+            if(!dbConnect())
+            {
+                return false;
+            }
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
 
@@ -108,12 +111,13 @@ namespace PartnersMatcher
             adapter.InsertCommand = command;
             adapter.InsertCommand.ExecuteNonQuery();
             dbClose();
-            return;
+            return true;
         }
 
         public string RetrieveUserLogin(string email)
         {
-            dbConnect();
+            if (!dbConnect())
+                return "";
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
             DataSet ds = new DataSet();
@@ -133,10 +137,12 @@ namespace PartnersMatcher
 
         public DataSet Search(string geographicArea, string field)
         {
-            dbConnect();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
             DataSet ds = new DataSet();
+
+            if (!dbConnect())
+                return ds;
 
             //Create the InsertCommand.
             command = new OleDbCommand(
@@ -150,7 +156,8 @@ namespace PartnersMatcher
 
         public Boolean emailExists(string email)
         {
-            dbConnect();
+            if (!dbConnect())
+                return false;
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
             DataSet ds = new DataSet();
@@ -199,7 +206,8 @@ namespace PartnersMatcher
 
         private void InitActivities()
         {
-            dbConnect();
+            if (!dbConnect())
+                return;
             DataSet ds = new DataSet();
             activities = new Dictionary<string, ObservableCollection<string>>();
             OleDbCommand command;
@@ -224,7 +232,8 @@ namespace PartnersMatcher
 
         private void InitGeographicAreas()
         {
-            dbConnect();
+            if (!dbConnect())
+                return;
 
             geographicAreas = new ObservableCollection<string>();
             DataSet ds = new DataSet();
@@ -234,14 +243,19 @@ namespace PartnersMatcher
             adapter.SelectCommand = command;
             adapter.Fill(ds);
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                geographicAreas.Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+            {
+                string location = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+                if (!geographicAreas.Contains(location))
+                    geographicAreas.Add(location);
+            }
             dbClose();
 
         }
 
         private void InitFields()
         {
-            dbConnect();
+            if (!dbConnect())
+                return;
             DataSet ds = new DataSet();
             OleDbCommand command = new OleDbCommand(
                 "SELECT [Field Name] FROM Fields", connection);
@@ -250,7 +264,11 @@ namespace PartnersMatcher
             adapter.Fill(ds);
             fields = new ObservableCollection<string>();
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                fields.Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+            {
+                string f = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+                if(!fields.Contains(f))
+                fields.Add(f);
+            }
             dbClose();
 
         }

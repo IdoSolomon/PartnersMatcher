@@ -51,7 +51,7 @@
 
         <Label Grid.Column="1" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Start on:</Label>
         <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
-                    Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" SelectedDateChanged="startsOnDatePick_SelectedDateChanged"></DatePicker>
+                    Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" SelectedDateChanged="startsOnDatePick_SelectedDateChanged" FontSize="12"></DatePicker>
 
         <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Participates gender:</Label>
         <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="10" Style="{StaticResource ComboBoxStyle}">
@@ -70,7 +70,7 @@
 
         <Label Grid.Column="3" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">End on:</Label>
         <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}" 
-                    Grid.Column="3" Grid.Row="8" VerticalAlignment="Center"></DatePicker>
+                    Grid.Column="3" Grid.Row="8" VerticalAlignment="Center" FontSize="12"></DatePicker>
         
         <Label Grid.Column="1" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
         <Grid Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3">

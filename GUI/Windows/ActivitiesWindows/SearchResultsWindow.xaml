@@ -6,7 +6,8 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
         mc:Ignorable="d"
-        Title="SearchResultsWindow" Height="500" Width="1200">
+        Title="SearchResultsWindow" Height="500" Width="1500"
+        WindowStartupLocation="CenterScreen">
     <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="10"/>
@@ -48,13 +49,13 @@
                 <DataGridTextColumn Header="Domain" IsReadOnly="True" Width="*" Binding="{Binding Catagory}" />
                 <DataGridTextColumn Header="Participates" IsReadOnly="True" Width="*" Binding="{Binding NumOfParticipate}" />
                 <DataGridTextColumn Header="Place" IsReadOnly="True" Width="*" Binding="{Binding Place}"/>
-                <DataGridTextColumn Header="Start Date" IsReadOnly="True" Width="*" Binding="{Binding StartsOn}"/>
-                <DataGridTextColumn Header="Finish Date" IsReadOnly="True" Width="*" Binding="{Binding FinishOn}"/>
+                <DataGridTextColumn Header="Start Date" IsReadOnly="True" Width="*" Binding="{Binding StartsOn, StringFormat=d}"/>
+                <DataGridTextColumn Header="Finish Date" IsReadOnly="True" Width="*" Binding="{Binding FinishOn, StringFormat=d}"/>
                 <DataGridTextColumn Header="Start Hour" IsReadOnly="True" Width="*" Binding="{Binding StartHour}"/>
                 <DataGridTextColumn Header="Finish Hour" IsReadOnly="True" Width="*" Binding="{Binding FinishHour}"/>
                 <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Width="*" Binding="{Binding Difficulty}"/>
                 <DataGridTextColumn Header="Frequency" IsReadOnly="True" Width="*" Binding="{Binding Frequency}"/>
-                <DataGridTextColumn Header="Price" IsReadOnly="True" Width="*" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Price (NIS)" IsReadOnly="True" Width="*" Binding="{Binding Price}"/>
                 <DataGridTextColumn Header="Days" IsReadOnly="True" Width="*" Binding="{Binding Days}"/>
 
                 <DataGridTemplateColumn Width="*" Header="Select">

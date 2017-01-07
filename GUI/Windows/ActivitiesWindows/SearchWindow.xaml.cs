@@ -40,8 +40,17 @@ namespace GUI.Windows.ActivitiesWindows
             else
             {
                 DataSet db = model.Search(areaComboBox.Text, fieldsComboBox.Text);
-                SearchResultsWindow sr = new SearchResultsWindow(db);
-                sr.ShowDialog();
+                
+                if (db.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("No matching Activities were found.", "No Results", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    SearchResultsWindow sr = new SearchResultsWindow(db);
+                    sr.ShowDialog();
+                }
+
                 db.Dispose();
             }
         }
