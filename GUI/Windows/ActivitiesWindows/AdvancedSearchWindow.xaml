@@ -37,12 +37,12 @@
             <RowDefinition Height="0.01*" MinHeight="20"/>
 
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">*Place:</Label>
-        <ComboBox x:Name="areaComboBox"  Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxStyle}" SelectionChanged="areaComboBox_SelectionChanged">
+        <Label Grid.Column="1" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">*Location:</Label>
+        <ComboBox x:Name="areaComboBox"  Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
         <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">*Fields:</Label>
-        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxStyle}"  DropDownClosed="GroupComboBox_DropDownClosed" SelectionChanged="fieldsComboBox_SelectionChanged">
+        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxStyle}"  DropDownClosed="GroupComboBox_DropDownClosed">
         </ComboBox>
 
         <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">*Activities:</Label>
@@ -54,18 +54,18 @@
                     Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" SelectedDateChanged="startsOnDatePick_SelectedDateChanged"></DatePicker>
 
         <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Participates gender:</Label>
-        <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="10" Style="{StaticResource ComboBoxStyle}" SelectionChanged="fieldsComboBox_SelectionChanged">
+        <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="10" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of participates:</Label>
-        <ComboBox x:Name="numOfParticipatesComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}" SelectionChanged="fieldsComboBox_SelectionChanged">
+        <ComboBox x:Name="numOfParticipatesComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Frequency:</Label>
-        <ComboBox x:Name="frequencyComboBox"  Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxStyle}" SelectionChanged="fieldsComboBox_SelectionChanged">
+        <ComboBox x:Name="frequencyComboBox"  Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
         <Label Grid.Column="3" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Difficulty:</Label>
-        <ComboBox x:Name="difficultyComboBox"  Grid.Column="3" Grid.Row="6" Style="{StaticResource ComboBoxStyle}" SelectionChanged="fieldsComboBox_SelectionChanged">
+        <ComboBox x:Name="difficultyComboBox"  Grid.Column="3" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">End on:</Label>

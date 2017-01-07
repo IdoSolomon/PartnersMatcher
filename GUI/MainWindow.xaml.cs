@@ -198,7 +198,7 @@ namespace GUI
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             if (domainComboBox.SelectedItem == null || locationComboBox.SelectedItem == null)
-                MessageBox.Show("Missing data. You have to choose a place, an activity field, an activity and a start time!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Please select an activity field and location.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 DataSet db = model.Search(locationComboBox.SelectedItem.ToString(), domainComboBox.SelectedItem.ToString());

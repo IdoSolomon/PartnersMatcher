@@ -31,7 +31,7 @@ namespace GUI
             PasswordBox.Password = "guest";
             if (!model.dbConnect())
             {
-                MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Failed to connect to DB." + System.Environment.NewLine + "Please ensure that you have the Microsoft Access Database Engine 2010 Redistributable (or higher) installed.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 //Close();
             }
             else model.dbClose();

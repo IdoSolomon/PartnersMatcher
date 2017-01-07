@@ -71,17 +71,17 @@ namespace GUI.DataGridRecords
 
         public ActivityRecord(DataRow dataRow)
         {
-            Activity = (string)dataRow[0];
-            Catagory = (string)dataRow[1];
-            NumOfParticipate = (int)dataRow[2];
-            Place = (string)dataRow[3];
-            StartsOn = (DateTime)dataRow[4];
-            FinishOn = (DateTime)dataRow[5];
-            StartHour = (TimeSpan)dataRow[6];
-            FinishHour = (TimeSpan)dataRow[7];
-            Difficulty = (string)dataRow[8];
-            Frequency = (string)dataRow[9];
-            Price = (string)dataRow[10];
+            Activity = (string)dataRow[1];
+            Catagory = (string)dataRow[2];
+            NumOfParticipate = (int)dataRow[3];
+            Place = (string)dataRow[4];
+            StartsOn = (DateTime)dataRow[5];
+            FinishOn = (DateTime)dataRow[6];
+            StartHour = new TimeSpan(((DateTime)dataRow[7]).Ticks);
+            FinishHour = new TimeSpan(((DateTime)dataRow[8]).Ticks);
+            Difficulty = (string)dataRow[9];
+            Price = Convert.ToString(((string)dataRow[10]));
+            Frequency = (string)dataRow[11];
             Sunday = false;
             Monday = false;
             Tuesday = false;

@@ -37,8 +37,8 @@ namespace PartnersMatcher
 
         public PartnersMatcherModel()
         {
-            InitStructures();
             dbPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\PartnersMatcher.accdb";
+            InitStructures();
         }
 
         #region db
@@ -210,8 +210,13 @@ namespace PartnersMatcher
                 OleDbDataAdapter adapter = new OleDbDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(ds);
+                //TODO "Key Not Found Exception"
+                ObservableCollection<string> collection = new ObservableCollection<string>();
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    activities[field].Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+                {
+                    collection.Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+                }
+                activities.Add(field, collection);
                 ds.Clear();
             }
             dbClose();

@@ -169,7 +169,7 @@
         </DockPanel>
         <DockPanel LastChildFill="True" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="10" Style="{StaticResource MyDockPanelStyle}">
             <Label Content="Search Activity"  HorizontalAlignment="Center" Style="{StaticResource LableStyle}" Margin="15,8,25,0"/>
-            <ComboBox x:Name="domainComboBox" Text="--Domain--" HorizontalAlignment="Center"  Style="{StaticResource ComboBoxStyle}" Margin="0,0,25,0" />
+            <ComboBox x:Name="domainComboBox" Text="--Field--" HorizontalAlignment="Center"  Style="{StaticResource ComboBoxStyle}" Margin="0,0,25,0" />
             <ComboBox x:Name="locationComboBox" Text="--Location--"  HorizontalAlignment="Center"  Style="{StaticResource ComboBoxStyle}" Margin="0,0,25,0"/>
             <Button Content="Search" HorizontalAlignment="Center" Style="{StaticResource ButtonStyle}" Height="40" Click="SearchBtn_Click" Margin="0,0,30,0" />
             <Label Content="Your Conversations"  HorizontalAlignment="Center" Style="{StaticResource LableStyle}" Margin="90,8,25,0"/>

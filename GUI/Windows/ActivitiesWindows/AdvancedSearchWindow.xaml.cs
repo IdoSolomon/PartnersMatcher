@@ -41,7 +41,7 @@ namespace GUI.Windows.ActivitiesWindows
         private void GroupComboBox_DropDownClosed(object sender, EventArgs e)
         {
             if(fieldsComboBox.SelectedItem == null)
-                MessageBox.Show("Missing data. You can choose an activity before you choose a field!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Missing data. You must choose an activity before you choose a field.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 activitiesComboBox.ItemsSource = model.Activities[fieldsComboBox.SelectedItem.ToString()];
@@ -52,9 +52,9 @@ namespace GUI.Windows.ActivitiesWindows
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             if(areaComboBox.SelectedItem == null || fieldsComboBox.SelectedItem == null)
-                MessageBox.Show("Missing data. You have to choose a place, an activity field, an activity and a start time!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Missing data. You have to choose a place, an activity field, an activity and a start time.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
-                MessageBox.Show("MUST TO IMPLEMENT!!!", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
