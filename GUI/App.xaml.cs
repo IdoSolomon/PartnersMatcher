@@ -18,8 +18,10 @@ namespace GUI
         private void OnStartup(object sender, StartupEventArgs e)
         {
             PartnersMatcherModel model = new PartnersMatcherModel();
-            LoginWindow main = new LoginWindow(ref model);
-            main.Show();
+            MainWindow main = new MainWindow(ref model);
+
+            //LoginWindow main = new LoginWindow(ref model);
+            //main.Show();
         }
     }
 }

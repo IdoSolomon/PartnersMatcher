@@ -38,6 +38,15 @@ namespace GUI
         {
             InitializeComponent();
             model = PMModel;
+            
+            LoginWindow login = new LoginWindow(ref model);
+            login.ShowDialog();
+
+            if (!model.connected)
+                Close();
+            else
+                this.ShowDialog();
+
             InitRecommendedActivities();
 
             locationComboBox.ItemsSource = model.GeographicAreas;

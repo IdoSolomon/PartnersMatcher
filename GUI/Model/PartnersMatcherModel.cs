@@ -23,6 +23,7 @@ namespace GUI.Model
         private ObservableCollection<string> frequency;
         private ObservableCollection<string> difficulty;
         public OleDbConnection connection;
+        public bool connected = false;
         private string dbPath;
         
         #region email settings

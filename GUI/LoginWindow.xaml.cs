@@ -63,8 +63,9 @@ namespace GUI
                     return;
                 }
             }
-            MainWindow main = new MainWindow(ref model);
-            main.Show();
+            //MainWindow main = new MainWindow(ref model);
+            //main.Show();
+            model.connected = true;
             Close();
         }
 
@@ -80,8 +81,8 @@ namespace GUI
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            SignUpWindow main = new SignUpWindow(ref model);
-            main.ShowDialog();
+            SignUpWindow sign = new SignUpWindow(ref model);
+            sign.ShowDialog();
         }
     }
 }
