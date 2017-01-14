@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using GUI.Model;
 using System.Windows;
 
 namespace GUI

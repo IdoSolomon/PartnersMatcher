@@ -1,4 +1,5 @@
 ﻿using GUI.DataGridRecords;
+using GUI.Model;
 using PartnersMatcher;
 using System;
 using System.Collections.Generic;

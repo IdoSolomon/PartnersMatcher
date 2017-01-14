@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PartnersMatcher.classes
+namespace GUI.classes
 {
-    class User
+    public class User
     {
         
     }

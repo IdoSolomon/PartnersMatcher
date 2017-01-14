@@ -56,15 +56,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="classes\Activity.cs" />
+    <Compile Include="classes\Ad.cs" />
+    <Compile Include="classes\Domain.cs" />
+    <Compile Include="classes\Preference.cs" />
+    <Compile Include="classes\Request.cs" />
+    <Compile Include="classes\User.cs" />
+    <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\PartnersMatcherController.cs" />
     <Compile Include="DataGridRecords\ActivityCatagory.cs" />
     <Compile Include="DataGridRecords\GroupMessageRecord.cs" />
     <Compile Include="DataGridRecords\ActivityRecord.cs" />
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\PartnersMatcherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\IView.cs" />
     <Compile Include="Windows\ActivitiesWindows\AdvancedSearchWindow.xaml.cs">
       <DependentUpon>AdvancedSearchWindow.xaml</DependentUpon>
     </Compile>
@@ -268,12 +279,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PartnersMatcher\PartnersMatcher.csproj">
-      <Project>{b6de193d-7dff-4a9d-9ce1-5987c004700c}</Project>
-      <Name>PartnersMatcher</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

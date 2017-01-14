@@ -47,15 +47,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\Activity.cs" />
+    <Compile Include="classes\Ad.cs" />
     <Compile Include="classes\Domain.cs" />
+    <Compile Include="classes\Preference.cs" />
     <Compile Include="classes\Request.cs" />
     <Compile Include="classes\User.cs" />
-    <Compile Include="PartnersMatcherModel.cs" />
+    <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\PartnersMatcherController.cs" />
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\PartnersMatcherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
