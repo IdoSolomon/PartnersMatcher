@@ -13,7 +13,7 @@ using System.IO;
 
 namespace GUI.Model
 {
-    public class PartnersMatcherModel
+    public class PartnersMatcherModel : IModel
     {
         private ObservableCollection<string> fields;
         private ObservableCollection<string> geographicAreas;
@@ -276,7 +276,7 @@ namespace GUI.Model
 
         #endregion
         #region properties
-        public ObservableCollection<string> Fields
+        private ObservableCollection<string> Fields
         {
             get
             {
@@ -294,7 +294,7 @@ namespace GUI.Model
         }
 
 
-        public ObservableCollection<string> GeographicAreas
+        private ObservableCollection<string> GeographicAreas
         {
             get
             {
@@ -311,7 +311,7 @@ namespace GUI.Model
             return geographicAreas;
         }
 
-        public Dictionary<string, ObservableCollection<string>> Activities
+        private Dictionary<string, ObservableCollection<string>> Activities
         {
             get
             {
@@ -328,7 +328,7 @@ namespace GUI.Model
             return activities;
         }
 
-        public ObservableCollection<DateTime> StartOn
+        private ObservableCollection<DateTime> StartOn
         {
             get
             {
@@ -345,7 +345,7 @@ namespace GUI.Model
             return startOn;
         }
 
-        public ObservableCollection<string> NumOfParticipates
+        private ObservableCollection<string> NumOfParticipates
         {
             get
             {
@@ -362,7 +362,7 @@ namespace GUI.Model
             return numOfParticipates;
         }
 
-        public ObservableCollection<string> Frequency
+        private ObservableCollection<string> Frequency
         {
             get
             {
@@ -379,7 +379,7 @@ namespace GUI.Model
             return frequency;
         }
 
-        public ObservableCollection<string> Difficulty
+        private ObservableCollection<string> Difficulty
         {
             get
             {

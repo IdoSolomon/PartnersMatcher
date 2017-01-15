@@ -1,5 +1,4 @@
-﻿using PartnersMatcher;
-using GUI.Model;
+﻿using GUI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace GUI
         {
             InitializeComponent();
             model = PMModel;
-            LocationComboBox.ItemsSource = model.GeographicAreas;
+            LocationComboBox.ItemsSource = model.GetGeographicAreas();
             bgworker = new BackgroundWorker();
             bgworker.DoWork += bgworker_DoWork;
             bgworker.WorkerReportsProgress = true;

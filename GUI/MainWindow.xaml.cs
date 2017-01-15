@@ -1,6 +1,5 @@
 ﻿using GUI.DataGridRecords;
 using GUI.Model;
-using PartnersMatcher;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,7 +37,12 @@ namespace GUI
         {
             InitializeComponent();
             model = PMModel;
-            
+
+            InitRecommendedActivities();
+
+            locationComboBox.ItemsSource = model.GetGeographicAreas();
+            domainComboBox.ItemsSource = model.GetFields();
+
             LoginWindow login = new LoginWindow(ref model);
             login.ShowDialog();
 
@@ -46,11 +50,6 @@ namespace GUI
                 Close();
             else
                 this.ShowDialog();
-
-            InitRecommendedActivities();
-
-            locationComboBox.ItemsSource = model.GeographicAreas;
-            domainComboBox.ItemsSource = model.Fields;
 
         }
 

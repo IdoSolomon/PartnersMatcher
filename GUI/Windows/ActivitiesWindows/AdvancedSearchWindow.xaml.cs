@@ -25,15 +25,15 @@ namespace GUI.Windows.ActivitiesWindows
         {
             InitializeComponent();
             model = PMModel;
-            areaComboBox.ItemsSource = model.GeographicAreas;
-            fieldsComboBox.ItemsSource = model.Fields;
+            areaComboBox.ItemsSource = model.GetGeographicAreas();
+            fieldsComboBox.ItemsSource = model.GetFields();
             //achange to data time
             /*startOnComboBox.ItemsSource = model.StartOn;
             endOnComboBox.ItemsSource = model.StartOn;*/
 
-            numOfParticipatesComboBox.ItemsSource = model.NumOfParticipates;
-            frequencyComboBox.ItemsSource = model.Frequency;
-            difficultyComboBox.ItemsSource = model.Difficulty;
+            numOfParticipatesComboBox.ItemsSource = model.GetNumOfParticipates();
+            frequencyComboBox.ItemsSource = model.GetFrequency();
+            difficultyComboBox.ItemsSource = model.GetDifficulty();
 
         }
 
@@ -44,7 +44,7 @@ namespace GUI.Windows.ActivitiesWindows
                 MessageBox.Show("Missing data. You must choose an activity before you choose a field.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                activitiesComboBox.ItemsSource = model.Activities[fieldsComboBox.SelectedItem.ToString()];
+                activitiesComboBox.ItemsSource = model.GetActivities()[fieldsComboBox.SelectedItem.ToString()];
                 activitiesComboBox.Items.Refresh();
             }
         }

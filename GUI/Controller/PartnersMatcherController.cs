@@ -9,7 +9,7 @@ using GUI.Model;
 using System.Collections.ObjectModel;
 using System.Data;
 
-namespace PartnersMatcher.Controller
+namespace GUI.Controller
 {
     public class PartnersMatcherController : IController
     {

@@ -27,8 +27,8 @@ namespace GUI.Windows.ActivitiesWindows
         {
             InitializeComponent();
             model = PMModel;
-            areaComboBox.ItemsSource = model.GeographicAreas;
-            fieldsComboBox.ItemsSource = model.Fields;
+            areaComboBox.ItemsSource = model.GetGeographicAreas();
+            fieldsComboBox.ItemsSource = model.GetFields();
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
