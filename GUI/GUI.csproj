@@ -58,7 +58,6 @@
     </Compile>
     <Compile Include="classes\Activity.cs" />
     <Compile Include="classes\Ad.cs" />
-    <Compile Include="classes\Domain.cs" />
     <Compile Include="classes\Preference.cs" />
     <Compile Include="classes\Request.cs" />
     <Compile Include="classes\User.cs" />

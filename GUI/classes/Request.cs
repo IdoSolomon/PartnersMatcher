@@ -8,5 +8,8 @@ namespace GUI.classes
 {
     public class Request
     {
+        public string recipientEmail { get; set; }
+        public string seekerEmail { get; set; }
+        int activityID { get; set; }
     }
 }

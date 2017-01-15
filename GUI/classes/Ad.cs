@@ -8,5 +8,8 @@ namespace GUI.classes
 {
     public class Ad : Preference
     {
+        public DateTime postTime { get; set; }
+        public DateTime postHour { get; set; }
+        public DateTime lastUpdate { get; set; }
     }
 }
