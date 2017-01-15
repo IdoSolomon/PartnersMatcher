@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GUI.View
 {
-    interface IView
+    public interface IView
     {
     }
 }

@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace GUI.Controller
 {
-    interface IController
+    public interface IController
     {
         void SetModel(IModel model);
-        void SetModel(IView view);
+        void SetView(IView view);
+
+        //move calling to model methods here
     }
 }
