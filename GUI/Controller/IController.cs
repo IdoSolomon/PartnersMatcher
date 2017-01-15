@@ -15,6 +15,9 @@ namespace GUI.Controller
         void SetModel(IModel model);
         void SetView(IView view);
 
+        Boolean IsConnected();
+
+        void SetConnected(Boolean mode);
 
         Boolean dbConnect();
 

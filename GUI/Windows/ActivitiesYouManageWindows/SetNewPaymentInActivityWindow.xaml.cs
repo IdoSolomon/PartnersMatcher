@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,11 @@ namespace GUI.Windows.ActivitiesYouManageWindows
     /// </summary>
     public partial class SetNewPaymentInActivityWindow : Window
     {
-        PartnersMatcherModel model;
-        public SetNewPaymentInActivityWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public SetNewPaymentInActivityWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
         }
     }
 }

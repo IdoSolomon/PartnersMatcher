@@ -20,8 +20,7 @@ namespace GUI
             PartnersMatcherModel model = new PartnersMatcherModel();
             PartnersMatcherController controller = new PartnersMatcherController();
             controller.SetModel(model);
-
-            MainWindow main = new MainWindow(ref model);
+            MainWindow main = new MainWindow(ref controller);
 
             //LoginWindow main = new LoginWindow(ref model);
             //main.Show();

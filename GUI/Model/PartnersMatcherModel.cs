@@ -276,6 +276,17 @@ namespace GUI.Model
 
         #endregion
         #region properties
+
+        public Boolean IsConnected()
+        {
+            return connected;
+        }
+
+        public void SetConnected(Boolean mode)
+        {
+            connected = mode;
+        }
+
         private ObservableCollection<string> Fields
         {
             get

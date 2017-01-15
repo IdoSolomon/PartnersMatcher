@@ -12,6 +12,10 @@ namespace GUI.Model
     {
         Boolean dbConnect();
 
+        Boolean IsConnected();
+
+        void SetConnected(Boolean mode);
+
         void dbClose();
 
         Boolean InsertToUserTable(params string[] data);

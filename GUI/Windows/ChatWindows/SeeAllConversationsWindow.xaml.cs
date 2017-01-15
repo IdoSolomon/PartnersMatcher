@@ -1,5 +1,5 @@
 ﻿using GUI.DataGridRecords;
-using GUI.Model;
+using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,15 +22,15 @@ namespace GUI.Windows.ChatWindows
     /// </summary>
     public partial class SeeAllConversationsWindow : Window
     {
-        PartnersMatcherModel model;
+        PartnersMatcherController controller;
         ObservableCollection<GroupMessageRecord> messages1;
         ObservableCollection<GroupMessageRecord> messages2;
         ObservableCollection<GroupMessageRecord> messages3;
         ObservableCollection<GroupMessageRecord> empty;
-        public SeeAllConversationsWindow(ref PartnersMatcherModel PMModel)
+        public SeeAllConversationsWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
             GroupComboBox.Items.Add("Scumbag lawyer renting his apartment");
             GroupComboBox.Items.Add("Protesting against Mondays");
             GroupComboBox.Items.Add("Protesting for Mondays");

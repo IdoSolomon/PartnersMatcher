@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,11 @@ namespace GUI.Windows.ChatWindows
     /// </summary>
     public partial class WriteNewGroupMessageWindow : Window
     {
-        PartnersMatcherModel model;
-        public WriteNewGroupMessageWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public WriteNewGroupMessageWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
             GroupComboBox.Items.Add("Scumbag lawyer renting his apartment");
             GroupComboBox.Items.Add("Protesting against Mondays");
             GroupComboBox.Items.Add("Protesting for Mondays");

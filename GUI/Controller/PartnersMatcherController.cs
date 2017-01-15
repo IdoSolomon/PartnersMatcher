@@ -25,6 +25,17 @@ namespace GUI.Controller
         {
             m_view = view;
         }
+
+        public Boolean IsConnected()
+        {
+            return m_model.IsConnected();
+        }
+
+        public void SetConnected(Boolean mode)
+        {
+            m_model.SetConnected(mode);
+        }
+
         public void dbClose()
         {
             m_model.dbClose();

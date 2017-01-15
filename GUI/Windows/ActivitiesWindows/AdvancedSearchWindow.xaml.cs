@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,20 +20,20 @@ namespace GUI.Windows.ActivitiesWindows
     /// </summary>
     public partial class AdvancedSearchWindow : Window
     {
-        PartnersMatcherModel model;
-        public AdvancedSearchWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public AdvancedSearchWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
-            areaComboBox.ItemsSource = model.GetGeographicAreas();
-            fieldsComboBox.ItemsSource = model.GetFields();
+            controller = PMController;
+            areaComboBox.ItemsSource = controller.GetGeographicAreas();
+            fieldsComboBox.ItemsSource = controller.GetFields();
             //achange to data time
-            /*startOnComboBox.ItemsSource = model.StartOn;
-            endOnComboBox.ItemsSource = model.StartOn;*/
+            /*startOnComboBox.ItemsSource = controller.StartOn;
+            endOnComboBox.ItemsSource = controller.StartOn;*/
 
-            numOfParticipatesComboBox.ItemsSource = model.GetNumOfParticipates();
-            frequencyComboBox.ItemsSource = model.GetFrequency();
-            difficultyComboBox.ItemsSource = model.GetDifficulty();
+            numOfParticipatesComboBox.ItemsSource = controller.GetNumOfParticipates();
+            frequencyComboBox.ItemsSource = controller.GetFrequency();
+            difficultyComboBox.ItemsSource = controller.GetDifficulty();
 
         }
 
@@ -44,7 +44,7 @@ namespace GUI.Windows.ActivitiesWindows
                 MessageBox.Show("Missing data. You must choose an activity before you choose a field.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                activitiesComboBox.ItemsSource = model.GetActivities()[fieldsComboBox.SelectedItem.ToString()];
+                activitiesComboBox.ItemsSource = controller.GetActivities()[fieldsComboBox.SelectedItem.ToString()];
                 activitiesComboBox.Items.Refresh();
             }
         }

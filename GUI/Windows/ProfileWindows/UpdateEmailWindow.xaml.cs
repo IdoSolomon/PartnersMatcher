@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,11 @@ namespace GUI.Windows.ProfileWindows
     /// </summary>
     public partial class UpdateEmailWindow : Window
     {
-        PartnersMatcherModel model;
-        public UpdateEmailWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public UpdateEmailWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
         }
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)

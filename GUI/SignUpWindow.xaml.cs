@@ -1,5 +1,4 @@
-﻿using GUI.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using GUI.Controller;
 using System.Data.OleDb;
 using System.Data;
 
@@ -24,14 +24,14 @@ namespace GUI
     /// </summary>
     public partial class SignUpWindow : Window
     {
-        PartnersMatcherModel model;
+        PartnersMatcherController controller;
         BackgroundWorker bgworker;
         string user;
-        public SignUpWindow(ref PartnersMatcherModel PMModel)
+        public SignUpWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
-            LocationComboBox.ItemsSource = model.GetGeographicAreas();
+            controller = PMController;
+            LocationComboBox.ItemsSource = controller.GetGeographicAreas();
             bgworker = new BackgroundWorker();
             bgworker.DoWork += bgworker_DoWork;
             bgworker.WorkerReportsProgress = true;
@@ -39,7 +39,7 @@ namespace GUI
 
         private void bgworker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Boolean sent = model.SendRegistrationMail(user);
+            Boolean sent = controller.SendRegistrationMail(user);
             if(!sent)
                 System.Windows.MessageBox.Show("SMTP service is blocked on this computer." + System.Environment.NewLine + "Please check your anti-virus software blocking rules.", "SMTP Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -63,10 +63,10 @@ namespace GUI
             if (!ValidateFields(data))
                 return;
 
-            if (model.dbConnect())
+            if (controller.dbConnect())
             {
-                model.InsertToUserTable(data);
-                model.dbClose();
+                controller.InsertToUserTable(data);
+                controller.dbClose();
                 user = data[2];
                 bgworker_DoWork(sender, null);
             }
@@ -88,12 +88,12 @@ namespace GUI
                 System.Windows.MessageBox.Show("Please enter your last name.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            if (data[2] == "" || !model.emailCheck(data[2]))
+            if (data[2] == "" || !controller.emailCheck(data[2]))
             {
                 System.Windows.MessageBox.Show("Please enter a valid Email address.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            if (model.emailExists(data[2]))
+            if (controller.emailExists(data[2]))
             {
                 System.Windows.MessageBox.Show("This Email address is already in use.", "Email Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;

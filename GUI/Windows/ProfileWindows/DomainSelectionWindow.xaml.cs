@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GUI.Controller;
 
 namespace GUI.Windows.ProfileWindows
 {
@@ -19,9 +20,11 @@ namespace GUI.Windows.ProfileWindows
     /// </summary>
     public partial class DomainSelectionWindow : Window
     {
-        public DomainSelectionWindow()
+        PartnersMatcherController controller;
+        public DomainSelectionWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
+            controller = PMController;
         }
     }
 }

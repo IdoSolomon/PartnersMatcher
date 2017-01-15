@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,13 +22,13 @@ namespace GUI.Windows.ActivitiesWindows
     /// </summary>
     public partial class SearchWindow : Window
     {
-        PartnersMatcherModel model;
-        public SearchWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public SearchWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
-            areaComboBox.ItemsSource = model.GetGeographicAreas();
-            fieldsComboBox.ItemsSource = model.GetFields();
+            controller = PMController;
+            areaComboBox.ItemsSource = controller.GetGeographicAreas();
+            fieldsComboBox.ItemsSource = controller.GetFields();
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
@@ -39,7 +39,7 @@ namespace GUI.Windows.ActivitiesWindows
             }
             else
             {
-                DataSet db = model.Search(areaComboBox.Text, fieldsComboBox.Text);
+                DataSet db = controller.Search(areaComboBox.Text, fieldsComboBox.Text);
                 
                 if (db.Tables[0].Rows.Count == 0)
                 {
