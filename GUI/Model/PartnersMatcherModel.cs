@@ -179,7 +179,7 @@ namespace GUI.Model
         #endregion
 
         #region Init
-        public void InitStructures()
+        private void InitStructures()
         {
             //Create the InsertCommand.
             InitFields();
@@ -288,6 +288,11 @@ namespace GUI.Model
             }
         }
 
+        public ObservableCollection<string> GetFields()
+        {
+            return fields;
+        }
+
 
         public ObservableCollection<string> GeographicAreas
         {
@@ -299,6 +304,11 @@ namespace GUI.Model
             {
                 geographicAreas = value;
             }
+        }
+
+        public ObservableCollection<string> GetGeographicAreas()
+        {
+            return geographicAreas;
         }
 
         public Dictionary<string, ObservableCollection<string>> Activities
@@ -313,6 +323,11 @@ namespace GUI.Model
             }
         }
 
+        public Dictionary<string, ObservableCollection<string>> GetActivities()
+        {
+            return activities;
+        }
+
         public ObservableCollection<DateTime> StartOn
         {
             get
@@ -323,6 +338,11 @@ namespace GUI.Model
             {
                 startOn = value;
             }
+        }
+
+        public ObservableCollection<DateTime> GetStartOn()
+        {
+            return startOn;
         }
 
         public ObservableCollection<string> NumOfParticipates
@@ -337,6 +357,11 @@ namespace GUI.Model
             }
         }
 
+        public ObservableCollection<string> GetNumOfParticipates()
+        {
+            return numOfParticipates;
+        }
+
         public ObservableCollection<string> Frequency
         {
             get
@@ -347,6 +372,11 @@ namespace GUI.Model
             {
                 frequency = value;
             }
+        }
+
+        public ObservableCollection<string> GetFrequency()
+        {
+            return frequency;
         }
 
         public ObservableCollection<string> Difficulty
@@ -360,6 +390,12 @@ namespace GUI.Model
                 difficulty = value;
             }
         }
+
+        public ObservableCollection<string> GetDifficulty()
+        {
+            return difficulty;
+        }
+
         #endregion
 
         public Boolean ValidateUser(string user, string pass)
