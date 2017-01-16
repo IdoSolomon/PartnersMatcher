@@ -15,6 +15,8 @@ namespace GUI.Controller
         void SetModel(IModel model);
         void SetView(IView view);
 
+        void SetUser(string login);
+
         Boolean IsConnected();
 
         void SetConnected(Boolean mode);

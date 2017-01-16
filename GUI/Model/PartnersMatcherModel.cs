@@ -25,6 +25,7 @@ namespace GUI.Model
         public OleDbConnection connection;
         public bool connected = false;
         private string dbPath;
+        private string user = "";
         
         #region email settings
         private string sender = "dbpd2016@gmail.com";
@@ -282,9 +283,16 @@ namespace GUI.Model
             return connected;
         }
 
+        public void SetUser(string login)
+        {
+            user = login;
+        }
+
         public void SetConnected(Boolean mode)
         {
             connected = mode;
+            if (!mode)
+                user = "";
         }
 
         private ObservableCollection<string> Fields

@@ -14,6 +14,8 @@ namespace GUI.Model
 
         Boolean IsConnected();
 
+        void SetUser(string login);
+
         void SetConnected(Boolean mode);
 
         void dbClose();

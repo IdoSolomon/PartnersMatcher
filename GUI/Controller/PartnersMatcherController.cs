@@ -26,6 +26,11 @@ namespace GUI.Controller
             m_view = view;
         }
 
+        public void SetUser(string login)
+        {
+            m_model.SetUser(login);
+        }
+
         public Boolean IsConnected()
         {
             return m_model.IsConnected();
