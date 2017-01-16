@@ -1,11 +1,11 @@
-﻿using PartnersMatcher;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using GUI.Model;
+using GUI.Controller;
 using System.Windows;
 
 namespace GUI
@@ -18,7 +18,9 @@ namespace GUI
         private void OnStartup(object sender, StartupEventArgs e)
         {
             PartnersMatcherModel model = new PartnersMatcherModel();
-            MainWindow main = new MainWindow(ref model);
+            PartnersMatcherController controller = new PartnersMatcherController();
+            controller.SetModel(model);
+            MainWindow main = new MainWindow(ref controller);
 
             //LoginWindow main = new LoginWindow(ref model);
             //main.Show();

@@ -13,7 +13,7 @@ using System.IO;
 
 namespace GUI.Model
 {
-    public class PartnersMatcherModel
+    public class PartnersMatcherModel : IModel
     {
         private ObservableCollection<string> fields;
         private ObservableCollection<string> geographicAreas;
@@ -179,7 +179,7 @@ namespace GUI.Model
         #endregion
 
         #region Init
-        public void InitStructures()
+        private void InitStructures()
         {
             //Create the InsertCommand.
             InitFields();
@@ -276,7 +276,18 @@ namespace GUI.Model
 
         #endregion
         #region properties
-        public ObservableCollection<string> Fields
+
+        public Boolean IsConnected()
+        {
+            return connected;
+        }
+
+        public void SetConnected(Boolean mode)
+        {
+            connected = mode;
+        }
+
+        private ObservableCollection<string> Fields
         {
             get
             {
@@ -288,8 +299,13 @@ namespace GUI.Model
             }
         }
 
+        public ObservableCollection<string> GetFields()
+        {
+            return fields;
+        }
 
-        public ObservableCollection<string> GeographicAreas
+
+        private ObservableCollection<string> GeographicAreas
         {
             get
             {
@@ -301,7 +317,12 @@ namespace GUI.Model
             }
         }
 
-        public Dictionary<string, ObservableCollection<string>> Activities
+        public ObservableCollection<string> GetGeographicAreas()
+        {
+            return geographicAreas;
+        }
+
+        private Dictionary<string, ObservableCollection<string>> Activities
         {
             get
             {
@@ -313,7 +334,12 @@ namespace GUI.Model
             }
         }
 
-        public ObservableCollection<DateTime> StartOn
+        public Dictionary<string, ObservableCollection<string>> GetActivities()
+        {
+            return activities;
+        }
+
+        private ObservableCollection<DateTime> StartOn
         {
             get
             {
@@ -325,7 +351,12 @@ namespace GUI.Model
             }
         }
 
-        public ObservableCollection<string> NumOfParticipates
+        public ObservableCollection<DateTime> GetStartOn()
+        {
+            return startOn;
+        }
+
+        private ObservableCollection<string> NumOfParticipates
         {
             get
             {
@@ -337,7 +368,12 @@ namespace GUI.Model
             }
         }
 
-        public ObservableCollection<string> Frequency
+        public ObservableCollection<string> GetNumOfParticipates()
+        {
+            return numOfParticipates;
+        }
+
+        private ObservableCollection<string> Frequency
         {
             get
             {
@@ -349,7 +385,12 @@ namespace GUI.Model
             }
         }
 
-        public ObservableCollection<string> Difficulty
+        public ObservableCollection<string> GetFrequency()
+        {
+            return frequency;
+        }
+
+        private ObservableCollection<string> Difficulty
         {
             get
             {
@@ -360,6 +401,12 @@ namespace GUI.Model
                 difficulty = value;
             }
         }
+
+        public ObservableCollection<string> GetDifficulty()
+        {
+            return difficulty;
+        }
+
         #endregion
 
         public Boolean ValidateUser(string user, string pass)

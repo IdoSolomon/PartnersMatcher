@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,11 @@ namespace GUI.Windows.PartnerInActivitiesWindows
     /// </summary>
     public partial class ApprovePendingRequestsAsPaertnerWindow : Window
     {
-        PartnersMatcherModel model;
-        public ApprovePendingRequestsAsPaertnerWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public ApprovePendingRequestsAsPaertnerWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
         }
     }
 }

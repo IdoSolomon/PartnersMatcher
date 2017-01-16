@@ -1,5 +1,5 @@
 ﻿using GUI.DataGridRecords;
-using GUI.Model;
+using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,12 +22,12 @@ namespace GUI.Windows.ProfileWindows
     /// </summary>
     public partial class UpdatePreferencesWindow : Window
     {
-        PartnersMatcherModel model;
+        PartnersMatcherController controller;
         ObservableCollection<ActivityCatagory> activities;
-        public UpdatePreferencesWindow(ref PartnersMatcherModel PMModel)
+        public UpdatePreferencesWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
             InitCatagories();
             CatagoryGrid.ItemsSource = activities;
         }

@@ -1,6 +1,4 @@
 ﻿using GUI.DataGridRecords;
-using GUI.Model;
-using PartnersMatcher;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +19,8 @@ using GUI.Windows.PartnerInActivitiesWindows;
 using GUI.Windows.ChatWindows;
 using GUI.Windows.ActivitiesYouManageWindows;
 using GUI.Windows.ActivitiesWindows;
+using GUI.View;
+using GUI.Controller;
 using System.Data;
 
 namespace GUI
@@ -28,29 +28,30 @@ namespace GUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IView
     {
-        PartnersMatcherModel model;
+        PartnersMatcherController controller;
         ObservableCollection<ActivityRecord> RecommendedActivities;
         
 
-        public MainWindow(ref PartnersMatcherModel PMModel)
+        public MainWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
-            
-            LoginWindow login = new LoginWindow(ref model);
-            login.ShowDialog();
-
-            if (!model.connected)
-                Close();
-            else
-                this.ShowDialog();
+            controller = PMController;
+            //set view into controller here
 
             InitRecommendedActivities();
 
-            locationComboBox.ItemsSource = model.GeographicAreas;
-            domainComboBox.ItemsSource = model.Fields;
+            locationComboBox.ItemsSource = controller.GetGeographicAreas();
+            domainComboBox.ItemsSource = controller.GetFields();
+
+            LoginWindow login = new LoginWindow(ref controller);
+            login.ShowDialog();
+
+            if (!controller.IsConnected())
+                Close();
+            else
+                this.ShowDialog();
 
         }
 
@@ -70,20 +71,20 @@ namespace GUI
         #region Profile
         private void EditYourProfile_Click(object sender, RoutedEventArgs e)
         {
-            EditProfileWindow win = new EditProfileWindow(ref model);
+            EditProfileWindow win = new EditProfileWindow(ref controller);
             win.ShowDialog();
         }
 
         private void ChangeYourPassword_Click(object sender, RoutedEventArgs e)
         {
-            ChangePasswordWindow win = new ChangePasswordWindow(ref model);
+            ChangePasswordWindow win = new ChangePasswordWindow(ref controller);
             win.ShowDialog();
 
         }
 
         private void UpdateYourEmail_Click(object sender, RoutedEventArgs e)
         {
-            UpdateEmailWindow win = new UpdateEmailWindow(ref model);
+            UpdateEmailWindow win = new UpdateEmailWindow(ref controller);
             win.ShowDialog();
 
         }
@@ -96,9 +97,19 @@ namespace GUI
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow main = new LoginWindow(ref model);
+            /*LoginWindow main = new LoginWindow(ref controller);
             main.Show();
-            Close();
+            Close();*/
+
+            LoginWindow login = new LoginWindow(ref controller);
+            controller.SetConnected(false);
+            this.Hide();
+            login.ShowDialog();
+
+            if (!controller.IsConnected())
+                Close();
+            else
+                this.ShowDialog();
         }
         #endregion
         #region Activities
@@ -109,13 +120,13 @@ namespace GUI
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            SearchWindow win = new SearchWindow(ref model);
+            SearchWindow win = new SearchWindow(ref controller);
             win.ShowDialog();
         }
 
         private void AdvancedSearch_Click(object sender, RoutedEventArgs e)
         {
-            AdvancedSearchWindow win = new AdvancedSearchWindow(ref model);
+            AdvancedSearchWindow win = new AdvancedSearchWindow(ref controller);
             win.ShowDialog();
         }
 
@@ -192,13 +203,13 @@ namespace GUI
         #region Chat
         private void SeeAllConversations_Click(object sender, RoutedEventArgs e)
         {
-            SeeAllConversationsWindow win = new SeeAllConversationsWindow(ref model);
+            SeeAllConversationsWindow win = new SeeAllConversationsWindow(ref controller);
             win.ShowDialog();
         }
 
         private void WriteNewGroupMessage_Click(object sender, RoutedEventArgs e)
         {
-            WriteNewGroupMessageWindow win = new WriteNewGroupMessageWindow(ref model);
+            WriteNewGroupMessageWindow win = new WriteNewGroupMessageWindow(ref controller);
             win.ShowDialog();
         }
         #endregion
@@ -211,7 +222,7 @@ namespace GUI
                 MessageBox.Show("Please select an activity field and location.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                DataSet db = model.Search(locationComboBox.SelectedItem.ToString(), domainComboBox.SelectedItem.ToString());
+                DataSet db = controller.Search(locationComboBox.SelectedItem.ToString(), domainComboBox.SelectedItem.ToString());
                 if(db.Tables[0].Rows.Count == 0)
                 {
                     MessageBox.Show("No matching Activities were found.", "No Results", MessageBoxButton.OK, MessageBoxImage.Information);

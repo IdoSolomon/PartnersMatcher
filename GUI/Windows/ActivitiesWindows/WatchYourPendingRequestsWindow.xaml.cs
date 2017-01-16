@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +20,11 @@ namespace GUI.Windows.ActivitiesWindows
     /// </summary>
     public partial class WatchYourPendingRequestsWindow : Window
     {
-        PartnersMatcherModel model;
-        public WatchYourPendingRequestsWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public WatchYourPendingRequestsWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
         }
     }
 }

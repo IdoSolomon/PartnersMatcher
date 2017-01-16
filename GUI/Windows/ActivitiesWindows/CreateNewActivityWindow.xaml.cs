@@ -1,5 +1,4 @@
-﻿using GUI.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GUI.Controller;
+
 
 namespace GUI.Windows.ActivitiesWindows
 {
@@ -20,11 +21,11 @@ namespace GUI.Windows.ActivitiesWindows
     /// </summary>
     public partial class CreateNewActivityWindow : Window
     {
-        PartnersMatcherModel model;
-        public CreateNewActivityWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public CreateNewActivityWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
         }
     }
 }

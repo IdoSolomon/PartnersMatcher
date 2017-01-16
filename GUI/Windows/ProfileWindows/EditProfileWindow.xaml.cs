@@ -1,4 +1,4 @@
-﻿using GUI.Model;
+﻿using GUI.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +21,11 @@ namespace GUI.Windows.ProfileWindows
     /// </summary>
     public partial class EditProfileWindow : Window
     {
-        PartnersMatcherModel model;
-        public EditProfileWindow(ref PartnersMatcherModel PMModel)
+        PartnersMatcherController controller;
+        public EditProfileWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
-            model = PMModel;
+            controller = PMController;
             //dummy values
             FirstNameTextBox.Text = "Mitzy";
             LastNameTextBox.Text = "Hatulson";
