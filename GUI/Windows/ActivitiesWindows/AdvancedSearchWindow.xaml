@@ -53,12 +53,12 @@
         <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
                     Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" SelectedDateChanged="startsOnDatePick_SelectedDateChanged" FontSize="12"></DatePicker>
 
-        <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Participates gender:</Label>
+        <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Participating genders:</Label>
         <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="10" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
-        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of participates:</Label>
-        <ComboBox x:Name="numOfParticipatesComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
+        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of Participants:</Label>
+        <ComboBox x:Name="numOfParticipantsComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Frequency:</Label>

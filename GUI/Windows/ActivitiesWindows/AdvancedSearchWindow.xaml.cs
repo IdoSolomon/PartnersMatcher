@@ -31,7 +31,7 @@ namespace GUI.Windows.ActivitiesWindows
             /*startOnComboBox.ItemsSource = controller.StartOn;
             endOnComboBox.ItemsSource = controller.StartOn;*/
 
-            numOfParticipatesComboBox.ItemsSource = controller.GetNumOfParticipates();
+            numOfParticipantsComboBox.ItemsSource = controller.GetNumOfParticipates();
             frequencyComboBox.ItemsSource = controller.GetFrequency();
             difficultyComboBox.ItemsSource = controller.GetDifficulty();
 

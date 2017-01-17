@@ -8,18 +8,18 @@ namespace GUI.classes
 {
     public class Activity
     {
-        int id { get; set; }
-        string name { get; set; }
-        string field { get; set; }
-        int numberOfParticipants { get; set; }
-        string location { get; set; }
-        DateTime startDate { get; set; }
-        DateTime endDate { get; set; }
-        DateTime startTime { get; set; }
-        DateTime endTime { get; set; }
-        string difficulty { get; set; }
-        int price { get; set; }
-        string frequency { get; set; }
-        bool[] days { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string field { get; set; }
+        public int numberOfParticipants { get; set; }
+        public string location { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
+        public string difficulty { get; set; }
+        public int price { get; set; }
+        public string frequency { get; set; }
+        public bool[] days { get; set; }
     }
 }

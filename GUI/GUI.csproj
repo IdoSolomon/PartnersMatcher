@@ -88,6 +88,9 @@
       <DependentUpon>SearchWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Windows\ActivitiesWindows\SingleActivityWindow.xaml.cs">
+      <DependentUpon>SingleActivityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ActivitiesWindows\WatchYourPendingRequestsWindow.xaml.cs">
       <DependentUpon>WatchYourPendingRequestsWindow.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ActivitiesWindows\SearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ActivitiesWindows\SingleActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
