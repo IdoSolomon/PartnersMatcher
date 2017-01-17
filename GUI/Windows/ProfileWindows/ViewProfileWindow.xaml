@@ -14,7 +14,7 @@
             <ColumnDefinition Width="0.01*" MinWidth="10"/>
             <ColumnDefinition Width="0.1*" MinWidth="10"/>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>
-            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.11*" MinWidth="10"/>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -64,7 +64,7 @@
         <TextBox Grid.Column="1" Grid.Row="10" x:Name="PhoneTextBox" Margin="5" Style="{StaticResource TextBoxStyle}" IsReadOnly="True"/>
         
 
-        <Label Grid.Column="3" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Write your resume:</Label>
+        <Label Grid.Column="3" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Resume:</Label>
         <TextBox x:Name="ResumeTextBox" Margin="5" Grid.Column="3" Grid.Row="2" Grid.RowSpan="11" FontSize="14" Style="{StaticResource TextBoxStyle}" IsReadOnly="True"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
 
