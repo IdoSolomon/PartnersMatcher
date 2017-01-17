@@ -20,8 +20,8 @@ namespace GUI.classes
         public DateTime endHour { get; set; }
         public int numberOfParticipants { get; set; }
         public string difficulty { get; set; }
-        public string smokes { get; set; }
-        public string pet { get; set; }
+        public Boolean smokes { get; set; }
+        public Boolean pet { get; set; }
         string frequency { get; set; }
         bool[] days { get; set; }
     }

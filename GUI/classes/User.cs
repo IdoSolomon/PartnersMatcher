@@ -16,8 +16,8 @@ namespace GUI.classes
         public string sex { get; set; }
         public string phoneNum { get; set; }
         public string location { get; set; }
-        public string smokes { get; set; }
-        public string pet { get; set; }
+        public Boolean smokes { get; set; }
+        public Boolean pet { get; set; }
         public string resume { get; set; }
     }
 }
