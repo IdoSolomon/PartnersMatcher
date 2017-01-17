@@ -139,7 +139,7 @@
                     <MenuItem Header="Advanced Search" Style="{StaticResource MyMenuItemStyle}"  Click="AdvancedSearch_Click" />
                     <MenuItem Header="Watch Your Pending Requests" Style="{StaticResource MyMenuItemStyle}"  Click="WatchYourPendingRequests_Click" />
                 </MenuItem>
-                <MenuItem Header="Activites You`re Partner In" Style="{StaticResource MainMenuItemStyle}" >
+                <MenuItem Header="Activites You`re a Partner In" Style="{StaticResource MainMenuItemStyle}" >
                     <MenuItem Header="Watch All Activities You`re Partner In" Style="{StaticResource MyMenuItemStyle}"  Click="WatchAllActivitiesYourePartnerIn_Click" />
                     <MenuItem Header="Approve/Disapprove Pending Requests" Style="{StaticResource MyMenuItemStyle}"  Click="ApprovePendingRequestsAsPaertner_Click" />
                     <MenuItem Header="Add Bill To Activirty" Style="{StaticResource MyMenuItemStyle}"  Click="AddBillToActivirty_Click" />

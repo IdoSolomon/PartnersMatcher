@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
 using System.IO;
+using GUI.classes;
 
 namespace GUI.Model
 {
@@ -175,6 +176,42 @@ namespace GUI.Model
                 return true;
 
             return false;
+        }
+
+        private string BuildAdvSearchCmd(Activity criteria)
+        {
+            string cmd = "SELECT * FROM Activities WHERE [Field] = '" + criteria.field + "' AND [Location] = '" + criteria.location + "'";
+
+            if (criteria.frequency != null)
+                cmd += " AND [Frequency] = '" + criteria.frequency + "'";
+            if (criteria.numberOfParticipants != 0)
+                cmd += " AND [Participants] = '" + criteria.numberOfParticipants.ToString() + "'";
+            if (criteria.difficulty != null)
+                cmd += " AND [Difficulty] = '" + criteria.difficulty + "'";
+            //DateTime strings might not be compatible with search
+            if (criteria.startDate != null)
+                cmd += " AND [Start Date] = '" + criteria.startDate.ToShortDateString() + "'";
+            if (criteria.endDate != null)
+                cmd += " AND [End Date] = '" + criteria.endDate.ToShortDateString() + "'";
+            return cmd;
+        }
+
+        public DataSet AdvSearch(Activity criteria)
+        {
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            if (!dbConnect())
+                return ds;
+            string cmd = BuildAdvSearchCmd(criteria);
+            //Create the InsertCommand.
+            command = new OleDbCommand(cmd, connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            dbClose();
+            return ds;
         }
 
         #endregion
