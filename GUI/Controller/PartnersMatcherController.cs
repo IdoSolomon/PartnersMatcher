@@ -126,5 +126,10 @@ namespace GUI.Controller
         {
             return m_model.ValidateUser(user, pass);
         }
+
+        public Boolean CreateNewActivity(Activity activity)
+        {
+            return m_model.CreateNewActivity(activity);
+        }
     }
 }
