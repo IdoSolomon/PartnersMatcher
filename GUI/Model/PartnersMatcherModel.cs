@@ -225,8 +225,11 @@ namespace GUI.Model
                 DataSet users = GetActivityUsers(id);
                 if(users.Tables[0].Rows.Count > 0)
                 {
-                    //if(MatchUserGenders(users, gender))
-                    //create ActivityRecord and add to collection
+                    /*if(MatchUserGenders(users, gender))
+                    {
+                        ActivityRecord activity = new ActivityRecord(params);
+                        filteredRecoreds.Add(activity);
+                    }*/
                 }
             }
 
