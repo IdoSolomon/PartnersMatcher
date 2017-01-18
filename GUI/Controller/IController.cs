@@ -1,4 +1,5 @@
-﻿using GUI.Model;
+﻿using GUI.classes;
+using GUI.Model;
 using GUI.View;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace GUI.Controller
         string RetrieveUserLogin(string email);
 
         DataSet Search(string geographicArea, string field);
+
+        DataSet AdvSearch(Activity criteria);
 
         Boolean emailExists(string email);
 

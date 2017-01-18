@@ -49,6 +49,9 @@
 
         <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Participating genders:</Label>
         <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
+            <ComboBoxItem>Men only</ComboBoxItem>
+            <ComboBoxItem>Women only</ComboBoxItem>
+            <ComboBoxItem>Mixed</ComboBoxItem>
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of Participants:</Label>

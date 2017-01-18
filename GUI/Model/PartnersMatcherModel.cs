@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data;
 using System.IO;
 using GUI.classes;
+using GUI.DataGridRecords;
 
 namespace GUI.Model
 {
@@ -211,6 +212,77 @@ namespace GUI.Model
             adapter.SelectCommand = command;
             adapter.Fill(ds);
             dbClose();
+            return ds;
+        }
+
+        public ObservableCollection<ActivityRecord> GenderMatch(DataSet ds, string gender)
+        {
+            ObservableCollection<ActivityRecord> filteredRecoreds = new ObservableCollection<ActivityRecord>();
+
+            for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                string id = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+                DataSet users = GetActivityUsers(id);
+                if(users.Tables[0].Rows.Count > 0)
+                {
+                    //if(MatchUserGenders(users, gender))
+                    //create ActivityRecord and add to collection
+                }
+            }
+
+            return filteredRecoreds;
+        }
+
+        private Boolean MatchUserGenders(DataSet ds, string gender)
+        {
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                string email = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+                DataSet users = GetUserGender(email);
+                if (!(users.Tables[0].Rows[i].ItemArray[0].ToString() == gender))
+                    return false;
+            }
+            return true;
+        }
+
+        private DataSet GetActivityUsers(string id)
+        {
+            DataSet ds = new DataSet();
+
+            string cmd = "SELECT [User Email] FROM Activity-Users WHERE [Activity ID] = '" + id + "'";
+
+            if (!dbConnect())
+                return ds;
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(cmd, connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            dbClose();
+
+            return ds;
+        }
+        private DataSet GetUserGender(string email)
+        {
+            DataSet ds = new DataSet();
+
+            string cmd = "SELECT [Sex] FROM Users WHERE [Email] = '" + email + "'";
+
+            if (!dbConnect())
+                return ds;
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(cmd, connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            dbClose();
+
             return ds;
         }
 

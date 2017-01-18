@@ -8,6 +8,7 @@ using GUI.View;
 using GUI.Model;
 using System.Collections.ObjectModel;
 using System.Data;
+using GUI.classes;
 
 namespace GUI.Controller
 {
@@ -109,6 +110,11 @@ namespace GUI.Controller
         public DataSet Search(string geographicArea, string field)
         {
             return m_model.Search(geographicArea, field);
+        }
+
+        public DataSet AdvSearch(Activity criteria)
+        {
+            return m_model.AdvSearch(criteria);
         }
 
         public bool SendRegistrationMail(string target)

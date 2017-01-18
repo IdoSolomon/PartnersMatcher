@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI.classes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -25,6 +26,8 @@ namespace GUI.Model
         string RetrieveUserLogin(string email);
 
         DataSet Search(string geographicArea, string field);
+
+        DataSet AdvSearch(Activity criteria);
 
         Boolean emailExists(string email);
 
