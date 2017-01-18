@@ -8,16 +8,16 @@ namespace GUI.classes
 {
     public class User
     {
-        public string email;
-        public string firstName;
-        public string lastName;
-        public string password;//keep this?
-        public DateTime birthDate;
-        public string sex;
-        public string phoneNum;
-        public string location;
-        public string smokes;
-        public string pet;
-        public string resume;
+        public string email { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string password { get; set; }//keep this?
+        public DateTime birthDate { get; set; }
+        public string sex { get; set; }
+        public string phoneNum { get; set; }
+        public string location { get; set; }
+        public Boolean smokes { get; set; }
+        public Boolean pet { get; set; }
+        public string resume { get; set; }
     }
 }

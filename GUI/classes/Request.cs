@@ -10,6 +10,6 @@ namespace GUI.classes
     {
         public string recipientEmail { get; set; }
         public string seekerEmail { get; set; }
-        int activityID { get; set; }
+        public int activityID { get; set; }
     }
 }

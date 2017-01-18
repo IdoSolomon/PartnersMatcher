@@ -88,6 +88,9 @@
       <DependentUpon>SearchWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Windows\ActivitiesWindows\SingleActivityWindow.xaml.cs">
+      <DependentUpon>SingleActivityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ActivitiesWindows\WatchYourPendingRequestsWindow.xaml.cs">
       <DependentUpon>WatchYourPendingRequestsWindow.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,9 @@
     <Compile Include="Windows\ProfileWindows\UpdatePreferencesWindow.xaml.cs">
       <DependentUpon>UpdatePreferencesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ProfileWindows\ViewProfileWindow.xaml.cs">
+      <DependentUpon>ViewProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ActivitiesWindows\SearchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ActivitiesWindows\SingleActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +263,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ProfileWindows\UpdatePreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ProfileWindows\ViewProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

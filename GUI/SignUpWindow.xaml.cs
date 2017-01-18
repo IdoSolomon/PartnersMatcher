@@ -69,8 +69,11 @@ namespace GUI
                 controller.dbClose();
                 user = data[2];
                 bgworker_DoWork(sender, null);
+                System.Windows.MessageBox.Show("The registration process was ended successfuly.", "Registration Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
             }
-            else MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+                MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Information);
             
             System.Windows.MessageBox.Show("The complete system will feature an Activity Domain Selection window after sign up.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }

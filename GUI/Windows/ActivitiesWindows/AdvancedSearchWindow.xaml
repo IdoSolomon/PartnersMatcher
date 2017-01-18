@@ -31,8 +31,6 @@
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
-            <RowDefinition Height="0.085*" MinHeight="20"/>
-            <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.01*" MinHeight="20"/>
 
@@ -42,23 +40,19 @@
         </ComboBox>
 
         <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">*Fields:</Label>
-        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxStyle}"  DropDownClosed="GroupComboBox_DropDownClosed">
-        </ComboBox>
-
-        <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">*Activities:</Label>
-        <ComboBox x:Name="activitiesComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
+        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
         <Label Grid.Column="1" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Start on:</Label>
         <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
                     Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" SelectedDateChanged="startsOnDatePick_SelectedDateChanged" FontSize="12"></DatePicker>
 
-        <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Participates gender:</Label>
-        <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="10" Style="{StaticResource ComboBoxStyle}">
+        <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Participating genders:</Label>
+        <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
-        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of participates:</Label>
-        <ComboBox x:Name="numOfParticipatesComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
+        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of Participants:</Label>
+        <ComboBox x:Name="numOfParticipantsComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Frequency:</Label>
@@ -72,8 +66,8 @@
         <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}" 
                     Grid.Column="3" Grid.Row="8" VerticalAlignment="Center" FontSize="12"></DatePicker>
         
-        <Label Grid.Column="1" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
-        <Grid Grid.Column="1" Grid.Row="12" Grid.ColumnSpan="3">
+        <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
+        <Grid Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.01*" MinWidth="10"/>
                 <ColumnDefinition Width="0.1*" MinWidth="10"/>
@@ -103,11 +97,11 @@
             <CheckBox x:Name="saturday" Grid.Column="13" Grid.Row="1" FontSize="18">Saturday</CheckBox>
         </Grid>
 
-        <Button x:Name="SearchBtn" Grid.Column="1" Grid.Row="14" Click="SearchBtn_Click" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0">
+        <Button x:Name="SearchBtn" Grid.Column="1" Grid.Row="12" Click="SearchBtn_Click" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0">
             <TextBlock Text="Search" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
         </Button>
 
-        <Button x:Name="CancelBtn" Grid.Column="3" Grid.Row="14" Click="CancelBtn_Click" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0">
+        <Button x:Name="CancelBtn" Grid.Column="3" Grid.Row="12" Click="CancelBtn_Click" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0">
             <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
         </Button>
         

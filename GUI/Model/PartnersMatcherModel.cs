@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
 using System.IO;
+using GUI.classes;
 
 namespace GUI.Model
 {
@@ -25,6 +26,7 @@ namespace GUI.Model
         public OleDbConnection connection;
         public bool connected = false;
         private string dbPath;
+        private string user = "";
         
         #region email settings
         private string sender = "dbpd2016@gmail.com";
@@ -69,7 +71,7 @@ namespace GUI.Model
 
         public Boolean InsertToUserTable(params string[] data)
         {
-            if(!dbConnect())
+            if (!dbConnect())
             {
                 return false;
             }
@@ -85,12 +87,12 @@ namespace GUI.Model
             command.Parameters.AddWithValue("@Last Name", data[1]);
             command.Parameters.AddWithValue("@Password", data[3]);
             //convert data[3] to datetime here
-            string[] date = data[3].Split('/');
+            string[] date = data[5].Split('/');
             DateTime dt = new DateTime(Convert.ToInt32(date[2]), Convert.ToInt32(date[1]), Convert.ToInt32(date[0]));
             command.Parameters.AddWithValue("@Birth Date", dt);
             //convert data[t] to M/F here
             string sex;
-            if (data[9] == "Male")
+            if (data[6] == "Male")
                 sex = "M";
             else sex = "F";
             command.Parameters.AddWithValue("@Sex", sex);
@@ -170,10 +172,46 @@ namespace GUI.Model
             adapter.SelectCommand = command;
             adapter.Fill(ds);
             dbClose();
-            if (ds.Tables[0].Rows.Count == 0)
+            if (ds.Tables[0].Rows.Count != 0)
                 return true;
 
             return false;
+        }
+
+        private string BuildAdvSearchCmd(Activity criteria)
+        {
+            string cmd = "SELECT * FROM Activities WHERE [Field] = '" + criteria.field + "' AND [Location] = '" + criteria.location + "'";
+
+            if (criteria.frequency != null)
+                cmd += " AND [Frequency] = '" + criteria.frequency + "'";
+            if (criteria.numberOfParticipants != 0)
+                cmd += " AND [Participants] = '" + criteria.numberOfParticipants.ToString() + "'";
+            if (criteria.difficulty != null)
+                cmd += " AND [Difficulty] = '" + criteria.difficulty + "'";
+            //DateTime strings might not be compatible with search
+            if (criteria.startDate != null)
+                cmd += " AND [Start Date] = '" + criteria.startDate.ToShortDateString() + "'";
+            if (criteria.endDate != null)
+                cmd += " AND [End Date] = '" + criteria.endDate.ToShortDateString() + "'";
+            return cmd;
+        }
+
+        public DataSet AdvSearch(Activity criteria)
+        {
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            if (!dbConnect())
+                return ds;
+            string cmd = BuildAdvSearchCmd(criteria);
+            //Create the InsertCommand.
+            command = new OleDbCommand(cmd, connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            dbClose();
+            return ds;
         }
 
         #endregion
@@ -282,9 +320,16 @@ namespace GUI.Model
             return connected;
         }
 
+        public void SetUser(string login)
+        {
+            user = login;
+        }
+
         public void SetConnected(Boolean mode)
         {
             connected = mode;
+            if (!mode)
+                user = "";
         }
 
         private ObservableCollection<string> Fields

@@ -65,6 +65,7 @@ namespace GUI
             //MainWindow main = new MainWindow(ref controller);
             //main.Show();
             controller.SetConnected(true);
+            controller.SetUser(UserNameBox.Text);
             Close();
         }
 
