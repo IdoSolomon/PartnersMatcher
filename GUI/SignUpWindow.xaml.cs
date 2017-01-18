@@ -27,6 +27,7 @@ namespace GUI
         PartnersMatcherController controller;
         BackgroundWorker bgworker;
         string user;
+        string pass;
         public SignUpWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace GUI
 
         private void bgworker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Boolean sent = controller.SendRegistrationMail(user);
+            Boolean sent = controller.SendRegistrationMail(user, pass);
             if(!sent)
                 System.Windows.MessageBox.Show("SMTP service is blocked on this computer." + System.Environment.NewLine + "Please check your anti-virus software blocking rules.", "SMTP Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -68,6 +69,7 @@ namespace GUI
                 controller.InsertToUserTable(data);
                 controller.dbClose();
                 user = data[2];
+                pass = data[3];
                 bgworker_DoWork(sender, null);
                 System.Windows.MessageBox.Show("The registration process was ended successfuly.", "Registration Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();

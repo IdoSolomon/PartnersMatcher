@@ -558,7 +558,7 @@ namespace GUI.Model
             return true;
         }
 
-        public Boolean SendRegistrationMail(string target)
+        public Boolean SendRegistrationMail(string target, string pass)
         {
                 Thread.CurrentThread.IsBackground = true;
                 SmtpClient SmtpServer = new SmtpClient(smtp, port);
@@ -572,7 +572,7 @@ namespace GUI.Model
                 mail.To.Add(new MailAddress(target));
                 mail.IsBodyHtml = false;
                 mail.Subject = "Your PartnersMatcher™ account has been created!";
-                mail.Body = "Your PartnersMatcher™ account, " + target + ", has been created and is ready to use." + System.Environment.NewLine + System.Environment.NewLine + "You may now sign in to PartnersMatcher™ using your new account.";
+                mail.Body = "Your PartnersMatcher™ account, " + target + ", has been created and is ready to use." + System.Environment.NewLine + System.Environment.NewLine + "Your password is " + pass + System.Environment.NewLine + System.Environment.NewLine + "You may now sign in to PartnersMatcher™ using your new account.";
 
 
                 try

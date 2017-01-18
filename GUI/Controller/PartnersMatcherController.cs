@@ -117,9 +117,9 @@ namespace GUI.Controller
             return m_model.AdvSearch(criteria);
         }
 
-        public bool SendRegistrationMail(string target)
+        public bool SendRegistrationMail(string target, string pass)
         {
-            return m_model.SendRegistrationMail(target);
+            return m_model.SendRegistrationMail(target, pass);
         }
 
         public bool ValidateUser(string user, string pass)

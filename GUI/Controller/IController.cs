@@ -54,6 +54,6 @@ namespace GUI.Controller
 
         Boolean emailCheck(string email);
 
-        Boolean SendRegistrationMail(string target);
+        Boolean SendRegistrationMail(string target, string pass);
     }
 }
