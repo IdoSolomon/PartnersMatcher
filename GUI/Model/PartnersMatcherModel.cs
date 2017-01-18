@@ -72,7 +72,7 @@ namespace GUI.Model
 
         public Boolean InsertToUserTable(params string[] data)
         {
-            if(!dbConnect())
+            if (!dbConnect())
             {
                 return false;
             }
@@ -88,12 +88,12 @@ namespace GUI.Model
             command.Parameters.AddWithValue("@Last Name", data[1]);
             command.Parameters.AddWithValue("@Password", data[3]);
             //convert data[3] to datetime here
-            string[] date = data[3].Split('/');
+            string[] date = data[5].Split('/');
             DateTime dt = new DateTime(Convert.ToInt32(date[2]), Convert.ToInt32(date[1]), Convert.ToInt32(date[0]));
             command.Parameters.AddWithValue("@Birth Date", dt);
             //convert data[t] to M/F here
             string sex;
-            if (data[9] == "Male")
+            if (data[6] == "Male")
                 sex = "M";
             else sex = "F";
             command.Parameters.AddWithValue("@Sex", sex);
@@ -173,7 +173,7 @@ namespace GUI.Model
             adapter.SelectCommand = command;
             adapter.Fill(ds);
             dbClose();
-            if (ds.Tables[0].Rows.Count == 0)
+            if (ds.Tables[0].Rows.Count != 0)
                 return true;
 
             return false;
