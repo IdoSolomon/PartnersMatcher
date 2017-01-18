@@ -8,6 +8,7 @@ using GUI.View;
 using GUI.Model;
 using System.Collections.ObjectModel;
 using System.Data;
+using GUI.classes;
 
 namespace GUI.Controller
 {
@@ -119,6 +120,11 @@ namespace GUI.Controller
         public bool ValidateUser(string user, string pass)
         {
             return m_model.ValidateUser(user, pass);
+        }
+
+        public Boolean CreateNewActivity(Activity activity)
+        {
+            return m_model.CreateNewActivity(activity);
         }
     }
 }

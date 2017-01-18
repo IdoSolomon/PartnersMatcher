@@ -6,7 +6,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
         mc:Ignorable="d"
-        Title="CreateNewActivityWindow" Height="300" Width="300"
+        Title="CreateNewActivityWindow" Height="740" Width="800"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -14,25 +14,125 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>
             <ColumnDefinition Width="0.1*" MinWidth="10"/>
-            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            <ColumnDefinition Width="0.02*" MinWidth="10"/>
             <ColumnDefinition Width="0.1*" MinWidth="10"/>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.01*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.01*" MinHeight="20"/>
-            <RowDefinition Height="0.1*" MinHeight="20"/>
         </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Activity name:</Label>
+        <TextBox x:Name="activityNameTextBox" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}"></TextBox>
+
+        <Label Grid.Column="1" Grid.Row="3"  Style="{StaticResource FieldDescriptionStyle}">Location:</Label>
+        <TextBox x:Name="locationTextBox" Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBoxStyle}"></TextBox>
+
+        <Grid Grid.Column="1" Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" MinHeight="20"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource FieldDescriptionStyle}">Fields:</Label>
+            <Button x:Name="NewFieldBtn" Grid.Column="2" Grid.Row="0" Click="NewFieldBtn_Click" Style="{StaticResource ButtonStyle}" Margin="0,0,20,0" Height="30" Background="Coral">
+                <TextBlock Text="New Field" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="12"/>
+            </Button>
+        </Grid>
+        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+
+        <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Start on:</Label>
+        <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
+                    Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" FontSize="12"></DatePicker>
         
+        <Label Grid.Column="1" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">Start hour:</Label>
+        <TextBox x:Name="startHourTextBox" Grid.Column="1" Grid.Row="12" Style="{StaticResource TextBoxStyle}"></TextBox>
         
+        <Label Grid.Column="1" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Participating genders:</Label>
+        <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="8" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of Participants:</Label>
+        <ComboBox x:Name="numOfParticipantsComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Frequency:</Label>
+        <ComboBox x:Name="frequencyComboBox"  Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+        <Label Grid.Column="3" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Difficulty:</Label>
+        <ComboBox x:Name="difficultyComboBox"  Grid.Column="3" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Cost:</Label>
+        <TextBox x:Name="costTextBox" Grid.Column="3" Grid.Row="8" Style="{StaticResource TextBoxStyle}"></TextBox>
+
+        <Label Grid.Column="3" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">End on:</Label>
+        <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}" 
+                    Grid.Column="3" Grid.Row="10" VerticalAlignment="Center" FontSize="12"></DatePicker>
+
+        <Label Grid.Column="3" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">End hour:</Label>
+        <TextBox x:Name="endHourTextBox" Grid.Column="3" Grid.Row="12" Style="{StaticResource TextBoxStyle}"></TextBox>
         
+        <Label Grid.Column="1" Grid.Row="13" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
+        <Grid Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" MinHeight="20"/>
+            </Grid.RowDefinitions>
+            <CheckBox x:Name="sunday" Grid.Column="1" FontSize="18" Height="33" Checked="sunday_Checked" Unchecked="sunday_Unchecked" HorizontalAlignment="Right" Margin="0,0,0,0.333" Width="92">Sunday</CheckBox>
+            <CheckBox x:Name="monday" Grid.Column="3" Grid.Row="1" FontSize="18" Checked="monday_Checked" Unchecked="monday_Unchecked">Monday</CheckBox>
+            <CheckBox x:Name="tuesday" Grid.Column="5" Grid.Row="1" FontSize="18" Checked="tuesday_Checked" Unchecked="tuesday_Unchecked">Tuesday</CheckBox>
+            <CheckBox x:Name="wednesday" Grid.Column="7" Grid.Row="1" FontSize="18" Checked="wednesday_Checked" Unchecked="wednesday_Unchecked">Wednesday</CheckBox>
+            <CheckBox x:Name="thursday" Grid.Column="9" Grid.Row="1" FontSize="18" Checked="thursday_Checked" Unchecked="thursday_Unchecked">Thursday</CheckBox>
+            <CheckBox x:Name="friday" Grid.Column="11" Grid.Row="1" FontSize="18" Checked="friday_Checked" Unchecked="friday_Unchecked">Friday</CheckBox>
+            <CheckBox x:Name="saturday" Grid.Column="13" Grid.Row="1" FontSize="18" Checked="saturday_Checked" Unchecked="saturday_Unchecked">Saturday</CheckBox>
+        </Grid>
+
+        <Button x:Name="CreateBtn" Grid.Column="1" Grid.Row="16" Click="SearchBtn_Click" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0">
+            <TextBlock Text="Create" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
+        </Button>
+
+        <Button x:Name="CancelBtn" Grid.Column="3" Grid.Row="16" Click="CancelBtn_Click" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0">
+            <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
+        </Button>
+
+
     </Grid>
 </Window>

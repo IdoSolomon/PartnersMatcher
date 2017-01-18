@@ -1,4 +1,5 @@
-﻿using GUI.Model;
+﻿using GUI.classes;
+using GUI.Model;
 using GUI.View;
 using System;
 using System.Collections.Generic;
@@ -52,5 +53,7 @@ namespace GUI.Controller
         Boolean emailCheck(string email);
 
         Boolean SendRegistrationMail(string target);
+
+        Boolean CreateNewActivity(Activity activity);
     }
 }

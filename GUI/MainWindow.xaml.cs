@@ -115,7 +115,8 @@ namespace GUI
         #region Activities
         private void CreateNewActivity_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            CreateNewActivityWindow win = new CreateNewActivityWindow(ref controller);
+            win.ShowDialog();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)

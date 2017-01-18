@@ -42,8 +42,8 @@ namespace GUI.Windows.ActivitiesWindows
             numOfParticipantsTextBox.Text = _activity.numberOfParticipants.ToString();
             difficultyTextBox.Text = _activity.difficulty;
             endsOnTextBox.Text = _activity.endDate.ToShortDateString();
-            endsHourTextBox.Text = _activity.startTime.ToShortTimeString();
-            startHourTextBox.Text = _activity.endTime.ToShortTimeString();
+            endsHourTextBox.Text = _activity.startTime.ToString();
+            startHourTextBox.Text = _activity.endTime.ToString();
 
             bool[] days = _activity.days;
             sunday.IsChecked = days[0];

@@ -518,7 +518,113 @@ namespace GUI.Model
                 }
                 return true;
         }
-        
+
+        public Boolean CreateNewActivity(Activity activity)
+        {
+
+            if (!dbConnect())
+            {
+                return false;
+            }
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            try
+            {
+                //Create the InsertCommand.
+                command = new OleDbCommand(
+                    "INSERT INTO Activities ([Activity Name], [Field], [Participants], [Location], [Start Date], [End Date], [Difficulty], [Price], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Gender]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
+
+                command.Parameters.AddWithValue("@Activity Name", activity.name);
+                command.Parameters.AddWithValue("@Field", activity.field);
+                command.Parameters.AddWithValue("@Participants", activity.numberOfParticipants);
+                command.Parameters.AddWithValue("@Location", activity.location);
+                command.Parameters.AddWithValue("@Start Date", activity.name);
+                command.Parameters.AddWithValue("@End Date", activity.field);
+                command.Parameters.AddWithValue("@Difficulty", activity.numberOfParticipants);
+                command.Parameters.AddWithValue("@Price", activity.location);
+                command.Parameters.AddWithValue("@Frequency", activity.name);
+
+                command.Parameters.AddWithValue("@Sunday", activity.name);
+                command.Parameters.AddWithValue("@Monday", activity.field);
+                command.Parameters.AddWithValue("@Tuesday", activity.numberOfParticipants);
+                command.Parameters.AddWithValue("@Wednesday", activity.location);
+                command.Parameters.AddWithValue("@Thursday", activity.name);
+                command.Parameters.AddWithValue("@Friday", activity.field);
+                command.Parameters.AddWithValue("@Saturday", activity.numberOfParticipants);
+
+                string gender = "";
+                if (activity.gender == "Male")
+                    gender = "M";
+                else if (activity.gender == "Female")
+                    gender = "F";
+                command.Parameters.AddWithValue("@Sex", gender);
+
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                dbClose();
+                UpdateActivityMenegment(activity);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+
+        private void UpdateActivityMenegment(Activity activity)
+        {
+            if (dbConnect())
+            {
+                OleDbDataAdapter adapter = new OleDbDataAdapter();
+                OleDbCommand command;
+                try
+                {
+                    //int activityId = GetActivityId(activity);
+                    //Create the InsertCommand.
+                    command = new OleDbCommand(
+                        "INSERT INTO Activity Management ([Activity ID], [User Email]) VALUES (?, ?)", connection);
+
+                    command.Parameters.AddWithValue("@Activity Name", activity.name);
+                    command.Parameters.AddWithValue("@Field", activity.field);
+                    
+
+                    string gender = "";
+                    if (activity.gender == "Male")
+                        gender = "M";
+                    else if (activity.gender == "Female")
+                        gender = "F";
+                    command.Parameters.AddWithValue("@Sex", gender);
+
+                    adapter.InsertCommand = command;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                    dbClose();
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        /*private int GetActivityId(Activity activity)
+        {
+            if (!dbConnect())
+                return -1;
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT [Activity ID] FROM Activities WHERE [Activity Name] = '" + activity.name + "AND [Activity Name]" + "'", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            string login = "";
+            if (ds.Tables[0].Rows.Count != 0)
+                login = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+            dbClose();
+        }*/
     }
 
 }
