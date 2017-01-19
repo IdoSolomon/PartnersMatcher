@@ -370,19 +370,19 @@ namespace GUI.Model
             else if (criteria.gender == "F")
                 cmd += " AND [Gender] = 'F'";
             if (criteria.days[0])
-                cmd += " AND [Sunday] = 'Yes'";
+                cmd += " AND [Sunday] = Yes";
             if (criteria.days[1])
-                cmd += " AND [Monday] = 'Yes'";
+                cmd += " AND [Monday] = Yes";
             if (criteria.days[2])
-                cmd += " AND [Tuesday] = 'Yes'";
+                cmd += " AND [Tuesday] = Yes";
             if (criteria.days[3])
-                cmd += " AND [Wedensday] = 'Yes'";
+                cmd += " AND [Wedensday] = Yes";
             if (criteria.days[4])
-                cmd += " AND [Thursday] = 'Yes'";
+                cmd += " AND [Thursday] = Yes";
             if (criteria.days[5])
-                cmd += " AND [Friday] = 'Yes'";
+                cmd += " AND [Friday] = Yes";
             if (criteria.days[6])
-                cmd += " AND [Saturday] = 'Yes'";
+                cmd += " AND [Saturday] = Yes";
             return cmd;
         }
 
