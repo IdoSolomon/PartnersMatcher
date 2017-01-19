@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GUI.Windows.ProfileWindows"
         mc:Ignorable="d"
-        Title="UpdatePreferencesWindow" Height="500" Width="500"
+        Title="UpdatePreferencesWindow" Height="690" Width="1200"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Window.Resources>
@@ -15,59 +16,132 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Window.Resources>
-    <Grid Style="{StaticResource GridStyle}">
+
+    <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>
             <ColumnDefinition Width="0.1*" MinWidth="10"/>
-            <ColumnDefinition Width="0.05*" MinWidth="10"/>
+            <ColumnDefinition Width="0.02*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.02*" MinWidth="10"/>
             <ColumnDefinition Width="0.1*" MinWidth="10"/>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.01*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
-            <RowDefinition Height="0.5*" MinHeight="20"/>
-            <RowDefinition Height="0.01*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.01*" MinHeight="20"/>
+
         </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Location:</Label>
+        <ComboBox x:Name="areaComboBox"  Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
 
-        <Label Content="Please select your desired activity catagories:" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  VerticalAlignment="Center" Style="{StaticResource FieldDescriptionStyle}" FontWeight="Bold"/>
-        <DataGrid  x:Name="CatagoryGrid" AutoGenerateColumns="False" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource DataGridStyle}" >
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                    <Setter Property="Height" Value="30" />
-                    <Setter Property="SeparatorBrush" Value="Orange" />
-                    <Setter Property="Background" Value="#FFFFE398"/>
-                    <Setter Property="FontWeight" Value="Black" />
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                    <Setter Property="FontSize" Value="18" />
-                    <Setter Property="Background" Value="FloralWhite"/>
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Catagory" IsReadOnly="True" Width="*" Binding="{Binding Catagory}"/>
-                <DataGridTemplateColumn Width="*" Header="Interested">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Fields:</Label>
+        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
 
-        <Button x:Name="SubmitBtn" Grid.Column="1" Grid.Row="4" Margin="45,5,45,5"  Style="{StaticResource ButtonStyle}" Click="SubmitBtn_Click">
-            <TextBlock Text="Submit" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+        <Label Grid.Column="1" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Start Hour:</Label>
+        <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
+                    Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" SelectedDateChanged="startsOnDatePick_SelectedDateChanged" FontSize="12"></DatePicker>
+
+        <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Participating genders:</Label>
+        <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
+            <ComboBoxItem>Men Only</ComboBoxItem>
+            <ComboBoxItem>Women Only</ComboBoxItem>
+            <ComboBoxItem>Mixed</ComboBoxItem>
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of Participants:</Label>
+        <ComboBox x:Name="numOfParticipantsComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Frequency:</Label>
+        <ComboBox x:Name="frequencyComboBox"  Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+        
+        <Label Grid.Column="3" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Difficulty:</Label>
+        <ComboBox x:Name="difficultyComboBox"  Grid.Column="3" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">End Hour:</Label>
+        <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}" 
+                    Grid.Column="3" Grid.Row="8" VerticalAlignment="Center" FontSize="12"></DatePicker>
+
+        <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
+        <Grid Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" MinHeight="20"/>
+            </Grid.RowDefinitions>
+            <CheckBox x:Name="sunday" Grid.Column="1" Grid.Row="1" FontSize="24">Sunday</CheckBox>
+            <CheckBox x:Name="monday" Grid.Column="3" Grid.Row="1" FontSize="24">Monday</CheckBox>
+            <CheckBox x:Name="tuesday" Grid.Column="5" Grid.Row="1" FontSize="24">Tuesday</CheckBox>
+            <CheckBox x:Name="wednesday" Grid.Column="7" Grid.Row="1" FontSize="24">Wednesday</CheckBox>
+            <CheckBox x:Name="thursday" Grid.Column="9" Grid.Row="1" FontSize="24">Thursday</CheckBox>
+            <CheckBox x:Name="friday" Grid.Column="11" Grid.Row="1" FontSize="24">Friday</CheckBox>
+            <CheckBox x:Name="saturday" Grid.Column="13" Grid.Row="1" FontSize="24">Saturday</CheckBox>
+        </Grid>
+
+        <Label Grid.Column="5" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Minimum Age:</Label>
+        <TextBox Name="minAgeTextbox"  Grid.Column="5" Grid.Row="2" Style="{StaticResource TextBoxStyle}" Margin="8,8,8,8" PreviewTextInput="NumberValidationTextBox">
+        </TextBox>
+
+        <Label Grid.Column="5" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Maximum Age:</Label>
+        <TextBox Name="maxAgeTextbox"  Grid.Column="5" Grid.Row="4" Style="{StaticResource TextBoxStyle}" Margin="8,8,8,8" PreviewTextInput="NumberValidationTextBox">
+        </TextBox>
+
+        <Label Grid.Column="5" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Maximum Price:</Label>
+        <TextBox Name="priceTextbox"  Grid.Column="5" Grid.Row="6" Style="{StaticResource TextBoxStyle}" Margin="8,8,8,8" PreviewTextInput="NumberValidationTextBox">
+        </TextBox>
+
+        <Grid x:Name="prefLabelGrid" Grid.Column="5" Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <CheckBox x:Name="pet" Grid.Column="1" Grid.Row="1" FontSize="24" IsHitTestVisible="false" >Pets</CheckBox>
+            <CheckBox x:Name="smokes" Grid.Column="3" Grid.Row="1" FontSize="24" IsHitTestVisible="false" >Smokes</CheckBox>
+
+        </Grid>
+
+        <Button x:Name="SubmitBtn" Grid.Column="1" Grid.Row="12" Click="SubmitBtn_Click" Style="{StaticResource ButtonStyle}" Margin="150,0,-150,0">
+            <TextBlock Text="Submit" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
         </Button>
 
-        <Button x:Name="CancelBtn" Grid.Column="3" Grid.Row="4" Margin="45,5,45,5" Style="{StaticResource ButtonStyle}" Click="CancelBtn_Click">
-            <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+        <Button x:Name="CancelBtn" Grid.Column="5" Grid.Row="12" Click="CancelBtn_Click" Style="{StaticResource ButtonStyle}" Margin="-150,0,150,0">
+            <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
         </Button>
+
     </Grid>
 </Window>
