@@ -1,4 +1,5 @@
-﻿using GUI.DataGridRecords;
+﻿using GUI.classes;
+using GUI.DataGridRecords;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,6 +40,35 @@ namespace GUI.Windows.ActivitiesWindows
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ShowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ActivityRecord obj = ((FrameworkElement)sender).DataContext as ActivityRecord;
+            Activity act = new Activity();
+            act.name = obj.Activity;
+            act.field = obj.Catagory;
+            act.numberOfParticipants = obj.NumOfParticipate;
+            act.location = obj.Place;
+            act.startDate = obj.StartsOn;
+            act.endDate = obj.FinishOn;
+            act.startTime = obj.StartHour;
+            act.endTime = obj.FinishHour;
+            act.difficulty = obj.Difficulty;
+            act.price = Convert.ToDouble(obj.Price);
+            act.frequency = obj.Frequency;
+            bool[] days = new bool[7];
+            days[0] = obj.Sunday;
+            days[1] = obj.Monday;
+            days[2] = obj.Tuesday;
+            days[3] = obj.Wednesday;
+            days[4] = obj.Thursday;
+            days[5] = obj.Friday;
+            days[6] = obj.Saturday;
+            act.days = days;
+
+            SingleActivityWindow saw = new SingleActivityWindow(act);
+            saw.ShowDialog();
         }
     }
 }

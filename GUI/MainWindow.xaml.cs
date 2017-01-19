@@ -93,7 +93,6 @@ namespace GUI
         {
             UpdatePreferencesWindow win = new UpdatePreferencesWindow(ref controller);
             win.ShowDialog();
-
         }
 
         private void LogOut_Click(object sender, RoutedEventArgs e)

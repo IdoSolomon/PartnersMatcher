@@ -33,7 +33,7 @@
         <ComboBox x:Name="areaComboBox"  Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource ComboBoxStyle}" SelectionChanged="areaComboBox_SelectionChanged" Margin="8.333,0,8,7.667" VerticalAlignment="Bottom">
         </ComboBox>
 
-        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Style="{StaticResource FieldDescriptionStyle}">Fields:</Label>
+        <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Style="{StaticResource FieldDescriptionStyle}">Field:</Label>
         <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.ColumnSpan="3"  Grid.Row="5" Style="{StaticResource ComboBoxStyle}" SelectionChanged="fieldsComboBox_SelectionChanged">
         </ComboBox>
 

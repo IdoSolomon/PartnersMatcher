@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Activity View" Height="790" Width="800"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize" WindowState="Maximized">
+        ResizeMode="NoResize" >
     <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.01*" MinWidth="10"/>

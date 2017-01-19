@@ -129,7 +129,7 @@
                     <MenuItem Header="Edit Your Profile" Style="{StaticResource MyMenuItemStyle}" Click="EditYourProfile_Click"/>
                     <MenuItem Header="Change Your Password" Style="{StaticResource MyMenuItemStyle}" Click="ChangeYourPassword_Click"/>
                     <MenuItem Header="Update Your Email" Style="{StaticResource MyMenuItemStyle}" Click="UpdateYourEmail_Click"/>
-                    <MenuItem Header="Update Your Activites Preferences" Style="{StaticResource MyMenuItemStyle}" Click="UpdatePreferences_Click" />
+                    <MenuItem Header="Update Your Activity Preferences" Style="{StaticResource MyMenuItemStyle}" Click="UpdatePreferences_Click" />
                     <MenuItem Header="Log Out" Style="{StaticResource MyMenuItemStyle}" Click="LogOut_Click"/>
 
                 </MenuItem>

@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace GUI.Windows.ProfileWindows
 {
@@ -23,35 +24,35 @@ namespace GUI.Windows.ProfileWindows
     public partial class UpdatePreferencesWindow : Window
     {
         PartnersMatcherController controller;
-        ObservableCollection<ActivityCatagory> activities;
         public UpdatePreferencesWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
             controller = PMController;
-            InitCatagories();
-            //CatagoryGrid.ItemsSource = activities;
+            areaComboBox.ItemsSource = controller.GetGeographicAreas();
+            fieldsComboBox.ItemsSource = controller.GetFields();
+            numOfParticipantsComboBox.ItemsSource = controller.GetNumOfParticipates();
+            frequencyComboBox.ItemsSource = controller.GetFrequency();
+            difficultyComboBox.ItemsSource = controller.GetDifficulty();
         }
 
-        private void InitCatagories()
+        private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            activities = new ObservableCollection<ActivityCatagory>();
-            activities.Add(new ActivityCatagory("Blimp Watching"));
-            activities.Add(new ActivityCatagory("Proffesional Napping"));
-            activities.Add(new ActivityCatagory("Paperclip Modeling"));
-            activities.Add(new ActivityCatagory("Coffee Drinking"));
+            System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-
-
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        private void startsOnDatePick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            endsOnDatePick.DisplayDateStart = startsOnDatePick.SelectedDate;
         }
     }
 }
