@@ -101,7 +101,9 @@ namespace GUI.Model
                 command.Parameters.AddWithValue("@Price", activity.price);
                 command.Parameters.AddWithValue("@Frequency", activity.frequency);
 
-                command.Parameters.AddWithValue("@Sunday", activity.days[0]);
+                if(activity.days[0])
+                    command.Parameters.AddWithValue("@Sunday", "Yes");
+
                 command.Parameters.AddWithValue("@Monday", activity.days[1]);
                 command.Parameters.AddWithValue("@Tuesday", activity.days[2]);
                 command.Parameters.AddWithValue("@Wednesday", activity.days[3]);

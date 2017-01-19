@@ -15,53 +15,73 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </Window.Resources>
+
     <Grid Style="{StaticResource GridStyle}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.01*" MinWidth="10"/>
-            <ColumnDefinition Width="0.1*" MinWidth="10"/>
-            <ColumnDefinition Width="0.05*" MinWidth="10"/>
-            <ColumnDefinition Width="0.1*" MinWidth="10"/>
-            <ColumnDefinition Width="0.01*" MinWidth="10"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.01*" MinHeight="20"/>
-            <RowDefinition Height="0.1*" MinHeight="20"/>
-            <RowDefinition Height="0.5*" MinHeight="20"/>
-            <RowDefinition Height="0.01*" MinHeight="20"/>
-            <RowDefinition Height="0.1*" MinHeight="20"/>
-            <RowDefinition Height="0.01*" MinHeight="20"/>
-        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="Activity Preferences">
+                <Grid Style="{StaticResource GridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="18*" MinWidth="10"/>
+                        <ColumnDefinition Width="21*" MinWidth="10"/>
+                        <ColumnDefinition Width="34*"/>
+                        <ColumnDefinition Width="107*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="91*" MinWidth="10"/>
+                        <ColumnDefinition Width="181*" MinWidth="10"/>
+                        <ColumnDefinition Width="18*" MinWidth="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20*" MinHeight="20"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="283*" MinHeight="20"/>
+                        <RowDefinition Height="20*" MinHeight="20"/>
+                        <RowDefinition Height="61*" MinHeight="20"/>
+                        <RowDefinition Height="20*" MinHeight="20"/>
+                    </Grid.RowDefinitions>
 
-        <Label Content="Please select your desired activity catagories:" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  VerticalAlignment="Center" Style="{StaticResource FieldDescriptionStyle}" FontWeight="Bold"/>
-        <DataGrid  x:Name="CatagoryGrid" AutoGenerateColumns="False" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource DataGridStyle}" >
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                    <Setter Property="Height" Value="30" />
-                    <Setter Property="SeparatorBrush" Value="Orange" />
-                    <Setter Property="Background" Value="#FFFFE398"/>
-                    <Setter Property="FontWeight" Value="Black" />
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                    <Setter Property="FontSize" Value="18" />
-                    <Setter Property="Background" Value="FloralWhite"/>
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Catagory" IsReadOnly="True" Width="*" Binding="{Binding Catagory}"/>
-                <DataGridTemplateColumn Width="*" Header="Interested">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <ComboBox x:Name="MultiSelectCombo"  SnapsToDevicePixels="True" OverridesDefaultStyle="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" IsSynchronizedWithCurrentItem="True"></ComboBox>
 
+
+                        <Button x:Name="SaveBtn1" Grid.Column="2" Grid.Row="4" Margin="24.333,15.667,26,5"  Style="{StaticResource ButtonStyle}" Click="SaveBtn_Click" Grid.ColumnSpan="2">
+                        <TextBlock Text="Save" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+                    </Button>
+
+                    <Button x:Name="CancelBtn1" Grid.Column="6" Grid.Row="4" Margin="45,15.667,44.667,5" Style="{StaticResource ButtonStyle}" Click="CancelBtn_Click">
+                        <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+                    </Button>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Partners Preferences">
+                <Grid Style="{StaticResource GridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                        <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                        <ColumnDefinition Width="0.05*" MinWidth="10"/>
+                        <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                        <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.01*" MinHeight="20"/>
+                        <RowDefinition Height="0.1*" MinHeight="20"/>
+                        <RowDefinition Height="0.5*" MinHeight="20"/>
+                        <RowDefinition Height="0.01*" MinHeight="20"/>
+                        <RowDefinition Height="0.1*" MinHeight="20"/>
+                        <RowDefinition Height="0.01*" MinHeight="20"/>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="SaveBtn2" Grid.Column="1" Grid.Row="4" Margin="45,5,45,5"  Style="{StaticResource ButtonStyle}" Click="SaveBtn_Click">
+                        <TextBlock Text="Save" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+                    </Button>
+
+                    <Button x:Name="CancelBtn2" Grid.Column="3" Grid.Row="4" Margin="45,5,45,5" Style="{StaticResource ButtonStyle}" Click="CancelBtn_Click">
+                        <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+                    </Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!--
         <Button x:Name="SubmitBtn" Grid.Column="1" Grid.Row="4" Margin="45,5,45,5"  Style="{StaticResource ButtonStyle}" Click="SubmitBtn_Click">
             <TextBlock Text="Submit" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
         </Button>
@@ -69,5 +89,6 @@
         <Button x:Name="CancelBtn" Grid.Column="3" Grid.Row="4" Margin="45,5,45,5" Style="{StaticResource ButtonStyle}" Click="CancelBtn_Click">
             <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
         </Button>
+        -->
     </Grid>
 </Window>

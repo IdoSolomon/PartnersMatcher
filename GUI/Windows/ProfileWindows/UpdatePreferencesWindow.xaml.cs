@@ -29,7 +29,7 @@ namespace GUI.Windows.ProfileWindows
             InitializeComponent();
             controller = PMController;
             InitCatagories();
-            CatagoryGrid.ItemsSource = activities;
+            //CatagoryGrid.ItemsSource = activities;
         }
 
         private void InitCatagories()
@@ -41,14 +41,17 @@ namespace GUI.Windows.ProfileWindows
             activities.Add(new ActivityCatagory("Coffee Drinking"));
         }
 
-        private void SubmitBtn_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
+
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
