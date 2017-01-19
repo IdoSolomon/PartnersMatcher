@@ -47,22 +47,24 @@
             </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Activity" IsReadOnly="True" Width="*" Binding="{Binding Activity}" />
-                <DataGridTextColumn Header="Domain" IsReadOnly="True" Width="*" Binding="{Binding Catagory}" />
-                <DataGridTextColumn Header="Participates" IsReadOnly="True" Width="*" Binding="{Binding NumOfParticipate}" />
-                <DataGridTextColumn Header="Place" IsReadOnly="True" Width="*" Binding="{Binding Place}"/>
+                <DataGridTextColumn Header="Field" IsReadOnly="True" Width="*" Binding="{Binding Catagory}" />
+                <DataGridTextColumn Header="Participants" IsReadOnly="True" Width="*" Binding="{Binding NumOfParticipate}" />
+                <DataGridTextColumn Header="Location" IsReadOnly="True" Width="*" Binding="{Binding Place}"/>
                 <DataGridTextColumn Header="Start Date" IsReadOnly="True" Width="*" Binding="{Binding StartsOn, StringFormat=d}"/>
-                <DataGridTextColumn Header="Finish Date" IsReadOnly="True" Width="*" Binding="{Binding FinishOn, StringFormat=d}"/>
+                <DataGridTextColumn Header="End Date" IsReadOnly="True" Width="*" Binding="{Binding FinishOn, StringFormat=d}"/>
                 <DataGridTextColumn Header="Start Hour" IsReadOnly="True" Width="*" Binding="{Binding StartHour}"/>
-                <DataGridTextColumn Header="Finish Hour" IsReadOnly="True" Width="*" Binding="{Binding FinishHour}"/>
+                <DataGridTextColumn Header="End Hour" IsReadOnly="True" Width="*" Binding="{Binding FinishHour}"/>
                 <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Width="*" Binding="{Binding Difficulty}"/>
                 <DataGridTextColumn Header="Frequency" IsReadOnly="True" Width="*" Binding="{Binding Frequency}"/>
                 <DataGridTextColumn Header="Price (NIS)" IsReadOnly="True" Width="*" Binding="{Binding Price}"/>
                 <DataGridTextColumn Header="Days" IsReadOnly="True" Width="*" Binding="{Binding Days}"/>
 
-                <DataGridTemplateColumn Width="*" Header="Select">
+                <DataGridTemplateColumn Width="*" Header="Details">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Button x:Name="ShowBtn" Style="{StaticResource ButtonStyle}" Margin="5" Click="ShowBtn_Click">
+                                <TextBlock Text="Show" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -21,12 +21,10 @@ namespace GUI.Windows.ActivitiesWindows
     /// </summary>
     public partial class SingleActivityWindow : Window
     {
-        PartnersMatcherController controller;
         Activity _activity;
-        public SingleActivityWindow(ref PartnersMatcherController PMController, Activity activity)
+        public SingleActivityWindow( Activity activity)
         {
             InitializeComponent();
-            controller = PMController;
             _activity = activity;
             SetActivity();
         }
