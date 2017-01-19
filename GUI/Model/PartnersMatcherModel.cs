@@ -73,6 +73,174 @@ namespace GUI.Model
             connection.Close();
         }
 
+        public Boolean CreateNewActivity(Activity activity)
+        {
+
+            if (!dbConnect())
+            {
+                return false;
+            }
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            try
+            {
+                //Create the InsertCommand.
+                command = new OleDbCommand(
+                    "INSERT INTO Activities ([Activity ID], [Activity Name], [Field], [Participants], [Location], [Start Date], [End Date], [Start Time], [End Time], [Difficulty], [Price], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Gender]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
+
+                command.Parameters.AddWithValue("@Activity ID", activity.id);
+                command.Parameters.AddWithValue("@Activity Name", activity.name);
+                command.Parameters.AddWithValue("@Field", activity.field);
+                command.Parameters.AddWithValue("@Participants", activity.numberOfParticipants);
+                command.Parameters.AddWithValue("@Location", activity.location);
+                command.Parameters.AddWithValue("@Start Date", activity.startDate);
+                command.Parameters.AddWithValue("@End Date", activity.endDate);
+                command.Parameters.AddWithValue("@Start Time", activity.startTime);
+                command.Parameters.AddWithValue("@End Time", activity.endTime);
+                command.Parameters.AddWithValue("@Difficulty", activity.difficulty);
+                command.Parameters.AddWithValue("@Price", activity.price);
+                command.Parameters.AddWithValue("@Frequency", activity.frequency);
+
+                command.Parameters.AddWithValue("@Sunday", activity.days[0]);
+                command.Parameters.AddWithValue("@Monday", activity.days[1]);
+                command.Parameters.AddWithValue("@Tuesday", activity.days[2]);
+                command.Parameters.AddWithValue("@Wednesday", activity.days[3]);
+                command.Parameters.AddWithValue("@Thursday", activity.days[4]);
+                command.Parameters.AddWithValue("@Friday", activity.days[5]);
+                command.Parameters.AddWithValue("@Saturday", activity.days[6]);
+
+                string gender = "";
+                if (activity.gender == "Male")
+                    gender = "M";
+                else if (activity.gender == "Female")
+                    gender = "F";
+                command.Parameters.AddWithValue("@Gender", gender);
+
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                dbClose();
+                UpdateActivityMenegment(activity);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+
+        private void UpdateActivityMenegment(Activity activity)
+        {
+            if (dbConnect())
+            {
+                OleDbDataAdapter adapter = new OleDbDataAdapter();
+                OleDbCommand command;
+                try
+                {
+                    command = new OleDbCommand(
+                        "INSERT INTO Activity Management ([Activity ID], [User Email]) VALUES (?, ?)", connection);
+
+                    command.Parameters.AddWithValue("@Activity ID", activity.name);
+                    command.Parameters.AddWithValue("@User Email", user);
+
+                    adapter.InsertCommand = command;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                    dbClose();
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private ObservableCollection<string> GetFieldsFromDatabase()
+        {
+            if (!dbConnect())
+                return null;
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT * FROM Fields", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            ObservableCollection<string> databaseFieldes = new ObservableCollection<string>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                string field = ds.Tables[0].Rows[i][0].ToString();
+                if (!databaseFieldes.Contains(field))
+                    databaseFieldes.Add(field);
+            }
+            dbClose();
+            return databaseFieldes;
+        }
+
+        private ObservableCollection<string> GetAreasFromDatabase()
+        {
+            if (!dbConnect())
+                return null;
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT [Location] FROM Activities", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            ObservableCollection<string> geographicAreas = new ObservableCollection<string>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                string location = ds.Tables[0].Rows[i].ItemArray[0].ToString();
+                if (!geographicAreas.Contains(location))
+                    geographicAreas.Add(location);
+            }
+            dbClose();
+            return geographicAreas;
+        }
+
+        public Boolean FiledExist(string field)
+        {
+            fields = GetFieldsFromDatabase();
+            if (fields.Contains(field))
+                return true;
+            return false;
+        }
+
+
+        public Boolean CreateNewField(string field)
+        {
+
+            if (!dbConnect())
+            {
+                return false;
+            }
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            try
+            {
+                //Create the InsertCommand.
+                command = new OleDbCommand(
+                    "INSERT INTO Fields ([Field Name]) VALUES (?)", connection);
+
+                command.Parameters.AddWithValue("@Field Name", field);
+
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                dbClose();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+
         public Boolean InsertToUserTable(params string[] data)
         {
             if (!dbConnect())
@@ -193,10 +361,28 @@ namespace GUI.Model
             if (criteria.difficulty != null)
                 cmd += " AND [Difficulty] = '" + criteria.difficulty + "'";
             //DateTime strings might not be compatible with search
-            if (criteria.startDate != null)
+            if (criteria.startDate.ToShortDateString() != "01/01/0001")
                 cmd += " AND [Start Date] = '" + criteria.startDate.ToShortDateString() + "'";
-            if (criteria.endDate != null)
+            if (criteria.endDate.ToShortDateString() != "01/01/0001")
                 cmd += " AND [End Date] = '" + criteria.endDate.ToShortDateString() + "'";
+            if (criteria.gender == "M")
+                cmd += " AND [Gender] = 'M'";
+            else if (criteria.gender == "F")
+                cmd += " AND [Gender] = 'F'";
+            if (criteria.days[0])
+                cmd += " AND [Sunday] = Yes";
+            if (criteria.days[1])
+                cmd += " AND [Monday] = Yes";
+            if (criteria.days[2])
+                cmd += " AND [Tuesday] = Yes";
+            if (criteria.days[3])
+                cmd += " AND [Wedensday] = Yes";
+            if (criteria.days[4])
+                cmd += " AND [Thursday] = Yes";
+            if (criteria.days[5])
+                cmd += " AND [Friday] = Yes";
+            if (criteria.days[6])
+                cmd += " AND [Saturday] = Yes";
             return cmd;
         }
 
@@ -218,79 +404,6 @@ namespace GUI.Model
             return ds;
         }
 
-        public ObservableCollection<ActivityRecord> GenderMatch(DataSet ds, string gender)
-        {
-            ObservableCollection<ActivityRecord> filteredRecoreds = new ObservableCollection<ActivityRecord>();
-
-            for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                string id = ds.Tables[0].Rows[i].ItemArray[0].ToString();
-                DataSet users = GetActivityUsers(id);
-                if(users.Tables[0].Rows.Count > 0)
-                {
-                    /*if(MatchUserGenders(users, gender))
-                    {
-                        ActivityRecord activity = new ActivityRecord(params);
-                        filteredRecoreds.Add(activity);
-                    }*/
-                }
-            }
-
-            return filteredRecoreds;
-        }
-
-        private Boolean MatchUserGenders(DataSet ds, string gender)
-        {
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                string email = ds.Tables[0].Rows[i].ItemArray[0].ToString();
-                DataSet users = GetUserGender(email);
-                if (!(users.Tables[0].Rows[i].ItemArray[0].ToString() == gender))
-                    return false;
-            }
-            return true;
-        }
-
-        private DataSet GetActivityUsers(string id)
-        {
-            DataSet ds = new DataSet();
-
-            string cmd = "SELECT [User Email] FROM Activity-Users WHERE [Activity ID] = '" + id + "'";
-
-            if (!dbConnect())
-                return ds;
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            OleDbCommand command;
-
-            //Create the InsertCommand.
-            command = new OleDbCommand(cmd, connection);
-
-            adapter.SelectCommand = command;
-            adapter.Fill(ds);
-            dbClose();
-
-            return ds;
-        }
-        private DataSet GetUserGender(string email)
-        {
-            DataSet ds = new DataSet();
-
-            string cmd = "SELECT [Sex] FROM Users WHERE [Email] = '" + email + "'";
-
-            if (!dbConnect())
-                return ds;
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            OleDbCommand command;
-
-            //Create the InsertCommand.
-            command = new OleDbCommand(cmd, connection);
-
-            adapter.SelectCommand = command;
-            adapter.Fill(ds);
-            dbClose();
-
-            return ds;
-        }
 
         #endregion
 
@@ -323,7 +436,7 @@ namespace GUI.Model
             gender = new ObservableCollection<string>();
             gender.Add("Female");
             gender.Add("Male");
-            gender.Add("Mix");
+            gender.Add("Mixed");
         }
 
         /*private void InitActivities()
@@ -429,7 +542,7 @@ namespace GUI.Model
 
         public ObservableCollection<string> GetFields()
         {
-            fields = GetFiledsFromDatabase();
+            fields = GetFieldsFromDatabase();
             return fields;
         }
 
@@ -448,6 +561,7 @@ namespace GUI.Model
 
         public ObservableCollection<string> GetGeographicAreas()
         {
+            geographicAreas = GetAreasFromDatabase();
             return geographicAreas;
         }
 
@@ -608,144 +722,7 @@ namespace GUI.Model
                 return true;
         }
 
-        public Boolean CreateNewActivity(Activity activity)
-        {
-
-            if (!dbConnect())
-            {
-                return false;
-            }
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            OleDbCommand command;
-            try
-            {
-                //Create the InsertCommand.
-                command = new OleDbCommand(
-                    "INSERT INTO Activities ([Activity ID], [Activity Name], [Field], [Participants], [Location], [Start Date], [End Date], [Start Time], [End Time], [Difficulty], [Price], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Gender]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
-
-                command.Parameters.AddWithValue("@Activity ID", activity.id);
-                command.Parameters.AddWithValue("@Activity Name", activity.name);
-                command.Parameters.AddWithValue("@Field", activity.field);
-                command.Parameters.AddWithValue("@Participants", activity.numberOfParticipants);
-                command.Parameters.AddWithValue("@Location", activity.location);
-                command.Parameters.AddWithValue("@Start Date", activity.startDate);
-                command.Parameters.AddWithValue("@End Date", activity.endDate);
-                command.Parameters.AddWithValue("@Start Time", activity.startTime);
-                command.Parameters.AddWithValue("@End Time", activity.endTime);
-                command.Parameters.AddWithValue("@Difficulty", activity.difficulty);
-                command.Parameters.AddWithValue("@Price", activity.price);
-                command.Parameters.AddWithValue("@Frequency", activity.frequency);
-
-                command.Parameters.AddWithValue("@Sunday", activity.days[0]);
-                command.Parameters.AddWithValue("@Monday", activity.days[1]);
-                command.Parameters.AddWithValue("@Tuesday", activity.days[2]);
-                command.Parameters.AddWithValue("@Wednesday", activity.days[3]);
-                command.Parameters.AddWithValue("@Thursday", activity.days[4]);
-                command.Parameters.AddWithValue("@Friday", activity.days[5]);
-                command.Parameters.AddWithValue("@Saturday", activity.days[6]);
-
-                string gender = "";
-                if (activity.gender == "Male")
-                    gender = "M";
-                else if (activity.gender == "Female")
-                    gender = "F";
-                command.Parameters.AddWithValue("@Gender", gender);
-
-                adapter.InsertCommand = command;
-                adapter.InsertCommand.ExecuteNonQuery();
-                dbClose();
-                UpdateActivityMenegment(activity);
-                return true;
-            }
-            catch(Exception e)
-            {
-                return false;
-            }
-            
-        }
-
-        private void UpdateActivityMenegment(Activity activity)
-        {
-            if (dbConnect())
-            {
-                OleDbDataAdapter adapter = new OleDbDataAdapter();
-                OleDbCommand command;
-                try
-                {
-                    command = new OleDbCommand(
-                        "INSERT INTO Activity Management ([Activity ID], [User Email]) VALUES (?, ?)", connection);
-
-                    command.Parameters.AddWithValue("@Activity ID", activity.name);
-                    command.Parameters.AddWithValue("@User Email", user);
-
-                    adapter.InsertCommand = command;
-                    adapter.InsertCommand.ExecuteNonQuery();
-                    dbClose();
-                }
-                catch
-                {
-                }
-            }
-        }
-
-        private ObservableCollection<string> GetFiledsFromDatabase()
-        {
-            if (!dbConnect())
-                return null;
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            OleDbCommand command;
-            DataSet ds = new DataSet();
-
-            //Create the InsertCommand.
-            command = new OleDbCommand(
-                "SELECT * FROM Fields", connection);
-
-            adapter.SelectCommand = command;
-            adapter.Fill(ds);
-            ObservableCollection<string> databaseFieldes = new ObservableCollection<string>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                databaseFieldes.Add(ds.Tables[0].Rows[i][0].ToString());
-            dbClose();
-            return databaseFieldes;
-        }
-
-        public Boolean FiledExist(string field)
-        {
-            fields = GetFiledsFromDatabase();
-            if (fields.Contains(field))
-                return true;
-            return false;
-        }
-
-
-        public Boolean CreateNewField(string field)
-        {
-
-            if (!dbConnect())
-            {
-                return false;
-            }
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            OleDbCommand command;
-            try
-            {
-                //Create the InsertCommand.
-                command = new OleDbCommand(
-                    "INSERT INTO Fields ([Field Name]) VALUES (?)", connection);
-
-                command.Parameters.AddWithValue("@Field Name", field);
-                
-                adapter.InsertCommand = command;
-                adapter.InsertCommand.ExecuteNonQuery();
-                dbClose();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-
-        }
+        
     }
 
 }
