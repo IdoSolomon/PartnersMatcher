@@ -119,6 +119,14 @@ namespace GUI
             win.ShowDialog();
         }
 
+
+        private void CreateNewField_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNewFieldWindow win = new CreateNewFieldWindow(ref controller);
+            win.ShowDialog();
+        }
+
+
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             SearchWindow win = new SearchWindow(ref controller);
@@ -240,6 +248,7 @@ namespace GUI
         {
             System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
     }
 
 }

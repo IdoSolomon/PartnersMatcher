@@ -136,5 +136,16 @@ namespace GUI.Controller
         {
             return m_model.CreateNewActivity(activity);
         }
+
+        public Boolean FiledExist(string field)
+        {
+            return m_model.FiledExist(field);
+        }
+
+        public Boolean CreateNewField(string field)
+        {
+            return m_model.CreateNewField(field);
+        }
+
     }
 }

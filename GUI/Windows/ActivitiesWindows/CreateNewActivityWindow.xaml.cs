@@ -27,16 +27,20 @@ namespace GUI.Windows.ActivitiesWindows
 
         private void NewFieldBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            fieldsComboBox.IsDropDownOpen = false;
+            CreateNewFieldWindow win = new CreateNewFieldWindow(ref controller);
+            win.ShowDialog();
         }
 
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
             Activity activity = new Activity();
             if (!ValidateFields(ref activity))
                 return;
             controller.CreateNewActivity(activity);
-         }
+            System.Windows.MessageBox.Show("The new activity was create successfuly.", "Success", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            //Close();
+        }
 
         private bool ValidateFields(ref Activity activity)
         {
@@ -224,5 +228,10 @@ namespace GUI.Windows.ActivitiesWindows
             days[6] = false;
         }
         #endregion
+
+        private void fieldsComboBox_DropDownOpened(object sender, EventArgs e)
+        {
+            fieldsComboBox.ItemsSource = controller.GetFields();
+        }
     }
 }

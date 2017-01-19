@@ -55,11 +55,11 @@
                 <RowDefinition Height="1*" MinHeight="20"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource FieldDescriptionStyle}">Fields:</Label>
-            <Button x:Name="NewFieldBtn" Grid.Column="2" Grid.Row="0" Click="NewFieldBtn_Click" Style="{StaticResource ButtonStyle}" Margin="0,0,20,0" Height="30" Background="Coral">
+            <Button x:Name="NewFieldBtn" Grid.Column="2" Grid.Row="0" Click="NewFieldBtn_Click" Style="{StaticResource ButtonStyle}" Margin="0,0,20,0" Height="25" Width="80" Background="Coral">
                 <TextBlock Text="New Field" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="12"/>
             </Button>
         </Grid>
-        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
+        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}" DropDownOpened="fieldsComboBox_DropDownOpened">
         </ComboBox>
 
         <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Start on:</Label>
@@ -124,7 +124,7 @@
             <CheckBox x:Name="saturday" Grid.Column="13" Grid.Row="1" FontSize="18" Checked="saturday_Checked" Unchecked="saturday_Unchecked">Saturday</CheckBox>
         </Grid>
 
-        <Button x:Name="CreateBtn" Grid.Column="1" Grid.Row="16" Click="SearchBtn_Click" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0">
+        <Button x:Name="CreateBtn" Grid.Column="1" Grid.Row="16" Click="CreateBtn_Click" Style="{StaticResource ButtonStyle}" Margin="10,0,0,0">
             <TextBlock Text="Create" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
         </Button>
 

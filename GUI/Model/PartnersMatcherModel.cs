@@ -708,6 +708,44 @@ namespace GUI.Model
             dbClose();
             return databaseFieldes;
         }
+
+        public Boolean FiledExist(string field)
+        {
+            fields = GetFiledsFromDatabase();
+            if (fields.Contains(field))
+                return true;
+            return false;
+        }
+
+
+        public Boolean CreateNewField(string field)
+        {
+
+            if (!dbConnect())
+            {
+                return false;
+            }
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            try
+            {
+                //Create the InsertCommand.
+                command = new OleDbCommand(
+                    "INSERT INTO Fields ([Field Name]) VALUES (?)", connection);
+
+                command.Parameters.AddWithValue("@Field Name", field);
+                
+                adapter.InsertCommand = command;
+                adapter.InsertCommand.ExecuteNonQuery();
+                dbClose();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
     }
 
 }

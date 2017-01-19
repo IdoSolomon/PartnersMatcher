@@ -54,5 +54,9 @@ namespace GUI.Model
         Boolean SendRegistrationMail(string target, string pass);
 
         Boolean CreateNewActivity(Activity activity);
+
+        Boolean FiledExist(string field);
+
+        Boolean CreateNewField(string field);
     }
 }

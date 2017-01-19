@@ -135,6 +135,7 @@
                 </MenuItem>
                 <MenuItem Header="Activities" Style="{StaticResource MainMenuItemStyle}">
                     <MenuItem Header="Create New Activity" Style="{StaticResource MyMenuItemStyle}"  Click="CreateNewActivity_Click" />
+                    <MenuItem Header="Create New Field" Style="{StaticResource MyMenuItemStyle}"  Click="CreateNewField_Click" />
                     <MenuItem Header="Search" Style="{StaticResource MyMenuItemStyle}"  Click="Search_Click" />
                     <MenuItem Header="Advanced Search" Style="{StaticResource MyMenuItemStyle}"  Click="AdvancedSearch_Click" />
                     <MenuItem Header="Watch Your Pending Requests" Style="{StaticResource MyMenuItemStyle}"  Click="WatchYourPendingRequests_Click" />
