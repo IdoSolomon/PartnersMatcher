@@ -21,13 +21,14 @@
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.01*" MinHeight="20"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="1" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Search Results:</Label>
         
-        <DataGrid  x:Name="RecommendedActivitiesGrid" AutoGenerateColumns="False" Grid.Row="2" Grid.RowSpan="4">
+        <DataGrid  x:Name="RecommendedActivitiesGrid" AutoGenerateColumns="False" Grid.Row="2" Grid.RowSpan="6">
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -67,6 +68,10 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button x:Name="CancelBtn" Grid.Row="9" Click="CancelBtn_Click" Style="{StaticResource ButtonStyle}" Margin="600,0,600,0">
+            <TextBlock Text="Close" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
+        </Button>
 
     </Grid>
 </Window>

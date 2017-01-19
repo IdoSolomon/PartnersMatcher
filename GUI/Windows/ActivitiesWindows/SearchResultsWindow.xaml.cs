@@ -35,5 +35,10 @@ namespace GUI.Windows.ActivitiesWindows
             RecommendedActivitiesGrid.ItemsSource = RecommendedActivities;
 
         }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

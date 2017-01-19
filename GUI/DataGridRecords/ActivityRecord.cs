@@ -81,14 +81,80 @@ namespace GUI.DataGridRecords
             Difficulty = (string)dataRow[9];
             Price = ((decimal)dataRow[10]).ToString();
             Frequency = (string)dataRow[11];
-            Sunday = false;
-            Monday = false;
-            Tuesday = false;
-            Wednesday = false;
-            Thursday = false;
-            Friday = false;
-            Saturday = false;
+            Sunday = Convert.ToBoolean(dataRow[12]);
+            Monday = Convert.ToBoolean(dataRow[13]);
+            Tuesday = Convert.ToBoolean(dataRow[14]);
+            Wednesday = Convert.ToBoolean(dataRow[15]);
+            Thursday = Convert.ToBoolean(dataRow[16]);
+            Friday = Convert.ToBoolean(dataRow[17]);
+            Saturday = Convert.ToBoolean(dataRow[18]);
             Days = "";
+            bool first = true;
+            if (Sunday)
+            {
+                Days += "SUN";
+                first = false;
+            }
+            if (Monday)
+            {
+                if (!first)
+                {
+                    Days += ", ";
+                }
+                Days += "MON";
+                if (first)
+                    first = false;
+            }
+            if (Tuesday)
+            {
+                if (!first)
+                {
+                    Days += ", ";
+                }
+                Days += "TUE";
+                if (first)
+                    first = false;
+            }
+            if (Wednesday)
+            {
+                if (!first)
+                {
+                    Days += ", ";
+                }
+                Days += "WED";
+                if (first)
+                    first = false;
+            }
+            if (Thursday)
+            {
+                if (!first)
+                {
+                    Days += ", ";
+                }
+                Days += "THU";
+                if (first)
+                    first = false;
+            }
+            if (Friday)
+            {
+                if (!first)
+                {
+                    Days += ", ";
+                }
+                Days += "FRI";
+                if (first)
+                    first = false;
+            }
+            if (Saturday)
+            {
+                if (!first)
+                {
+                    Days += ", ";
+                }
+                Days += "SAT";
+                if (first)
+                    first = false;
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ using GUI.Model;
 using System.Collections.ObjectModel;
 using System.Data;
 using GUI.classes;
+using GUI.DataGridRecords;
 
 namespace GUI.Controller
 {
@@ -146,6 +147,5 @@ namespace GUI.Controller
         {
             return m_model.CreateNewField(field);
         }
-
     }
 }
