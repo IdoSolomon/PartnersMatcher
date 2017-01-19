@@ -24,6 +24,7 @@ namespace GUI.Model
         private ObservableCollection<string> numOfParticipates;
         private ObservableCollection<string> frequency;
         private ObservableCollection<string> difficulty;
+        private ObservableCollection<string> gender;
         public OleDbConnection connection;
         public bool connected = false;
         private string dbPath;
@@ -44,6 +45,8 @@ namespace GUI.Model
             dbPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\PartnersMatcher.accdb";
             InitStructures();
         }
+
+        
 
         #region db
 
@@ -295,9 +298,9 @@ namespace GUI.Model
         private void InitStructures()
         {
             //Create the InsertCommand.
-            InitFields();
-            InitGeographicAreas();
-            InitActivities();
+            //InitFields();
+            //InitGeographicAreas();
+            //InitActivities();
 
             numOfParticipates = new ObservableCollection<string>();
             numOfParticipates.Add("2");
@@ -316,9 +319,14 @@ namespace GUI.Model
             difficulty.Add("Medium");
             difficulty.Add("Hard");
             difficulty.Add("Very hard");
+
+            gender = new ObservableCollection<string>();
+            gender.Add("Female");
+            gender.Add("Male");
+            gender.Add("Mix");
         }
 
-        private void InitActivities()
+        /*private void InitActivities()
         {
             if (!dbConnect())
                 return;
@@ -342,9 +350,9 @@ namespace GUI.Model
                 ds.Clear();
             }
             dbClose();
-        }
+        }*/
 
-        private void InitGeographicAreas()
+        /*private void InitGeographicAreas()
         {
             if (!dbConnect())
                 return;
@@ -364,9 +372,9 @@ namespace GUI.Model
             }
             dbClose();
 
-        }
+        }*/
 
-        private void InitFields()
+        /*private void InitFields()
         {
             if (!dbConnect())
                 return;
@@ -385,7 +393,7 @@ namespace GUI.Model
             }
             dbClose();
 
-        }
+        }*/
 
         #endregion
         #region properties
@@ -421,6 +429,7 @@ namespace GUI.Model
 
         public ObservableCollection<string> GetFields()
         {
+            fields = GetFiledsFromDatabase();
             return fields;
         }
 
@@ -440,6 +449,11 @@ namespace GUI.Model
         public ObservableCollection<string> GetGeographicAreas()
         {
             return geographicAreas;
+        }
+
+        public ObservableCollection<string> GetGenders()
+        {
+            return gender;
         }
 
         private Dictionary<string, ObservableCollection<string>> Activities
@@ -607,32 +621,35 @@ namespace GUI.Model
             {
                 //Create the InsertCommand.
                 command = new OleDbCommand(
-                    "INSERT INTO Activities ([Activity Name], [Field], [Participants], [Location], [Start Date], [End Date], [Difficulty], [Price], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Gender]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
+                    "INSERT INTO Activities ([Activity ID], [Activity Name], [Field], [Participants], [Location], [Start Date], [End Date], [Start Time], [End Time], [Difficulty], [Price], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Gender]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
 
+                command.Parameters.AddWithValue("@Activity ID", activity.id);
                 command.Parameters.AddWithValue("@Activity Name", activity.name);
                 command.Parameters.AddWithValue("@Field", activity.field);
                 command.Parameters.AddWithValue("@Participants", activity.numberOfParticipants);
                 command.Parameters.AddWithValue("@Location", activity.location);
-                command.Parameters.AddWithValue("@Start Date", activity.name);
-                command.Parameters.AddWithValue("@End Date", activity.field);
-                command.Parameters.AddWithValue("@Difficulty", activity.numberOfParticipants);
-                command.Parameters.AddWithValue("@Price", activity.location);
-                command.Parameters.AddWithValue("@Frequency", activity.name);
+                command.Parameters.AddWithValue("@Start Date", activity.startDate);
+                command.Parameters.AddWithValue("@End Date", activity.endDate);
+                command.Parameters.AddWithValue("@Start Time", activity.startTime);
+                command.Parameters.AddWithValue("@End Time", activity.endTime);
+                command.Parameters.AddWithValue("@Difficulty", activity.difficulty);
+                command.Parameters.AddWithValue("@Price", activity.price);
+                command.Parameters.AddWithValue("@Frequency", activity.frequency);
 
-                command.Parameters.AddWithValue("@Sunday", activity.name);
-                command.Parameters.AddWithValue("@Monday", activity.field);
-                command.Parameters.AddWithValue("@Tuesday", activity.numberOfParticipants);
-                command.Parameters.AddWithValue("@Wednesday", activity.location);
-                command.Parameters.AddWithValue("@Thursday", activity.name);
-                command.Parameters.AddWithValue("@Friday", activity.field);
-                command.Parameters.AddWithValue("@Saturday", activity.numberOfParticipants);
+                command.Parameters.AddWithValue("@Sunday", activity.days[0]);
+                command.Parameters.AddWithValue("@Monday", activity.days[1]);
+                command.Parameters.AddWithValue("@Tuesday", activity.days[2]);
+                command.Parameters.AddWithValue("@Wednesday", activity.days[3]);
+                command.Parameters.AddWithValue("@Thursday", activity.days[4]);
+                command.Parameters.AddWithValue("@Friday", activity.days[5]);
+                command.Parameters.AddWithValue("@Saturday", activity.days[6]);
 
                 string gender = "";
                 if (activity.gender == "Male")
                     gender = "M";
                 else if (activity.gender == "Female")
                     gender = "F";
-                command.Parameters.AddWithValue("@Sex", gender);
+                command.Parameters.AddWithValue("@Gender", gender);
 
                 adapter.InsertCommand = command;
                 adapter.InsertCommand.ExecuteNonQuery();
@@ -640,7 +657,7 @@ namespace GUI.Model
                 UpdateActivityMenegment(activity);
                 return true;
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }
@@ -655,21 +672,11 @@ namespace GUI.Model
                 OleDbCommand command;
                 try
                 {
-                    //int activityId = GetActivityId(activity);
-                    //Create the InsertCommand.
                     command = new OleDbCommand(
                         "INSERT INTO Activity Management ([Activity ID], [User Email]) VALUES (?, ?)", connection);
 
-                    command.Parameters.AddWithValue("@Activity Name", activity.name);
-                    command.Parameters.AddWithValue("@Field", activity.field);
-                    
-
-                    string gender = "";
-                    if (activity.gender == "Male")
-                        gender = "M";
-                    else if (activity.gender == "Female")
-                        gender = "F";
-                    command.Parameters.AddWithValue("@Sex", gender);
+                    command.Parameters.AddWithValue("@Activity ID", activity.name);
+                    command.Parameters.AddWithValue("@User Email", user);
 
                     adapter.InsertCommand = command;
                     adapter.InsertCommand.ExecuteNonQuery();
@@ -681,25 +688,26 @@ namespace GUI.Model
             }
         }
 
-        /*private int GetActivityId(Activity activity)
+        private ObservableCollection<string> GetFiledsFromDatabase()
         {
             if (!dbConnect())
-                return -1;
+                return null;
             OleDbDataAdapter adapter = new OleDbDataAdapter();
             OleDbCommand command;
             DataSet ds = new DataSet();
 
             //Create the InsertCommand.
             command = new OleDbCommand(
-                "SELECT [Activity ID] FROM Activities WHERE [Activity Name] = '" + activity.name + "AND [Activity Name]" + "'", connection);
+                "SELECT * FROM Fields", connection);
 
             adapter.SelectCommand = command;
             adapter.Fill(ds);
-            string login = "";
-            if (ds.Tables[0].Rows.Count != 0)
-                login = ds.Tables[0].Rows[0].ItemArray[0].ToString();
+            ObservableCollection<string> databaseFieldes = new ObservableCollection<string>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                databaseFieldes.Add(ds.Tables[0].Rows[i][0].ToString());
             dbClose();
-        }*/
+            return databaseFieldes;
+        }
     }
 
 }

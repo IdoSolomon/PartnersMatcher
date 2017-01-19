@@ -42,6 +42,8 @@ namespace GUI.Controller
 
         Dictionary<string, ObservableCollection<string>> GetActivities();
 
+        ObservableCollection<string> GetGenders();
+
         ObservableCollection<DateTime> GetStartOn();
 
         ObservableCollection<string> GetNumOfParticipates();

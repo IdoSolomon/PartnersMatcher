@@ -19,6 +19,10 @@ namespace GUI.Windows.ActivitiesWindows
             InitializeComponent();
             controller = PMController;
             days = new bool[7];
+            fieldsComboBox.ItemsSource = controller.GetFields();
+            frequencyComboBox.ItemsSource = controller.GetFrequency();
+            difficultyComboBox.ItemsSource = controller.GetDifficulty();
+            genderComboBox.ItemsSource = controller.GetGenders();
         }
 
         private void NewFieldBtn_Click(object sender, RoutedEventArgs e)
@@ -60,13 +64,13 @@ namespace GUI.Windows.ActivitiesWindows
                 return false;
             }
             activity.gender = genderComboBox.SelectedItem.ToString();
-            if (startsOnDatePick.SelectedDate.Value.Date.ToShortDateString() == "")
+            if (startsOnDatePick.SelectedDate == null)
             {
                 System.Windows.MessageBox.Show("Please choose a start day.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
             activity.startDate = startsOnDatePick.SelectedDate.Value.Date;
-            if (endsOnDatePick.SelectedDate.Value.Date.ToShortDateString() == "")
+            if (endsOnDatePick.SelectedDate == null)
             {
                 System.Windows.MessageBox.Show("Please choose an end day.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
@@ -84,12 +88,18 @@ namespace GUI.Windows.ActivitiesWindows
                 return false;
             }
             activity.frequency = frequencyComboBox.SelectedItem.ToString();
-            if (numOfParticipantsComboBox.SelectedItem.ToString() == "")
+            if (numOfParticipantstTextBox.Text == "")
             {
-                System.Windows.MessageBox.Show("Please choose the expected numer of participants.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                System.Windows.MessageBox.Show("Please enter the expected numer of participants.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
-            activity.numberOfParticipants = int.Parse(numOfParticipantsComboBox.SelectedItem.ToString());
+            int numOfParticipants = -1;
+            if (!int.TryParse(costTextBox.Text, out numOfParticipants) || numOfParticipants < 0)
+            {
+                System.Windows.MessageBox.Show("Please enter the expected numer of participants.\nThe number must be a positive number", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return false;
+            }
+            activity.numberOfParticipants = numOfParticipants;
             if (difficultyComboBox.SelectedItem.ToString() == "")
             {
                 System.Windows.MessageBox.Show("Please choose a difficalty.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);

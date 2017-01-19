@@ -77,6 +77,11 @@ namespace GUI.Controller
             return m_model.GetFields();
         }
 
+        public ObservableCollection<string> GetGenders()
+        {
+            return m_model.GetGenders();
+        }
+
         public ObservableCollection<string> GetFrequency()
         {
             return m_model.GetFrequency();

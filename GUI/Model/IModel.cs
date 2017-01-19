@@ -35,6 +35,8 @@ namespace GUI.Model
 
         ObservableCollection<string> GetGeographicAreas();
 
+        ObservableCollection<string> GetGenders();
+
         Dictionary<string, ObservableCollection<string>> GetActivities();
 
         ObservableCollection<DateTime> GetStartOn();
