@@ -152,5 +152,10 @@ namespace GUI.Controller
         {
             m_model.UpdateActivityNextId();
         }
+
+        public Preference GetUserPreference()
+        {
+            return m_model.GetUserPreference();
+        }
     }
 }

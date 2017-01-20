@@ -6,7 +6,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
         mc:Ignorable="d"
-        Title="CreateNewActivityWindow" Height="740" Width="800"
+        Title="CreateNewActivityWindow" Height="900" Width="800"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 

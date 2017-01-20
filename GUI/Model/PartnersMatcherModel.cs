@@ -490,6 +490,48 @@ namespace GUI.Model
             return ds;
         }
 
+        public Preference GetUserPreference()
+        {
+            Preference pref = new Preference();
+
+            if (!dbConnect())
+                return pref;
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT * FROM User-Preferences WHERE [User Email] = '" + user + "'", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            dbClose();
+
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                pref.userEmail = ds.Tables[0].Rows[0][0].ToString();
+                pref.sex = ds.Tables[0].Rows[0][1].ToString();
+                pref.minAge = Convert.ToInt32(ds.Tables[0].Rows[0][2]);
+                pref.maxAge = Convert.ToInt32(ds.Tables[0].Rows[0][3]);
+                pref.smokes = Convert.ToBoolean(ds.Tables[0].Rows[0][4]);
+                pref.pet = Convert.ToBoolean(ds.Tables[0].Rows[0][5]);
+                pref.maxPrice = Convert.ToInt32(ds.Tables[0].Rows[0][6]);
+                pref.location = ds.Tables[0].Rows[0][7].ToString();
+                pref.startHour = Convert.ToDateTime(ds.Tables[0].Rows[0][8]).TimeOfDay;
+                pref.endHour = Convert.ToDateTime(ds.Tables[0].Rows[0][9]).TimeOfDay;
+                pref.numberOfParticipants = Convert.ToInt32(ds.Tables[0].Rows[0][10]);
+                pref.difficulty = ds.Tables[0].Rows[0][11].ToString();
+                pref.frequency = ds.Tables[0].Rows[0][12].ToString();
+                bool[] days = new bool[7];
+                for (int i = 0; i < 7; i++)
+                    days[i] = Convert.ToBoolean(ds.Tables[0].Rows[0][13 + i]);
+                pref.days = days;
+                pref.gender = ds.Tables[0].Rows[0][20].ToString();
+            }
+
+            return pref;
+        }
 
         #endregion
 

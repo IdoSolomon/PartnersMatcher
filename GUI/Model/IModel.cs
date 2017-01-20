@@ -61,5 +61,7 @@ namespace GUI.Model
         Boolean CreateNewField(string field);
 
         void UpdateActivityNextId();
+
+        Preference GetUserPreference();
     }
 }

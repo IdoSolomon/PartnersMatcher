@@ -48,13 +48,19 @@
         <ComboBox x:Name="areaComboBox"  Grid.Column="1" Grid.Row="2" Style="{StaticResource ComboBoxStyle}">
         </ComboBox>
 
-        <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Fields:</Label>
-        <ComboBox x:Name="fieldsComboBox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
-        </ComboBox>
-
         <Label Grid.Column="1" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Start Hour:</Label>
-        <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
-                    Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" SelectedDateChanged="startsOnDatePick_SelectedDateChanged" FontSize="12"></DatePicker>
+        <Grid x:Name="startTimeGrid" Grid.Column="1" Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="sHour" Grid.Column="1" Style="{StaticResource ComboBoxStyle}"></ComboBox>
+            <TextBlock Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Center" FontSize="24">:</TextBlock>
+            <ComboBox x:Name="sMinute" Grid.Column="3" Style="{StaticResource ComboBoxStyle}"></ComboBox>
+        </Grid>
 
         <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Participating genders:</Label>
         <ComboBox x:Name="genderComboBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource ComboBoxStyle}">
@@ -76,8 +82,18 @@
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">End Hour:</Label>
-        <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}" 
-                    Grid.Column="3" Grid.Row="8" VerticalAlignment="Center" FontSize="12"></DatePicker>
+        <Grid x:Name="endTimeGrid" Grid.Column="3" Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="eHour" Grid.Column="1" Style="{StaticResource ComboBoxStyle}"></ComboBox>
+            <TextBlock Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Center" FontSize="24">:</TextBlock>
+            <ComboBox x:Name="eMinute" Grid.Column="3" Style="{StaticResource ComboBoxStyle}"></ComboBox>
+        </Grid>
 
         <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
         <Grid Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="5">
@@ -118,11 +134,11 @@
         <TextBox Name="maxAgeTextbox"  Grid.Column="5" Grid.Row="4" Style="{StaticResource TextBoxStyle}" Margin="8,8,8,8" PreviewTextInput="NumberValidationTextBox">
         </TextBox>
 
-        <Label Grid.Column="5" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Maximum Price:</Label>
-        <TextBox Name="priceTextbox"  Grid.Column="5" Grid.Row="6" Style="{StaticResource TextBoxStyle}" Margin="8,8,8,8" PreviewTextInput="NumberValidationTextBox">
+        <Label Grid.Column="1" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Maximum Price:</Label>
+        <TextBox Name="priceTextbox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBoxStyle}" Margin="8,8,8,8" PreviewTextInput="NumberValidationTextBox">
         </TextBox>
 
-        <Grid x:Name="prefLabelGrid" Grid.Column="5" Grid.Row="8">
+        <Grid x:Name="prefLabelGrid" Grid.Column="5" Grid.Row="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.01*" MinWidth="10"/>
                 <ColumnDefinition Width="0.1*" MinWidth="10"/>

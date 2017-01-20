@@ -14,15 +14,14 @@ namespace GUI.classes
         public int maxAge { get; set; }
         public int maxPrice { get; set; }
         public string location { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public DateTime startHour { get; set; }
-        public DateTime endHour { get; set; }
+        public TimeSpan startHour { get; set; }
+        public TimeSpan endHour { get; set; }
         public int numberOfParticipants { get; set; }
         public string difficulty { get; set; }
         public Boolean smokes { get; set; }
         public Boolean pet { get; set; }
-        string frequency { get; set; }
-        bool[] days { get; set; }
+        public string frequency { get; set; }
+        public bool[] days { get; set; }
+        public string gender { get; set; }
     }
 }

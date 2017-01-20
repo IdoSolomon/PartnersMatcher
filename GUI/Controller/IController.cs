@@ -66,5 +66,7 @@ namespace GUI.Controller
         Boolean CreateNewField(string field);
 
         void UpdateActivityNextId();
+
+        Preference GetUserPreference();
     }
 }
