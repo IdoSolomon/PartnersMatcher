@@ -47,8 +47,13 @@ namespace GUI.Windows.ProfileWindows
                 areaComboBox.Text = pref.location;
             if (pref.maxPrice > 0)
                 priceTextbox.Text = pref.maxPrice.ToString();
-            if (pref.gender != null)
-                genderComboBox.Text = pref.gender;
+            if (pref.sex != null)
+            {
+                if (pref.sex == "M")
+                    genderComboBox.Text = "Men Only";
+                else if (pref.sex == "F")
+                    genderComboBox.Text = "Women Only";
+            }
             if (pref.frequency != null)
                 frequencyComboBox.Text = pref.frequency;
             if (pref.numberOfParticipants > 0)
@@ -126,7 +131,6 @@ namespace GUI.Windows.ProfileWindows
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             GetPrefs();
             if(controller.SetUserPreferences(pref))
             {
@@ -139,26 +143,31 @@ namespace GUI.Windows.ProfileWindows
 
         private void GetPrefs()
         {
-            if (areaComboBox.Text != null)
+            if (areaComboBox.Text != "")
                 pref.location = areaComboBox.Text;
             if (priceTextbox.Text != null)
                 pref.maxPrice = Convert.ToInt32(priceTextbox.Text);
-            if (genderComboBox.Text != null)
-                pref.gender = genderComboBox.Text;
-            if (frequencyComboBox.Text != null)
+            if (genderComboBox.Text != "")
+            {
+                if(genderComboBox.Text == "Men Only")
+                    pref.sex = "M";
+                else if (genderComboBox.Text == "Women Only")
+                    pref.sex = "F";
+            }
+            if (frequencyComboBox.Text != "")
                 pref.frequency = frequencyComboBox.Text;
-            if (numOfParticipantsComboBox.Text != null)
+            if (numOfParticipantsComboBox.Text != "")
                 pref.numberOfParticipants = Convert.ToInt32(numOfParticipantsComboBox.Text);
-            if (difficultyComboBox.Text != null)
+            if (difficultyComboBox.Text != "")
                 pref.difficulty = difficultyComboBox.Text;
             if (minAgeTextbox.Text != null)
                 pref.minAge = Convert.ToInt32(minAgeTextbox.Text);
             if (maxAgeTextbox.Text != null)
                 pref.maxAge = Convert.ToInt32(maxAgeTextbox.Text);
-            if (sHour.Text != null && sMinute.Text != null)
+            if (sHour.Text != "" && sMinute.Text != "")
                 pref.startHour = new TimeSpan(Convert.ToInt32(sHour.Text), Convert.ToInt32(sMinute.Text), 0);
 
-            if (eHour.Text != null && eMinute.Text != null)
+            if (eHour.Text != "" && eMinute.Text != "")
                 pref.endHour = new TimeSpan(Convert.ToInt32(eHour.Text), Convert.ToInt32(sMinute.Text), 0);
 
             if (smokes.IsChecked == true)

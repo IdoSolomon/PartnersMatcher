@@ -26,6 +26,5 @@ namespace GUI.classes
         public Boolean pet { get; set; }
         public string frequency { get; set; }
         public bool[] days { get; set; }
-        public string gender { get; set; }
     }
 }

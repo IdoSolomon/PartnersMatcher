@@ -531,7 +531,6 @@ namespace GUI.Model
                         pref.days[i] = Convert.ToBoolean(ds.Tables[0].Rows[0][13 + i]);
                     else pref.days[i] = false;
                 }
-                pref.gender = ds.Tables[0].Rows[0][20].ToString();
             }
 
             return pref;
@@ -539,17 +538,113 @@ namespace GUI.Model
 
         public bool SetUserPreferences(Preference pref)
         {
+            if (!RemovePref())
+                return false;
+            if (!InsertPref(pref))
+                return false;
+            return true;
+        }
+
+        private Boolean RemovePref()
+        {
+            if (!dbConnect())
+            {
+                return false;
+            }
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+
+            OleDbCommand command = new OleDbCommand(
+                    "DELETE FROM [User-Preferences] WHERE [User Email] = '" + user + "'", connection);
+
+            adapter.InsertCommand = command;
+            adapter.InsertCommand.ExecuteNonQuery();
+            dbClose();
+            return true;
+
+        }
+
+
+        private Boolean InsertPref(Preference pref)
+        {
             //int check: x > 0
             //string check: x != null
             //boolean check: x != null then: x == true/false
             //timespan check: possibly x.tostring() != 00:00:00
 
-            //remove old pref record
-            //insert new pref record
+            if (!dbConnect())
+            {
+                return false;
+            }
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
 
+            OleDbCommand command = new OleDbCommand(
+                    "INSERT INTO [User-Preferences] ([User Email], [Sex], [Min Age], [Max Age], [Smoking], [Pets], [Max Price], [Location], [Start Time], [End Time], [Participants], [Difficulty], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday])" +
+                                       "VALUES (?,                   ?,        ?,         ?,          ?,      ?,          ?,           ?,           ?,          ?,         ?,                ?,            ?,          ?,       ?,         ?,          ?,           ?,         ?,         ?)", connection);
+
+            command.Parameters.AddWithValue("@User-Preferences", pref.userEmail);
+            if (pref.sex != null)
+                command.Parameters.AddWithValue("@Sex", pref.sex);
+            else command.Parameters.AddWithValue("@Sex", "");
+            if (pref.minAge > 0)
+                command.Parameters.AddWithValue("@Min Age", pref.minAge);
+            else command.Parameters.AddWithValue("@Min Age", 0);
+            if (pref.maxAge > 0)
+                command.Parameters.AddWithValue("@Max Age", pref.maxAge);
+            else command.Parameters.AddWithValue("@Max Age", 0);
+            if (pref.smokes)
+                command.Parameters.AddWithValue("@Smoking", true);
+            else command.Parameters.AddWithValue("@Smoking", false);
+            if (pref.pet)
+                command.Parameters.AddWithValue("@Pets", true);
+            else command.Parameters.AddWithValue("@Pets", false);
+            if (pref.maxPrice > 0)
+                command.Parameters.AddWithValue("@Max Price", pref.maxPrice);
+            else command.Parameters.AddWithValue("@Max Price", 0);
+            if (pref.location != null)
+                command.Parameters.AddWithValue("@Location", pref.location);
+            else command.Parameters.AddWithValue("@Location", "");
+            if (pref.startHour.ToString() != "00:00:00")
+                command.Parameters.AddWithValue("@Start Time", pref.startHour);
+            else command.Parameters.AddWithValue("@Start Time", DBNull.Value);
+            if (pref.endHour.ToString() != "00:00:00")
+                command.Parameters.AddWithValue("@End Time", pref.endHour);
+            else command.Parameters.AddWithValue("@End Time", DBNull.Value);
+            if (pref.numberOfParticipants > 0)
+                command.Parameters.AddWithValue("@Participants", pref.numberOfParticipants);
+            else command.Parameters.AddWithValue("@Participants", 0);
+            if (pref.difficulty != null)
+                command.Parameters.AddWithValue("@Difficulty", pref.difficulty);
+            else command.Parameters.AddWithValue("@Difficulty", "");
+            if (pref.frequency != null)
+                command.Parameters.AddWithValue("@Frequency", pref.frequency);
+            else command.Parameters.AddWithValue("@Frequency", "");
+            if (pref.days[0])
+                command.Parameters.AddWithValue("@Sunday", true);
+            else command.Parameters.AddWithValue("@Sunday", false);
+            if (pref.days[1])
+                command.Parameters.AddWithValue("@Monday", true);
+            else command.Parameters.AddWithValue("@Monday", false);
+            if (pref.days[2])
+                command.Parameters.AddWithValue("@Tuesday", true);
+            else command.Parameters.AddWithValue("@Tuesday", false);
+            if (pref.days[3])
+                command.Parameters.AddWithValue("@Wednesday", true);
+            else command.Parameters.AddWithValue("@Wednesday", false);
+            if (pref.days[4])
+                command.Parameters.AddWithValue("@Thursday", true);
+            else command.Parameters.AddWithValue("@Thursday", false);
+            if (pref.days[5])
+                command.Parameters.AddWithValue("@Friday", true);
+            else command.Parameters.AddWithValue("@Friday", false);
+            if (pref.days[6])
+                command.Parameters.AddWithValue("@Saturday", true);
+            else command.Parameters.AddWithValue("@Saturday", false);
+
+            adapter.InsertCommand = command;
+            adapter.InsertCommand.ExecuteNonQuery();
+            dbClose();
             return true;
         }
-
         #endregion
 
         #region Init
