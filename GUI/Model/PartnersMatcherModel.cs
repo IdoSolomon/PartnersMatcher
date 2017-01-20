@@ -539,7 +539,13 @@ namespace GUI.Model
 
         public bool SetUserPreferences(Preference pref)
         {
-            //delete original and insert again?
+            //int check: x > 0
+            //string check: x != null
+            //boolean check: x != null then: x == true/false
+            //timespan check: possibly x.tostring() != 00:00:00
+
+            //remove old pref record
+            //insert new pref record
 
             return true;
         }
