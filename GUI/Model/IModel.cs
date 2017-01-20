@@ -59,5 +59,7 @@ namespace GUI.Model
         Boolean FiledExist(string field);
 
         Boolean CreateNewField(string field);
+
+        void UpdateActivityNextId();
     }
 }

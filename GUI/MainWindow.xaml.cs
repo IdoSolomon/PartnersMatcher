@@ -51,7 +51,11 @@ namespace GUI
             if (!controller.IsConnected())
                 Close();
             else
+            {
+                controller.UpdateActivityNextId();
                 this.ShowDialog();
+            }
+                
 
         }
 

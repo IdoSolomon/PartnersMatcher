@@ -147,5 +147,10 @@ namespace GUI.Controller
         {
             return m_model.CreateNewField(field);
         }
+
+        public void UpdateActivityNextId()
+        {
+            m_model.UpdateActivityNextId();
+        }
     }
 }

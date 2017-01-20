@@ -85,8 +85,73 @@ namespace GUI.Model
             try
             {
                 //Create the InsertCommand.
-                command = new OleDbCommand(
+                /*command = new OleDbCommand(
                     "INSERT INTO Activities ([Activity ID], [Activity Name], [Field], [Participants], [Location], [Start Date], [End Date], [Start Time], [End Time], [Difficulty], [Price], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Gender]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", connection);
+
+                command.Parameters.AddWithValue("@Activity ID", activity.id);
+                command.Parameters.AddWithValue("@Activity Name", activity.name);
+                command.Parameters.AddWithValue("@Field", activity.field);
+                command.Parameters.AddWithValue("@Participants", activity.numberOfParticipants);
+                command.Parameters.AddWithValue("@Location", activity.location);
+                //string date = activity.startDate.Date.ToShortDateString();
+                command.Parameters.AddWithValue("@Start Date", activity.startDate.Date);
+                command.Parameters.AddWithValue("@End Date", activity.endDate.Date);
+                command.Parameters.AddWithValue("@Start Time", activity.startTime);
+                command.Parameters.AddWithValue("@End Time", activity.endTime);
+                command.Parameters.AddWithValue("@Difficulty", activity.difficulty);
+                command.Parameters.AddWithValue("@Price", activity.price);
+                command.Parameters.AddWithValue("@Frequency", activity.frequency);*/
+
+                /*if(activity.days[0])
+                    command.Parameters.AddWithValue("@Sunday", "Yes");
+                else
+                    command.Parameters.AddWithValue("@Sunday", "No");
+                if (activity.days[1])
+                    command.Parameters.AddWithValue("@Monday", "Yes");
+                else
+                    command.Parameters.AddWithValue("@Monday", "No");
+                if (activity.days[2])
+                    command.Parameters.AddWithValue("@Tuesday", "Yes");
+                else
+                    command.Parameters.AddWithValue("@Tuesday", "No");
+                if (activity.days[3])
+                    command.Parameters.AddWithValue("@Wednesday", "Yes");
+                else
+                    command.Parameters.AddWithValue("@Wednesday", "No");
+                if (activity.days[4])
+                    command.Parameters.AddWithValue("@Thursday", "Yes");
+                else
+                    command.Parameters.AddWithValue("@Thursday", "No");
+                if (activity.days[5])
+                    command.Parameters.AddWithValue("@Friday", "Yes");
+                else
+                    command.Parameters.AddWithValue("@Friday", "No");
+                if (activity.days[6])
+                    command.Parameters.AddWithValue("@Saturday", "Yes");
+                else
+                    command.Parameters.AddWithValue("@Saturday", "No");*/
+
+
+                /*command.Parameters.AddWithValue("@Sunday", activity.days[0]);
+                command.Parameters.AddWithValue("@Monday", activity.days[1]);
+                command.Parameters.AddWithValue("@Tuesday", activity.days[2]);
+                command.Parameters.AddWithValue("@Wednesday", activity.days[3]);
+                command.Parameters.AddWithValue("@Thursday", activity.days[4]);
+                command.Parameters.AddWithValue("@Friday", activity.days[5]);
+                command.Parameters.AddWithValue("@Saturday", activity.days[6]);
+
+                string gender = "";
+                if (activity.gender == "Male")
+                    gender = "M";
+                else if (activity.gender == "Female")
+                    gender = "F";
+                command.Parameters.AddWithValue("@Gender", gender);*/
+
+
+
+                command = new OleDbCommand(
+                    "INSERT INTO Activities ([Activity ID], [Activity Name], [Field], [Participants], [Location], [Start Date], [End Date], [Start Time], [End Time], [Difficulty], [Price], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Gender])" + 
+                                       "VALUES (?,                ?,              ?,         ?,           ?,          ?,             ?,          ?,           ?,           ?,          ?,         ?,          ?,       ?,         ?,          ?,           ?,         ?,         ?,         ?)", connection);
 
                 command.Parameters.AddWithValue("@Activity ID", activity.id);
                 command.Parameters.AddWithValue("@Activity Name", activity.name);
@@ -100,17 +165,13 @@ namespace GUI.Model
                 command.Parameters.AddWithValue("@Difficulty", activity.difficulty);
                 command.Parameters.AddWithValue("@Price", activity.price);
                 command.Parameters.AddWithValue("@Frequency", activity.frequency);
-
-                if(activity.days[0])
-                    command.Parameters.AddWithValue("@Sunday", "Yes");
-
+                command.Parameters.AddWithValue("@Sunday", activity.days[0]);
                 command.Parameters.AddWithValue("@Monday", activity.days[1]);
                 command.Parameters.AddWithValue("@Tuesday", activity.days[2]);
                 command.Parameters.AddWithValue("@Wednesday", activity.days[3]);
                 command.Parameters.AddWithValue("@Thursday", activity.days[4]);
                 command.Parameters.AddWithValue("@Friday", activity.days[5]);
                 command.Parameters.AddWithValue("@Saturday", activity.days[6]);
-
                 string gender = "";
                 if (activity.gender == "Male")
                     gender = "M";
@@ -118,9 +179,11 @@ namespace GUI.Model
                     gender = "F";
                 command.Parameters.AddWithValue("@Gender", gender);
 
-                adapter.InsertCommand = command;
+
+                 adapter.InsertCommand = command;
                 adapter.InsertCommand.ExecuteNonQuery();
                 dbClose();
+                UpdateActivityNextId();
                 UpdateActivityMenegment(activity);
                 return true;
             }
@@ -129,6 +192,25 @@ namespace GUI.Model
                 return false;
             }
 
+        }
+
+        public void UpdateActivityNextId()
+        {
+            if (dbConnect())
+            {
+                OleDbDataAdapter adapter = new OleDbDataAdapter();
+                OleDbCommand command;
+                DataSet ds = new DataSet();
+
+                //Create the InsertCommand.
+                command = new OleDbCommand(
+                    "SELECT * FROM Activities", connection);
+
+                adapter.SelectCommand = command;
+                adapter.Fill(ds);
+                Activity.NextId = ds.Tables[0].Rows.Count + 1;
+                dbClose();
+            }
         }
 
         private void UpdateActivityMenegment(Activity activity)
@@ -140,7 +222,8 @@ namespace GUI.Model
                 try
                 {
                     command = new OleDbCommand(
-                        "INSERT INTO Activity Management ([Activity ID], [User Email]) VALUES (?, ?)", connection);
+                        "INSERT INTO [Activity-Management] ([Activity ID], [User Email])" +
+                                             "VALUES (         ?,              ?)", connection);
 
                     command.Parameters.AddWithValue("@Activity ID", activity.name);
                     command.Parameters.AddWithValue("@User Email", user);
@@ -149,8 +232,9 @@ namespace GUI.Model
                     adapter.InsertCommand.ExecuteNonQuery();
                     dbClose();
                 }
-                catch
+                catch(Exception e)
                 {
+                    e.ToString();
                 }
             }
         }
@@ -321,7 +405,7 @@ namespace GUI.Model
             if (!dbConnect())
                 return ds;
 
-            //Create the InsertCommand.
+            //Create the SelectCommand.
             command = new OleDbCommand(
                 "SELECT * FROM Activities WHERE [Field] = '" + field + "' AND [Location] = '" + geographicArea + "'", connection);
 

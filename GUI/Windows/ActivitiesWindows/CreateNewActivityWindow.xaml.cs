@@ -39,7 +39,7 @@ namespace GUI.Windows.ActivitiesWindows
                 return;
             controller.CreateNewActivity(activity);
             System.Windows.MessageBox.Show("The new activity was create successfuly.", "Success", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            //Close();
+            Close();
         }
 
         private bool ValidateFields(ref Activity activity)
@@ -56,13 +56,13 @@ namespace GUI.Windows.ActivitiesWindows
                 return false;
             }
             activity.location = locationTextBox.Text;
-            if (fieldsComboBox.SelectedItem.ToString() == "")
+            if (fieldsComboBox.SelectedItem == null)
             {
                 System.Windows.MessageBox.Show("Please choose a field.\nIf there us no field which match to your activity, please click on 'new field' button", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;
             }
             activity.field = fieldsComboBox.SelectedItem.ToString();
-            if (genderComboBox.SelectedItem.ToString() == "")
+            if (genderComboBox.SelectedItem == null)
             {
                 System.Windows.MessageBox.Show("Please choose a participates gender.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return false;

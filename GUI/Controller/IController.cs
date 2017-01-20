@@ -64,5 +64,7 @@ namespace GUI.Controller
         Boolean FiledExist(string field);
 
         Boolean CreateNewField(string field);
+
+        void UpdateActivityNextId();
     }
 }

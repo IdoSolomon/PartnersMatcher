@@ -23,12 +23,14 @@ namespace GUI.classes
         public string frequency { get; set; }
         public bool[] days { get; set; }
 
-        private static int count = 8;
+        public static int NextId { get; set; }
 
         public Activity()
         {
-            id = count;
-            count++;
+
+            id = NextId + 8;
         }
+
+        
     }
 }
