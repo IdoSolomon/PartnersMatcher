@@ -8,6 +8,10 @@ namespace GUI.classes
 {
     public class Preference
     {
+        public Preference()
+        {
+            days = new bool[7];
+        }
         public string userEmail { get; set; }
         public string sex { get; set; }
         public int minAge { get; set; }

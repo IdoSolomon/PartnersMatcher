@@ -100,7 +100,7 @@ namespace GUI.Windows.ProfileWindows
             ObservableCollection<string> hours = new ObservableCollection<string>();
             ObservableCollection<string> minutes = new ObservableCollection<string>();
 
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 24; i++)
             {
                 string time = "";
                 if (i < 10)
@@ -127,9 +127,70 @@ namespace GUI.Windows.ProfileWindows
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-            //getprefs
-            //setuserpreferences
+            GetPrefs();
+            if(controller.SetUserPreferences(pref))
+            {
+                System.Windows.MessageBox.Show("Preference update complete.", "Date Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+            }
+            else System.Windows.MessageBox.Show("Preference update failed.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
+
+        private void GetPrefs()
+        {
+            if (areaComboBox.Text != null)
+                pref.location = areaComboBox.Text;
+            if (priceTextbox.Text != null)
+                pref.maxPrice = Convert.ToInt32(priceTextbox.Text);
+            if (genderComboBox.Text != null)
+                pref.gender = genderComboBox.Text;
+            if (frequencyComboBox.Text != null)
+                pref.frequency = frequencyComboBox.Text;
+            if (numOfParticipantsComboBox.Text != null)
+                pref.numberOfParticipants = Convert.ToInt32(numOfParticipantsComboBox.Text);
+            if (difficultyComboBox.Text != null)
+                pref.difficulty = difficultyComboBox.Text;
+            if (minAgeTextbox.Text != null)
+                pref.minAge = Convert.ToInt32(minAgeTextbox.Text);
+            if (maxAgeTextbox.Text != null)
+                pref.maxAge = Convert.ToInt32(maxAgeTextbox.Text);
+            if (sHour.Text != null && sMinute.Text != null)
+                pref.startHour = new TimeSpan(Convert.ToInt32(sHour.Text), Convert.ToInt32(sMinute.Text), 0);
+
+            if (eHour.Text != null && eMinute.Text != null)
+                pref.endHour = new TimeSpan(Convert.ToInt32(eHour.Text), Convert.ToInt32(sMinute.Text), 0);
+
+            if (smokes.IsChecked == true)
+                pref.smokes = true;
+            else pref.smokes = false;
+            if (pet.IsChecked == true)
+                pref.pet = true;
+            else pref.pet = false;
+            if (sunday.IsChecked == true)
+                pref.days[0] = true;
+            else pref.days[0] = false;
+            if (monday.IsChecked == true)
+                pref.days[1] = true;
+            else pref.days[1] = false;
+            if (tuesday.IsChecked == true)
+                pref.days[2] = true;
+            else pref.days[2] = false;
+            if (wednesday.IsChecked == true)
+                pref.days[3] = true;
+            else pref.days[3] = false;
+            if (thursday.IsChecked == true)
+                pref.days[4] = true;
+            else pref.days[4] = false;
+            if (friday.IsChecked == true)
+                pref.days[5] = true;
+            else pref.days[5] = false;
+            if (saturday.IsChecked == true)
+                pref.days[6] = true;
+            else pref.days[6] = false;
+
+        }
+
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

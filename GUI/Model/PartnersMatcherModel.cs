@@ -502,7 +502,7 @@ namespace GUI.Model
 
             //Create the InsertCommand.
             command = new OleDbCommand(
-                "SELECT * FROM User-Preferences WHERE [User Email] = '" + user + "'", connection);
+                "SELECT * FROM [User-Preferences] WHERE [User Email] = '" + user + "'", connection);
 
             adapter.SelectCommand = command;
             adapter.Fill(ds);
@@ -518,19 +518,30 @@ namespace GUI.Model
                 pref.pet = Convert.ToBoolean(ds.Tables[0].Rows[0][5]);
                 pref.maxPrice = Convert.ToInt32(ds.Tables[0].Rows[0][6]);
                 pref.location = ds.Tables[0].Rows[0][7].ToString();
-                pref.startHour = Convert.ToDateTime(ds.Tables[0].Rows[0][8]).TimeOfDay;
-                pref.endHour = Convert.ToDateTime(ds.Tables[0].Rows[0][9]).TimeOfDay;
+                if(!(ds.Tables[0].Rows[0][8] is DBNull))
+                    pref.startHour = Convert.ToDateTime(ds.Tables[0].Rows[0][8]).TimeOfDay;
+                if (!(ds.Tables[0].Rows[0][9] is DBNull))
+                    pref.endHour = Convert.ToDateTime(ds.Tables[0].Rows[0][9]).TimeOfDay;
                 pref.numberOfParticipants = Convert.ToInt32(ds.Tables[0].Rows[0][10]);
                 pref.difficulty = ds.Tables[0].Rows[0][11].ToString();
                 pref.frequency = ds.Tables[0].Rows[0][12].ToString();
-                bool[] days = new bool[7];
                 for (int i = 0; i < 7; i++)
-                    days[i] = Convert.ToBoolean(ds.Tables[0].Rows[0][13 + i]);
-                pref.days = days;
+                {
+                    if (ds.Tables[0].Rows[0][13 + i] != null)
+                        pref.days[i] = Convert.ToBoolean(ds.Tables[0].Rows[0][13 + i]);
+                    else pref.days[i] = false;
+                }
                 pref.gender = ds.Tables[0].Rows[0][20].ToString();
             }
 
             return pref;
+        }
+
+        public bool SetUserPreferences(Preference pref)
+        {
+            //delete original and insert again?
+
+            return true;
         }
 
         #endregion

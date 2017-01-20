@@ -157,5 +157,10 @@ namespace GUI.Controller
         {
             return m_model.GetUserPreference();
         }
+
+        public bool SetUserPreferences(Preference pref)
+        {
+            return m_model.SetUserPreferences(pref);
+        }
     }
 }

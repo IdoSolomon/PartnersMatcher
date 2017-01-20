@@ -63,5 +63,7 @@ namespace GUI.Model
         void UpdateActivityNextId();
 
         Preference GetUserPreference();
+
+        bool SetUserPreferences(Preference pref);
     }
 }

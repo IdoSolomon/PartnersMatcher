@@ -68,5 +68,7 @@ namespace GUI.Controller
         void UpdateActivityNextId();
 
         Preference GetUserPreference();
+
+        bool SetUserPreferences(Preference pref);
     }
 }
