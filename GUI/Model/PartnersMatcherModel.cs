@@ -581,10 +581,10 @@ namespace GUI.Model
                     "INSERT INTO [User-Preferences] ([User Email], [Sex], [Min Age], [Max Age], [Smoking], [Pets], [Max Price], [Location], [Start Time], [End Time], [Participants], [Difficulty], [Frequency], [Sunday], [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday])" +
                                        "VALUES (?,                   ?,        ?,         ?,          ?,      ?,          ?,           ?,           ?,          ?,         ?,                ?,            ?,          ?,       ?,         ?,          ?,           ?,         ?,         ?)", connection);
 
-            command.Parameters.AddWithValue("@User-Preferences", pref.userEmail);
+            command.Parameters.AddWithValue("@User Email", user);
             if (pref.sex != null)
                 command.Parameters.AddWithValue("@Sex", pref.sex);
-            else command.Parameters.AddWithValue("@Sex", "");
+            else command.Parameters.AddWithValue("@Sex", DBNull.Value);
             if (pref.minAge > 0)
                 command.Parameters.AddWithValue("@Min Age", pref.minAge);
             else command.Parameters.AddWithValue("@Min Age", 0);
@@ -602,7 +602,7 @@ namespace GUI.Model
             else command.Parameters.AddWithValue("@Max Price", 0);
             if (pref.location != null)
                 command.Parameters.AddWithValue("@Location", pref.location);
-            else command.Parameters.AddWithValue("@Location", "");
+            else command.Parameters.AddWithValue("@Location", DBNull.Value);
             if (pref.startHour.ToString() != "00:00:00")
                 command.Parameters.AddWithValue("@Start Time", pref.startHour);
             else command.Parameters.AddWithValue("@Start Time", DBNull.Value);
@@ -614,10 +614,10 @@ namespace GUI.Model
             else command.Parameters.AddWithValue("@Participants", 0);
             if (pref.difficulty != null)
                 command.Parameters.AddWithValue("@Difficulty", pref.difficulty);
-            else command.Parameters.AddWithValue("@Difficulty", "");
+            else command.Parameters.AddWithValue("@Difficulty", DBNull.Value);
             if (pref.frequency != null)
                 command.Parameters.AddWithValue("@Frequency", pref.frequency);
-            else command.Parameters.AddWithValue("@Frequency", "");
+            else command.Parameters.AddWithValue("@Frequency", DBNull.Value);
             if (pref.days[0])
                 command.Parameters.AddWithValue("@Sunday", true);
             else command.Parameters.AddWithValue("@Sunday", false);

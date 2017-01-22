@@ -145,7 +145,7 @@ namespace GUI.Windows.ProfileWindows
         {
             if (areaComboBox.Text != "")
                 pref.location = areaComboBox.Text;
-            if (priceTextbox.Text != null)
+            if (priceTextbox.Text != "")
                 pref.maxPrice = Convert.ToInt32(priceTextbox.Text);
             if (genderComboBox.Text != "")
             {
@@ -160,9 +160,9 @@ namespace GUI.Windows.ProfileWindows
                 pref.numberOfParticipants = Convert.ToInt32(numOfParticipantsComboBox.Text);
             if (difficultyComboBox.Text != "")
                 pref.difficulty = difficultyComboBox.Text;
-            if (minAgeTextbox.Text != null)
+            if (minAgeTextbox.Text != "")
                 pref.minAge = Convert.ToInt32(minAgeTextbox.Text);
-            if (maxAgeTextbox.Text != null)
+            if (maxAgeTextbox.Text != "")
                 pref.maxAge = Convert.ToInt32(maxAgeTextbox.Text);
             if (sHour.Text != "" && sMinute.Text != "")
                 pref.startHour = new TimeSpan(Convert.ToInt32(sHour.Text), Convert.ToInt32(sMinute.Text), 0);
