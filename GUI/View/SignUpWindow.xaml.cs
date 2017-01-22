@@ -16,6 +16,7 @@ using System.ComponentModel;
 using GUI.Controller;
 using System.Data.OleDb;
 using System.Data;
+using GUI.Windows.ProfileWindows;
 
 namespace GUI
 {
@@ -76,8 +77,10 @@ namespace GUI
             }
             else
                 MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Information);
-            
-            System.Windows.MessageBox.Show("The complete system will feature an Activity Domain Selection window after sign up.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            //System.Windows.MessageBox.Show("The complete system will feature an Activity Domain Selection window after sign up.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            UpdatePreferencesWindow win = new UpdatePreferencesWindow(ref controller);
+            win.ShowDialog();
         }
 
         #region validation
