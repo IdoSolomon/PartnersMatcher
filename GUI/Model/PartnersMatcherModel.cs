@@ -749,6 +749,7 @@ namespace GUI.Model
         }*/
 
         #endregion
+
         #region properties
 
         public Boolean IsConnected()
@@ -791,12 +792,38 @@ namespace GUI.Model
         {
             get
             {
+                geographicAreas = GetLocationsFromDatabase();
                 return geographicAreas;
             }
             set
             {
                 geographicAreas = value;
             }
+        }
+
+        private ObservableCollection<string> GetLocationsFromDatabase()
+        {
+            if (!dbConnect())
+                return null;
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand command;
+            DataSet ds = new DataSet();
+
+            //Create the InsertCommand.
+            command = new OleDbCommand(
+                "SELECT Location FROM Activities", connection);
+
+            adapter.SelectCommand = command;
+            adapter.Fill(ds);
+            ObservableCollection<string> databaseLocatins = new ObservableCollection<string>();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                string location = ds.Tables[0].Rows[i][0].ToString();
+                if (!databaseLocatins.Contains(location))
+                    databaseLocatins.Add(location);
+            }
+            dbClose();
+            return databaseLocatins;
         }
 
         public ObservableCollection<string> GetGeographicAreas()
