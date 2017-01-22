@@ -32,7 +32,12 @@ namespace GUI
                 MessageBox.Show("Failed to connect to DB." + System.Environment.NewLine + "Please ensure that you have the Microsoft Access Database Engine 2010 Redistributable (or higher) installed.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 //Close();
             }
-            else controller.dbClose();
+            else
+            {
+                controller.dbClose();
+                UserNameBox.Text = "m@gmail.com";
+                PasswordBox.Password = "1234";
+            }
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)

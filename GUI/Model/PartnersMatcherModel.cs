@@ -663,8 +663,9 @@ namespace GUI.Model
             numOfParticipates.Add("More");
 
             frequency = new ObservableCollection<string>();
-            frequency.Add("Weekly");
             frequency.Add("One-off");
+            frequency.Add("Weekly");
+            frequency.Add("Monthly");
             frequency.Add("Continuous");
 
             difficulty = new ObservableCollection<string>();
@@ -672,6 +673,7 @@ namespace GUI.Model
             difficulty.Add("Medium");
             difficulty.Add("Hard");
             difficulty.Add("Very hard");
+            difficulty.Add("Non relevant");
 
             gender = new ObservableCollection<string>();
             gender.Add("Female");

@@ -6,7 +6,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
         mc:Ignorable="d"
-        Title="CreateNewActivityWindow" Height="900" Width="800"
+        Title="CreateNewActivityWindow" Height="900" Width="1000"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
@@ -66,7 +66,7 @@
         <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
                     Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" FontSize="12"></DatePicker>
         
-        <Label Grid.Column="1" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">Start hour:</Label>
+        <Label Grid.Column="1" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">Start time:</Label>
         <TextBox x:Name="startHourTextBox" Grid.Column="1" Grid.Row="12" Style="{StaticResource TextBoxStyle}"></TextBox>
         
         <Label Grid.Column="1" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Participating genders:</Label>
@@ -88,9 +88,9 @@
 
         <Label Grid.Column="3" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">End on:</Label>
         <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}" 
-                    Grid.Column="3" Grid.Row="10" VerticalAlignment="Center" FontSize="12"></DatePicker>
+                    Grid.Column="3" Grid.Row="10" VerticalAlignment="Center" FontSize="12" Margin="1,1,1,1"></DatePicker>
 
-        <Label Grid.Column="3" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">End hour:</Label>
+        <Label Grid.Column="3" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">End time:</Label>
         <TextBox x:Name="endHourTextBox" Grid.Column="3" Grid.Row="12" Style="{StaticResource TextBoxStyle}"></TextBox>
         
         <Label Grid.Column="1" Grid.Row="13" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
@@ -115,7 +115,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" MinHeight="20"/>
             </Grid.RowDefinitions>
-            <CheckBox x:Name="sunday" Grid.Column="1" FontSize="18" Height="33" Checked="sunday_Checked" Unchecked="sunday_Unchecked" HorizontalAlignment="Right" Margin="0,0,0,0.333" Width="92">Sunday</CheckBox>
+            <CheckBox x:Name="sunday" Grid.Column="1" FontSize="18"  Checked="sunday_Checked" Unchecked="sunday_Unchecked">Sunday</CheckBox>
             <CheckBox x:Name="monday" Grid.Column="3" Grid.Row="1" FontSize="18" Checked="monday_Checked" Unchecked="monday_Unchecked">Monday</CheckBox>
             <CheckBox x:Name="tuesday" Grid.Column="5" Grid.Row="1" FontSize="18" Checked="tuesday_Checked" Unchecked="tuesday_Unchecked">Tuesday</CheckBox>
             <CheckBox x:Name="wednesday" Grid.Column="7" Grid.Row="1" FontSize="18" Checked="wednesday_Checked" Unchecked="wednesday_Unchecked">Wednesday</CheckBox>
