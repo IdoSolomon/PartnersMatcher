@@ -61,27 +61,27 @@ namespace GUI
         #region Profile
         private void EditYourProfile_Click(object sender, RoutedEventArgs e)
         {
-            EditProfileWindow win = new EditProfileWindow(ref controller);
+            EditProfileWindow win = new EditProfileWindow(controller);
             win.ShowDialog();
         }
 
         private void ChangeYourPassword_Click(object sender, RoutedEventArgs e)
         {
-            ChangePasswordWindow win = new ChangePasswordWindow(ref controller);
+            ChangePasswordWindow win = new ChangePasswordWindow(controller);
             win.ShowDialog();
 
         }
 
         private void UpdateYourEmail_Click(object sender, RoutedEventArgs e)
         {
-            UpdateEmailWindow win = new UpdateEmailWindow(ref controller);
+            UpdateEmailWindow win = new UpdateEmailWindow(controller);
             win.ShowDialog();
 
         }
 
         private void UpdatePreferences_Click(object sender, RoutedEventArgs e)
         {
-            UpdatePreferencesWindow win = new UpdatePreferencesWindow(ref controller);
+            UpdatePreferencesWindow win = new UpdatePreferencesWindow(controller);
             win.ShowDialog();
         }
 
@@ -105,27 +105,27 @@ namespace GUI
         #region Activities
         private void CreateNewActivity_Click(object sender, RoutedEventArgs e)
         {
-            CreateNewActivityWindow win = new CreateNewActivityWindow(ref controller);
+            CreateNewActivityWindow win = new CreateNewActivityWindow(controller);
             win.ShowDialog();
         }
 
 
         private void CreateNewField_Click(object sender, RoutedEventArgs e)
         {
-            CreateNewFieldWindow win = new CreateNewFieldWindow(ref controller);
+            CreateNewFieldWindow win = new CreateNewFieldWindow(controller);
             win.ShowDialog();
         }
 
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            SearchWindow win = new SearchWindow(ref controller);
+            SearchWindow win = new SearchWindow(controller);
             win.ShowDialog();
         }
 
         private void AdvancedSearch_Click(object sender, RoutedEventArgs e)
         {
-            AdvancedSearchWindow win = new AdvancedSearchWindow(ref controller);
+            AdvancedSearchWindow win = new AdvancedSearchWindow(controller);
             win.ShowDialog();
         }
 
@@ -202,13 +202,13 @@ namespace GUI
         #region Chat
         private void SeeAllConversations_Click(object sender, RoutedEventArgs e)
         {
-            SeeAllConversationsWindow win = new SeeAllConversationsWindow(ref controller);
+            SeeAllConversationsWindow win = new SeeAllConversationsWindow(controller);
             win.ShowDialog();
         }
 
         private void WriteNewGroupMessage_Click(object sender, RoutedEventArgs e)
         {
-            WriteNewGroupMessageWindow win = new WriteNewGroupMessageWindow(ref controller);
+            WriteNewGroupMessageWindow win = new WriteNewGroupMessageWindow(controller);
             win.ShowDialog();
         }
         #endregion

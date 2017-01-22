@@ -16,7 +16,7 @@ namespace GUI.Windows.ActivitiesWindows
         private bool[] days;
 
 
-        public CreateNewActivityWindow(ref PartnersMatcherController PMController)
+        public CreateNewActivityWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
             controller = PMController;
@@ -30,7 +30,7 @@ namespace GUI.Windows.ActivitiesWindows
         private void NewFieldBtn_Click(object sender, RoutedEventArgs e)
         {
             fieldsComboBox.IsDropDownOpen = false;
-            CreateNewFieldWindow win = new CreateNewFieldWindow(ref controller);
+            CreateNewFieldWindow win = new CreateNewFieldWindow(controller);
             win.ShowDialog();
         }
 

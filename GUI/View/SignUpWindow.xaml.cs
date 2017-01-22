@@ -79,7 +79,7 @@ namespace GUI
                 MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Information);
 
             //System.Windows.MessageBox.Show("The complete system will feature an Activity Domain Selection window after sign up.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-            UpdatePreferencesWindow win = new UpdatePreferencesWindow(ref controller);
+            UpdatePreferencesWindow win = new UpdatePreferencesWindow(controller);
             win.ShowDialog();
         }
 

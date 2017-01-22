@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using GUI.Controller;
+﻿using System.Windows;
 using GUI.classes;
 
 namespace GUI.Windows.ActivitiesWindows
@@ -22,7 +9,7 @@ namespace GUI.Windows.ActivitiesWindows
     public partial class SingleActivityWindow : Window
     {
         Activity _activity;
-        public SingleActivityWindow( Activity activity)
+        public SingleActivityWindow(Activity activity)
         {
             InitializeComponent();
             _activity = activity;

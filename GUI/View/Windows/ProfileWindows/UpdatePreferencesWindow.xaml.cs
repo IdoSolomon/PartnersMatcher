@@ -1,19 +1,9 @@
-﻿using GUI.DataGridRecords;
-using GUI.Controller;
+﻿using GUI.Controller;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using GUI.classes;
 
@@ -26,7 +16,7 @@ namespace GUI.Windows.ProfileWindows
     {
         PartnersMatcherController controller;
         Preference pref;
-        public UpdatePreferencesWindow(ref PartnersMatcherController PMController)
+        public UpdatePreferencesWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
             controller = PMController;
