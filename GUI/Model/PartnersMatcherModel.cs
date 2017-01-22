@@ -512,19 +512,26 @@ namespace GUI.Model
             {
                 pref.userEmail = ds.Tables[0].Rows[0][0].ToString();
                 pref.sex = ds.Tables[0].Rows[0][1].ToString();
-                pref.minAge = Convert.ToInt32(ds.Tables[0].Rows[0][2]);
-                pref.maxAge = Convert.ToInt32(ds.Tables[0].Rows[0][3]);
+                if(ds.Tables[0].Rows[0][2] != DBNull.Value)
+                    pref.minAge = Convert.ToInt32(ds.Tables[0].Rows[0][2]);
+                if (ds.Tables[0].Rows[0][3] != DBNull.Value)
+                    pref.maxAge = Convert.ToInt32(ds.Tables[0].Rows[0][3]);
                 pref.smokes = Convert.ToBoolean(ds.Tables[0].Rows[0][4]);
                 pref.pet = Convert.ToBoolean(ds.Tables[0].Rows[0][5]);
-                pref.maxPrice = Convert.ToInt32(ds.Tables[0].Rows[0][6]);
-                pref.location = ds.Tables[0].Rows[0][7].ToString();
+                if (ds.Tables[0].Rows[0][6] != DBNull.Value)
+                    pref.maxPrice = Convert.ToInt32(ds.Tables[0].Rows[0][6]);
+                if (ds.Tables[0].Rows[0][7] != DBNull.Value)
+                    pref.location = ds.Tables[0].Rows[0][7].ToString();
                 if(!(ds.Tables[0].Rows[0][8] is DBNull))
                     pref.startHour = Convert.ToDateTime(ds.Tables[0].Rows[0][8]).TimeOfDay;
                 if (!(ds.Tables[0].Rows[0][9] is DBNull))
                     pref.endHour = Convert.ToDateTime(ds.Tables[0].Rows[0][9]).TimeOfDay;
-                pref.numberOfParticipants = Convert.ToInt32(ds.Tables[0].Rows[0][10]);
-                pref.difficulty = ds.Tables[0].Rows[0][11].ToString();
-                pref.frequency = ds.Tables[0].Rows[0][12].ToString();
+                if (ds.Tables[0].Rows[0][10] != DBNull.Value)
+                    pref.numberOfParticipants = Convert.ToInt32(ds.Tables[0].Rows[0][10]);
+                if (ds.Tables[0].Rows[0][11] != DBNull.Value)
+                    pref.difficulty = ds.Tables[0].Rows[0][11].ToString();
+                if (ds.Tables[0].Rows[0][12] != DBNull.Value)
+                    pref.frequency = ds.Tables[0].Rows[0][12].ToString();
                 for (int i = 0; i < 7; i++)
                 {
                     if (ds.Tables[0].Rows[0][13 + i] != null)
@@ -582,15 +589,15 @@ namespace GUI.Model
                                        "VALUES (?,                   ?,        ?,         ?,          ?,      ?,          ?,           ?,           ?,          ?,         ?,                ?,            ?,          ?,       ?,         ?,          ?,           ?,         ?,         ?)", connection);
 
             command.Parameters.AddWithValue("@User Email", user);
-            if (pref.sex != null)
+            if (pref.sex != null && pref.sex != "")
                 command.Parameters.AddWithValue("@Sex", pref.sex);
             else command.Parameters.AddWithValue("@Sex", DBNull.Value);
             if (pref.minAge > 0)
                 command.Parameters.AddWithValue("@Min Age", pref.minAge);
-            else command.Parameters.AddWithValue("@Min Age", 0);
+            else command.Parameters.AddWithValue("@Min Age", DBNull.Value);
             if (pref.maxAge > 0)
                 command.Parameters.AddWithValue("@Max Age", pref.maxAge);
-            else command.Parameters.AddWithValue("@Max Age", 0);
+            else command.Parameters.AddWithValue("@Max Age", DBNull.Value);
             if (pref.smokes)
                 command.Parameters.AddWithValue("@Smoking", true);
             else command.Parameters.AddWithValue("@Smoking", false);
@@ -599,8 +606,8 @@ namespace GUI.Model
             else command.Parameters.AddWithValue("@Pets", false);
             if (pref.maxPrice > 0)
                 command.Parameters.AddWithValue("@Max Price", pref.maxPrice);
-            else command.Parameters.AddWithValue("@Max Price", 0);
-            if (pref.location != null)
+            else command.Parameters.AddWithValue("@Max Price", DBNull.Value);
+            if (pref.location != null && pref.location != "")
                 command.Parameters.AddWithValue("@Location", pref.location);
             else command.Parameters.AddWithValue("@Location", DBNull.Value);
             if (pref.startHour.ToString() != "00:00:00")
@@ -611,11 +618,11 @@ namespace GUI.Model
             else command.Parameters.AddWithValue("@End Time", DBNull.Value);
             if (pref.numberOfParticipants > 0)
                 command.Parameters.AddWithValue("@Participants", pref.numberOfParticipants);
-            else command.Parameters.AddWithValue("@Participants", 0);
-            if (pref.difficulty != null)
+            else command.Parameters.AddWithValue("@Participants", DBNull.Value);
+            if (pref.difficulty != null && pref.difficulty != "")
                 command.Parameters.AddWithValue("@Difficulty", pref.difficulty);
             else command.Parameters.AddWithValue("@Difficulty", DBNull.Value);
-            if (pref.frequency != null)
+            if (pref.frequency != null && pref.frequency != "")
                 command.Parameters.AddWithValue("@Frequency", pref.frequency);
             else command.Parameters.AddWithValue("@Frequency", DBNull.Value);
             if (pref.days[0])
