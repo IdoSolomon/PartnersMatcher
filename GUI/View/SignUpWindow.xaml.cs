@@ -32,7 +32,7 @@ namespace GUI
         {
             InitializeComponent();
             controller = PMController;
-            LocationComboBox.ItemsSource = controller.GetGeographicAreas();
+            //LocationComboBox.ItemsSource = controller.GetGeographicAreas();
             bgworker = new BackgroundWorker();
             bgworker.DoWork += bgworker_DoWork;
             bgworker.WorkerReportsProgress = true;
@@ -56,7 +56,7 @@ namespace GUI
             data[5] = DatePick.SelectedDate.Value.Date.ToShortDateString();
             data[6] = SexComboBox.Text;
             data[7] = PhoneTextBox.Text;
-            data[8] = LocationComboBox.Text;
+            data[8] = LocationTextBox.Text;
             data[9] = SmokingComboBox.Text;
             data[10] = PetComboBox.Text;
             data[11] = ResumeTextBox.Text;

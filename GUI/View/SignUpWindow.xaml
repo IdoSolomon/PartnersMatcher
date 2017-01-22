@@ -142,7 +142,7 @@
         </TextBlock>
 
         <Label Grid.Column="3" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Location:</Label>
-        <ComboBox Grid.Column="3" Grid.Row="2" x:Name="LocationComboBox" Margin="5" Style="{StaticResource ComboBoxStyle}"></ComboBox>
+        <TextBox Grid.Column="3" Grid.Row="2" x:Name="LocationTextBox"  Margin="5" Style="{StaticResource TextBoxStyle}"/>
 
         <Label Grid.Column="3" Grid.Row="3"  Style="{StaticResource FieldDescriptionStyle}">Smokes:</Label>
         <ComboBox Grid.Column="3" Grid.Row="4" x:Name="SmokingComboBox" Margin="5" Style="{StaticResource ComboBoxStyle}">
