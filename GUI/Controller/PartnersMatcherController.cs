@@ -33,6 +33,11 @@ namespace GUI.Controller
             m_model.SetUser(login);
         }
 
+        public void RemoveUser()
+        {
+            m_model.RemoveUser();
+        }
+
         public Boolean IsConnected()
         {
             return m_model.IsConnected();

@@ -18,6 +18,7 @@ namespace GUI.Controller
         void SetView(IView view);
 
         void SetUser(string login);
+        void RemoveUser();
 
         Boolean IsConnected();
 

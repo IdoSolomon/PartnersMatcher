@@ -67,8 +67,8 @@ namespace GUI
 
             if (controller.dbConnect())
             {
-                controller.InsertToUserTable(data);
                 controller.dbClose();
+                controller.InsertToUserTable(data);
                 user = data[2];
                 pass = data[3];
                 bgworker_DoWork(sender, null);
@@ -79,8 +79,10 @@ namespace GUI
                 MessageBox.Show("Failed to connect to DB.", "DB Error", MessageBoxButton.OK, MessageBoxImage.Information);
 
             //System.Windows.MessageBox.Show("The complete system will feature an Activity Domain Selection window after sign up.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+            controller.SetUser(EmailTextBox.Text);
             UpdatePreferencesWindow win = new UpdatePreferencesWindow(controller);
             win.ShowDialog();
+            controller.RemoveUser();
         }
 
         #region validation
