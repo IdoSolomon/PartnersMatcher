@@ -2,6 +2,8 @@
 using GUI.Controller;
 using GUI.classes;
 using System;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace GUI.Windows.ActivitiesWindows
 {
@@ -44,111 +46,259 @@ namespace GUI.Windows.ActivitiesWindows
 
         private bool ValidateFields(ref Activity activity)
         {
+            bool validationSucceeded = true;
+            string errMasg = String.Empty;
             if (activityNameTextBox.Text == "")
             {
-                System.Windows.MessageBox.Show("Please enter activity name.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+             if(errMasg==String.Empty)
+                errMasg ="Please enter activity name.";
+                validationSucceeded =  false;
+                activityNameTextBox.Background = Brushes.Salmon ;
             }
-            activity.name = activityNameTextBox.Text;
+            else
+            {
+                activityNameTextBox.Background = Brushes.White;
+                activity.name = activityNameTextBox.Text;
+            }
             if (locationTextBox.Text == "")
             {
-                System.Windows.MessageBox.Show("Please enter location.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                errMasg ="Please enter location.";
+                validationSucceeded =  false;
+                locationTextBox.Background = Brushes.Salmon;
+
             }
-            activity.location = locationTextBox.Text;
+            else
+            {
+                activity.location = locationTextBox.Text;
+                locationTextBox.Background = Brushes.White;
+            }
             if (fieldsComboBox.SelectedItem == null)
             {
-                System.Windows.MessageBox.Show("Please choose a field.\nIf there us no field which match to your activity, please click on 'new field' button", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                errMasg ="Please choose a field.\nIf there us no field which match to your activity, please click on 'new field' button";
+                validationSucceeded =  false;
+                fieldsComboBox.Background = Brushes.Salmon;
+
             }
-            activity.field = fieldsComboBox.SelectedItem.ToString();
+            else
+            {
+                activity.field = fieldsComboBox.SelectedItem.ToString();
+                fieldsComboBox.Background = Brushes.White;
+
+            }
             if (genderComboBox.SelectedItem == null)
             {
-                System.Windows.MessageBox.Show("Please choose a participates gender.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                    errMasg ="Please choose a participates gender.";
+                validationSucceeded =  false;
+                genderComboBox.Background = Brushes.Salmon;
+
             }
-            activity.gender = genderComboBox.SelectedItem.ToString();
+            else
+            {
+                activity.gender = genderComboBox.SelectedItem.ToString();
+                genderComboBox.Background = Brushes.White;
+            }
             if (startsOnDatePick.SelectedDate == null)
             {
-                System.Windows.MessageBox.Show("Please choose a start day.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                    errMasg ="Please choose a start day.";
+                validationSucceeded =  false;
+                startsOnDatePick.Background = Brushes.Salmon;
+
             }
-            activity.startDate = startsOnDatePick.SelectedDate.Value.Date;
+            else
+                startsOnDatePick.Background = Brushes.White;
             if (endsOnDatePick.SelectedDate == null)
             {
-                System.Windows.MessageBox.Show("Please choose an end day.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                    errMasg ="Please choose an end day.";
+                validationSucceeded =  false;
+                endsOnDatePick.Background = Brushes.Salmon;
+
+            }
+            else
+                endsOnDatePick.Background = Brushes.White;
+            if(validationSucceeded)
+            {
+                    activity.startDate = startsOnDatePick.SelectedDate.Value.Date;
+                    activity.endDate = endsOnDatePick.SelectedDate.Value.Date;
+
+            }
+
+            if(activity.startDate > activity.endDate)
+            {
+                if(errMasg==String.Empty)
+                    errMasg ="Activity`s end date must be after its beginning date.";
+                validationSucceeded =  false;
+                startsOnDatePick.Background = Brushes.Salmon;
+                endsOnDatePick.Background = Brushes.Salmon;
+            }
+            else
+            {
+                startsOnDatePick.Background = Brushes.White;
+                endsOnDatePick.Background = Brushes.White;
             }
             int startHours = -1, startMinutes = -1, endHours = -1, endMinutes = -1; 
-            if (!validHour(startHourTextBox.Text, ref startHours, ref startMinutes) || !validHour(endHourTextBox.Text, ref endHours, ref endMinutes))
-                return false;
-            activity.startTime = new TimeSpan(startHours, startMinutes, 0);
-            activity.startTime = new TimeSpan(endHours, endMinutes, 0);
-
-            activity.endDate = endsOnDatePick.SelectedDate.Value.Date;
-            if (frequencyComboBox.SelectedItem.ToString() == "")
+            if (!validHour(startHourTextBox, ref startHours, ref startMinutes,ref errMasg) || !validHour(endHourTextBox, ref endHours, ref endMinutes, ref errMasg))
+                validationSucceeded =  false;
+             if(validationSucceeded)
             {
-                System.Windows.MessageBox.Show("Please choose a frequency.\nIf there us no field which match to your activity, please click on 'new field' button", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
-            }
-            activity.frequency = frequencyComboBox.SelectedItem.ToString();
+                activity.startTime = new TimeSpan(startHours, startMinutes, 0);
+                activity.endTime = new TimeSpan(endHours, endMinutes, 0);
+             }
+             if (frequencyComboBox.SelectedItem == null)
+             {
+                 if (errMasg == String.Empty)
+                     errMasg = "Please choose a frequency.\nIf there us no field which match to your activity, please click on 'new field' button";
+                 validationSucceeded = false;
+                 frequencyComboBox.Background = Brushes.Salmon;
+
+             }
+             else
+             {
+                 activity.frequency = frequencyComboBox.SelectedItem.ToString();
+                 frequencyComboBox.Background = Brushes.White;
+             }
             if (numOfParticipantstTextBox.Text == "")
             {
-                System.Windows.MessageBox.Show("Please enter the expected numer of participants.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                    errMasg ="Please enter the expected numer of participants.";
+                validationSucceeded =  false;
+                numOfParticipantstTextBox.Background = Brushes.Salmon;
             }
+            else
+                numOfParticipantstTextBox.Background = Brushes.White;
+
             int numOfParticipants = -1;
-            if (!int.TryParse(costTextBox.Text, out numOfParticipants) || numOfParticipants < 0)
+            if (!int.TryParse(numOfParticipantstTextBox.Text, out numOfParticipants) || numOfParticipants < 2)
             {
-                System.Windows.MessageBox.Show("Please enter the expected numer of participants.\nThe number must be a positive number", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if (errMasg == String.Empty)
+                    errMasg = "Please enter the expected numer of participants.\nThe number must be a positive number larger than 1";
+                validationSucceeded = false;
+                numOfParticipantstTextBox.Background = Brushes.Salmon;
             }
-            activity.numberOfParticipants = numOfParticipants;
-            if (difficultyComboBox.SelectedItem.ToString() == "")
+            else
             {
-                System.Windows.MessageBox.Show("Please choose a difficalty.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                numOfParticipantstTextBox.Background = Brushes.White;
+                activity.numberOfParticipants = numOfParticipants;
             }
-            activity.difficulty = difficultyComboBox.SelectedItem.ToString();
+            if (difficultyComboBox.SelectedItem == null)
+            {
+                if (errMasg == String.Empty)
+                    errMasg = "Please choose a difficalty.";
+                validationSucceeded = false;
+                difficultyComboBox.Background = Brushes.Salmon;
+
+            }
+            else
+            {
+                activity.difficulty = difficultyComboBox.SelectedItem.ToString();
+                difficultyComboBox.Background = Brushes.White;
+
+            }
             if (costTextBox.Text == "")
             {
-                System.Windows.MessageBox.Show("Please enter the cost of the activity.\n iIf the actuvity is free, please enter 0.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                    errMasg ="Please enter the cost of the activity.\n iIf the actuvity is free, please enter 0.";
+                validationSucceeded =  false;
+                costTextBox.Background = Brushes.Salmon;
             }
+            else
+                costTextBox.Background = Brushes.White;
             double price = -1;
             if(!double.TryParse(costTextBox.Text, out price) || price < 0)
             {
-                System.Windows.MessageBox.Show("Please enter the cost.\nThe cost must be a positive number", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return false;
+                if(errMasg==String.Empty)
+                    errMasg ="Please enter the cost.\nThe cost must be a positive number";
+                validationSucceeded =  false;
+                costTextBox.Background = Brushes.Salmon;
+
             }
-            activity.price = price;
-            activity.days = days;
-            return true;
+            else
+                costTextBox.Background = Brushes.White;
+            if (!validDays())
+            {
+                if (errMasg == String.Empty)
+                    errMasg = "Please choose at least one day activity occurs";
+
+            }
+            else
+            {
+                activity.days = days;
+
+            }
+            if(validationSucceeded)
+            {
+                activity.price = price;
+                
+            }
+
+
+            //check if the start time accutd before end time
+            if (startsOnDatePick.SelectedDate == endsOnDatePick.SelectedDate && (activity.startTime>=activity.endTime))
+            {
+                if(errMasg==String.Empty)
+                    errMasg ="Activity`s end time must come after start time .";
+                validationSucceeded =  false;
+                endHourTextBox.Background = Brushes.Salmon;
+            }
+            else if(validationSucceeded)
+                endHourTextBox.Background = Brushes.White;
+
+
+            if (validationSucceeded == false)
+                MessageBox.Show(errMasg, "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+
+
+
+            return validationSucceeded;
         }
 
-        private bool validHour(string text, ref int hours, ref int minutes)
+        private bool validDays()
         {
-            if (startHourTextBox.Text == "")
+            int numOfDays = 0;
+            for (int i = 0; i < days.Length; i++)
+                if (days[i])
+                    numOfDays++;
+            return numOfDays > 0;
+        }
+
+
+        private bool validHour(TextBox txtBox, ref int hours, ref int minutes, ref string errMsg)
+        {
+            string text = txtBox.Text;
+            if (text == "")
             {
-                System.Windows.MessageBox.Show("Please enter the start hour of the activity.", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                if (errMsg == String.Empty)
+                    errMsg = "Please enter the start and end time of the activity.\nTime`s format: HH:MM";
+                txtBox.Background = Brushes.Salmon;
                 return false;
             }
-            if (!startHourTextBox.Text.Contains(":"))
+            if (!text.Contains(":"))
             {
-                System.Windows.MessageBox.Show("Please enter a valid hour", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                if (errMsg == String.Empty)
+                    errMsg = "Please enter a valid hour\nTime`s format: HH:MM";
+                txtBox.Background = Brushes.Salmon;
                 return false;
             }
             string[] splitTime = text.Split(':');
             if (!int.TryParse(splitTime[0], out hours) || hours < 0 || hours > 24)
             {
-                System.Windows.MessageBox.Show("Please enter a valid hour", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                if (errMsg == String.Empty)
+                    errMsg = "Please enter a valid hour.\nTime`s format: HH:MM";
+                txtBox.Background = Brushes.Salmon;
                 return false;
             }
             if (!int.TryParse(splitTime[1], out minutes) || minutes < 0 || minutes > 60)
             {
-                System.Windows.MessageBox.Show("Please enter a valid minutes", "Missing Fields", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                if (errMsg == String.Empty)
+                    errMsg = "Please enter a valid minutes\nTime`s format: HH:MM";
+                txtBox.Background = Brushes.Salmon;
                 return false;
             }
+            txtBox.Background = Brushes.White;
             return true;
         }
 
@@ -157,7 +307,7 @@ namespace GUI.Windows.ActivitiesWindows
             Close();
         }
 
-        #region days
+        #region days`
         private void sunday_Checked(object sender, RoutedEventArgs e)
         {
             days[0] = true;
