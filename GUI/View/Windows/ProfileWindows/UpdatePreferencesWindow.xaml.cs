@@ -155,6 +155,8 @@ namespace GUI.Windows.ProfileWindows
             string missingProperty;
             if (!String.IsNullOrEmpty(areaComboBox.Text))
                 pref.location = areaComboBox.Text;
+            else
+                pref.location = null;
             int price=1;
             if (!String.IsNullOrEmpty(priceTextbox.Text) &&  (! Int32.TryParse(priceTextbox.Text,out price) || price<0))
             {
@@ -180,17 +182,17 @@ namespace GUI.Windows.ProfileWindows
                 else if (genderComboBox.Text == "Women Only")
                     pref.sex = "F";
             }
+            else
+                pref.sex = null;
 
             if (!String.IsNullOrEmpty(frequencyComboBox.Text))
             {
                 pref.frequency = frequencyComboBox.Text;
                 frequencyComboBox.Background = Brushes.White;
             }
+            else
+                pref.frequency = null;
 
-            if (!String.IsNullOrEmpty(numOfParticipantsComboBox.Text))
-            {
-                pref.frequency = frequencyComboBox.Text;
-            }
             int numOfParticipants = -1;
             if (!String.IsNullOrEmpty(numOfParticipantsComboBox.Text) && (!Int32.TryParse(priceTextbox.Text, out numOfParticipants) || numOfParticipants <= 1))
             {
@@ -209,6 +211,8 @@ namespace GUI.Windows.ProfileWindows
 
             if (!String.IsNullOrEmpty(difficultyComboBox.Text))
                 pref.difficulty = difficultyComboBox.Text;
+            else
+                pref.difficulty = null;
             int minAge = -1;
             if (!String.IsNullOrEmpty(minAgeTextbox.Text) && (!Int32.TryParse(minAgeTextbox.Text, out minAge) || minAge <= 0))
             {
