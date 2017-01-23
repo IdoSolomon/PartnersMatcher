@@ -70,8 +70,7 @@
         </ComboBox>
 
         <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of Participants:</Label>
-        <ComboBox x:Name="numOfParticipantsComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource ComboBoxStyle}">
-        </ComboBox>
+        <TextBox x:Name="numOfParticipantsComboBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource TextBoxStyle}"/>
 
         <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Frequency:</Label>
         <ComboBox x:Name="frequencyComboBox"  Grid.Column="3" Grid.Row="2" Style="{StaticResource ComboBoxStyle}">

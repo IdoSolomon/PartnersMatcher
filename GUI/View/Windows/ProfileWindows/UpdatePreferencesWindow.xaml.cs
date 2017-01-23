@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Text.RegularExpressions;
 using GUI.classes;
+using System.Collections;
 
 namespace GUI.Windows.ProfileWindows
 {
@@ -20,9 +21,9 @@ namespace GUI.Windows.ProfileWindows
         {
             InitializeComponent();
             controller = PMController;
-            areaComboBox.ItemsSource = controller.GetGeographicAreas();
-            numOfParticipantsComboBox.ItemsSource = controller.GetNumOfParticipates();
-            frequencyComboBox.ItemsSource = controller.GetFrequency();
+            ObservableCollection<string> locations = controller.GetGeographicAreas();
+            areaComboBox.ItemsSource = AddEmptyOption(locations, "Anywhere");
+            frequencyComboBox.ItemsSource = AddEmptyOption(controller.GetFrequency(),"All Frequencies");
             difficultyComboBox.ItemsSource = controller.GetDifficulty();
             setTimeComboBox();
 
@@ -31,10 +32,21 @@ namespace GUI.Windows.ProfileWindows
             setPrefs();
         }
 
+        private ObservableCollection<string> AddEmptyOption(ObservableCollection<string> options,string defaultiveOption)
+        {
+            ObservableCollection<string> results = new ObservableCollection<string>();
+            results.Add(defaultiveOption);
+            foreach (string s in options)
+                results.Add(s);
+            return results;
+        }
+
         private void setPrefs()
         {
             if (pref.location != null)
                 areaComboBox.Text = pref.location;
+            else
+                areaComboBox.SelectedIndex = -1;
             if (pref.maxPrice > 0)
                 priceTextbox.Text = pref.maxPrice.ToString();
             if (pref.sex != null)
@@ -152,11 +164,13 @@ namespace GUI.Windows.ProfileWindows
                 validationSucceeded = false;
                 priceTextbox.Background = Brushes.Salmon;
             }
-            else if (!String.IsNullOrEmpty(priceTextbox.Text))
+            else 
             {
-                pref.maxPrice = price;
+                if (!String.IsNullOrEmpty(priceTextbox.Text))
+                    pref.maxPrice = price;
                 priceTextbox.Background = Brushes.White;
             }
+            
             if (!String.IsNullOrEmpty(genderComboBox.Text) )
             {
                 if (genderComboBox.Text == "Men Only")
@@ -180,11 +194,12 @@ namespace GUI.Windows.ProfileWindows
             {
                 errMsg = "Please submit your preffered number of participants. This number must be a positive integer larger than 1.";
                 validationSucceeded = false;
-                priceTextbox.Background = Brushes.Salmon;
+                numOfParticipantsComboBox.Background = Brushes.Salmon;
             }
-            else if (!String.IsNullOrEmpty(numOfParticipantsComboBox.Text))
+            else
             {
-                pref.numberOfParticipants = numOfParticipants;
+                if (!String.IsNullOrEmpty(numOfParticipantsComboBox.Text))
+                    pref.numberOfParticipants = numOfParticipants;
                 priceTextbox.Background = Brushes.White;
             }
 
@@ -197,9 +212,10 @@ namespace GUI.Windows.ProfileWindows
                 validationSucceeded = false;
                 minAgeTextbox.Background = Brushes.Salmon;
             }
-            else if (!String.IsNullOrEmpty(minAgeTextbox.Text))
+            else 
             {
-                pref.minAge = minAge;
+                if (!String.IsNullOrEmpty(minAgeTextbox.Text))
+                    pref.minAge = minAge;
                 minAgeTextbox.Background = Brushes.White;
             }
             int maxAge = -1;
@@ -209,9 +225,10 @@ namespace GUI.Windows.ProfileWindows
                 validationSucceeded = false;
                 maxAgeTextbox.Background = Brushes.Salmon;
             }
-            else if (!String.IsNullOrEmpty(maxAgeTextbox.Text))
+            else 
             {
-                pref.maxAge = maxAge;
+                if (!String.IsNullOrEmpty(maxAgeTextbox.Text))
+                    pref.maxAge = maxAge;
                 maxAgeTextbox.Background = Brushes.White;
             }
             if (!String.IsNullOrEmpty(sHour.Text) && !String.IsNullOrEmpty(sMinute.Text))
