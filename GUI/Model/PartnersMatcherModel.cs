@@ -706,6 +706,11 @@ namespace GUI.Model
             user = login;
         }
 
+        public void RemoveUser()
+        {
+            user = "";
+        }
+
         public void SetConnected(Boolean mode)
         {
             connected = mode;

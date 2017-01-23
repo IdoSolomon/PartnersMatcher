@@ -17,6 +17,7 @@ namespace GUI.Model
         Boolean IsConnected();
 
         void SetUser(string login);
+        void RemoveUser();
 
         void SetConnected(Boolean mode);
 
