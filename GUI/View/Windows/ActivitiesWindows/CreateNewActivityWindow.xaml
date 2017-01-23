@@ -63,7 +63,7 @@
         </ComboBox>
 
         <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Start on:</Label>
-        <DatePicker x:Name="startsOnDatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
+        <DatePicker x:Name="startsOnDatePick" DisplayDateStart="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
                     Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" FontSize="12"></DatePicker>
         
         <Label Grid.Column="1" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">Start time:</Label>
@@ -87,7 +87,7 @@
         <TextBox x:Name="costTextBox" Grid.Column="3" Grid.Row="8" Style="{StaticResource TextBoxStyle}"></TextBox>
 
         <Label Grid.Column="3" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">End on:</Label>
-        <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}" 
+        <DatePicker x:Name="endsOnDatePick" Style="{StaticResource DatePickerStyle}"  DisplayDateStart="{x:Static System:DateTime.Today}"
                     Grid.Column="3" Grid.Row="10" VerticalAlignment="Center" FontSize="12" Margin="1,1,1,1"></DatePicker>
 
         <Label Grid.Column="3" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">End time:</Label>

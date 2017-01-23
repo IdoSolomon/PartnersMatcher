@@ -160,7 +160,7 @@ namespace GUI.Model
                         "INSERT INTO [Activity-Management] ([Activity ID], [User Email])" +
                                              "VALUES (         ?,              ?)", connection);
 
-                    command.Parameters.AddWithValue("@Activity ID", activity.name);
+                    command.Parameters.AddWithValue("@Activity ID", activity.id);
                     command.Parameters.AddWithValue("@User Email", user);
 
                     adapter.InsertCommand = command;
