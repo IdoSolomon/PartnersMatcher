@@ -1,0 +1,186 @@
+﻿<Window x:Class="GUI.SignUpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Sign Up" Height="900" Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.075*" /> <!-- 0 -->
+            <RowDefinition Height="0.1*"/> <!-- 1 -->
+            <RowDefinition Height="0.085*" /> <!-- 2 -->
+            <RowDefinition Height="0.1*"/> <!-- 3 -->
+            <RowDefinition Height="0.085*" /> <!-- 4 -->
+            <RowDefinition Height="0.1*"/> <!-- 5 -->
+            <RowDefinition Height="0.085*" /> <!-- 6 -->
+            <RowDefinition Height="0.1*"/> <!-- 7 -->
+            <RowDefinition Height="0.085*" /> <!-- 8 -->
+            <RowDefinition Height="0.1*"/> <!-- 9 -->
+            <RowDefinition Height="0.1*"/> <!-- 10 -->
+            <RowDefinition Height="0.1*"/> <!-- 11 -->
+            <RowDefinition Height="0.085*" /> <!-- 12 -->
+            <RowDefinition Height="0.1*"/> <!-- 13 -->
+            <RowDefinition Height="0.085*" /> <!-- 14 -->
+            <RowDefinition Height="0.075*"/> <!-- 15 -->
+            <RowDefinition Height="0.1*" /> <!-- 16 -->
+            <RowDefinition Height="0.0075*" /> <!-- 17 -->
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}" FontSize="16">Name:</Label>
+        <Grid x:Name="nameGrid" Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="FirstNameTextBox" Style="{StaticResource TextBoxStyle}"/>
+            <TextBlock IsHitTestVisible="False" Text="First Name" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=FirstNameTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="FontSize" Value="14" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <TextBox Grid.Column="2" x:Name="LastNameTextBox" Style="{StaticResource TextBoxStyle}"/>
+            <TextBlock Grid.Column="2" IsHitTestVisible="False" Text="Last Name" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=LastNameTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="FontSize" Value="14" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <Label Grid.Column="1" Grid.Row="3"  Style="{StaticResource FieldDescriptionStyle}">E-mail:</Label>
+        <TextBox Grid.Column="1" Grid.Row="4" x:Name="EmailTextBox"  Margin="5" Style="{StaticResource TextBoxStyle}"/>
+        <TextBlock Grid.Column="1" Grid.Row="4" IsHitTestVisible="False" Text="@gmail.com" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray" FontSize="14">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=EmailTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="FontSize" Value="24" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Label Grid.Column="1" Grid.Row="5"  Style="{StaticResource FieldDescriptionStyle}">Password:</Label>
+        <PasswordBox Grid.Column="1" Grid.Row="6" x:Name="PasswordBox1" Margin="5" Style="{StaticResource PasswordBoxStyle}"/>
+
+        <Label Grid.Column="1" Grid.Row="7"  Style="{StaticResource FieldDescriptionStyle}">Re-enter your password:</Label>
+        <PasswordBox Grid.Column="1" Grid.Row="8" x:Name="PasswordBox2" Margin="5" Style="{StaticResource PasswordBoxStyle}"/>
+
+        <Label Grid.Column="1" Grid.Row="9"  Style="{StaticResource FieldDescriptionStyle}">Birth Date:</Label>
+        <DatePicker x:Name="DatePick" DisplayDateEnd="{x:Static System:DateTime.Today}"  Style="{StaticResource DatePickerStyle}" 
+                    Grid.Column="1" Grid.Row="10" VerticalAlignment="Center"></DatePicker>
+
+        <Label Grid.Column="1" Grid.Row="11"  Style="{StaticResource FieldDescriptionStyle}">Sex:</Label>
+        <ComboBox Grid.Column="1" Grid.Row="12" x:Name="SexComboBox" Margin="5" Style="{StaticResource ComboBoxStyle}">
+            <ComboBoxItem>Male</ComboBoxItem>
+            <ComboBoxItem>Female</ComboBoxItem>
+        </ComboBox>
+        <TextBlock Grid.Column="1" Grid.Row="12" IsHitTestVisible="False" FontSize="14" Text="I'm a..." VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=SexComboBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="FontSize" Value="24" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Label Grid.Column="1" Grid.Row="13"  Style="{StaticResource FieldDescriptionStyle}">Phone Number:</Label>
+        <TextBox Grid.Column="1" Grid.Row="14" x:Name="PhoneTextBox" Margin="5" Style="{StaticResource TextBoxStyle}"
+                 PreviewTextInput="NumberValidationTextBox"/>
+        <TextBlock Grid.Column="1" Grid.Row="14" IsHitTestVisible="False" FontSize="14" Text="My number is..." VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=PhoneTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="FontSize" Value="24" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Label Grid.Column="3" Grid.Row="1"  Style="{StaticResource FieldDescriptionStyle}">Location:</Label>
+        <TextBox Grid.Column="3" Grid.Row="2" x:Name="LocationTextBox"  Margin="5" Style="{StaticResource TextBoxStyle}"/>
+
+        <Label Grid.Column="3" Grid.Row="3"  Style="{StaticResource FieldDescriptionStyle}">Smokes:</Label>
+        <ComboBox Grid.Column="3" Grid.Row="4" x:Name="SmokingComboBox" Margin="5" Style="{StaticResource ComboBoxStyle}">
+            <ComboBoxItem>No</ComboBoxItem>
+            <ComboBoxItem>Yes</ComboBoxItem>
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="5"  Style="{StaticResource FieldDescriptionStyle}">Owns a pet:</Label>
+        <ComboBox Grid.Column="3" Grid.Row="6" x:Name="PetComboBox" Margin="5" Style="{StaticResource ComboBoxStyle}">
+            <ComboBoxItem>No</ComboBoxItem>
+            <ComboBoxItem>Yes</ComboBoxItem>
+        </ComboBox>
+
+        <Label Grid.Column="3" Grid.Row="7"  Style="{StaticResource FieldDescriptionStyle}">Write your resume:</Label>
+        <TextBox x:Name="ResumeTextBox" Margin="5" Grid.Column="3" Grid.Row="8" Grid.RowSpan="7" FontSize="14" Style="{StaticResource TextBoxStyle}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"
+                  SpellCheck.IsEnabled="True" Language="en-US"></TextBox>
+        <TextBlock Grid.Column="3" Grid.Row="8" IsHitTestVisible="False" FontSize="14" Text="About me..." VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=ResumeTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="FontSize" Value="24" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Button x:Name="SubmitBtn" Grid.Column="1" Grid.Row="16" Margin="45,5,45,5"  Style="{StaticResource ButtonStyle}" Click="SubmitBtn_Click">
+            <TextBlock Text="Submit" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+        </Button>
+
+        <Button x:Name="CancelBtn" Grid.Column="3" Grid.Row="16" Margin="45,5,45,5" Style="{StaticResource ButtonStyle}" Click="CancelBtn_Click">
+            <TextBlock Text="Cancel" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="24"/>
+        </Button>
+
+    </Grid>
+</Window>

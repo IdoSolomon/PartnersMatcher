@@ -1,0 +1,122 @@
+﻿<Window x:Class="GUI.Windows.ActivitiesWindows.SingleActivityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
+        mc:Ignorable="d"
+        Title="Activity View" Height="790" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" >
+    <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.02*" MinWidth="10"/>
+            <ColumnDefinition Width="0.1*" MinWidth="10"/>
+            <ColumnDefinition Width="0.01*" MinWidth="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.085*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.01*" MinHeight="20"/>
+
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Activity Name:</Label>
+        <TextBox x:Name="nameTextBox"  Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+        
+        <Label Grid.Column="1" Grid.Row="3"  Style="{StaticResource FieldDescriptionStyle}">Location:</Label>
+        <TextBox x:Name="areaTextBox"  Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="3" Grid.Row="1" Style="{StaticResource FieldDescriptionStyle}">Field:</Label>
+        <TextBox x:Name="fieldsTextBox"  Grid.Column="3" Grid.Row="2" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="1" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">Start Date:</Label>
+        <TextBox x:Name="startsOnTextBox"  Grid.Column="1" Grid.Row="10" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="3" Grid.Row="3" Style="{StaticResource FieldDescriptionStyle}">Number of Participants:</Label>
+        <TextBox x:Name="numOfParticipantsTextBox"  Grid.Column="3" Grid.Row="4" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="1" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Frequency:</Label>
+        <TextBox x:Name="frequencyTextBox"  Grid.Column="1" Grid.Row="6" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+        <Label Grid.Column="3" Grid.Row="5" Style="{StaticResource FieldDescriptionStyle}">Difficulty:</Label>
+        <TextBox x:Name="difficultyTextBox"  Grid.Column="3" Grid.Row="6" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="3" Grid.Row="9" Style="{StaticResource FieldDescriptionStyle}">End Date:</Label>
+        <TextBox x:Name="endsOnTextBox"  Grid.Column="3" Grid.Row="10" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="1" Grid.Row="11" Style="{StaticResource FieldDescriptionStyle}">Price:</Label>
+        <TextBox x:Name="priceTextBox"  Grid.Column="1" Grid.Row="12" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="1" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">Start Time:</Label>
+        <TextBox x:Name="startHourTextBox"  Grid.Column="1" Grid.Row="8" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="3" Grid.Row="7" Style="{StaticResource FieldDescriptionStyle}">End Time:</Label>
+        <TextBox x:Name="endsHourTextBox"  Grid.Column="3" Grid.Row="8" Style="{StaticResource TextBoxStyle}" IsReadOnly="True">
+        </TextBox>
+
+        <Label Grid.Column="1" Grid.Row="13" Style="{StaticResource FieldDescriptionStyle}" FontSize="20">Day:</Label>
+        <Grid Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+                <ColumnDefinition Width="0.1*" MinWidth="10"/>
+                <ColumnDefinition Width="0.01*" MinWidth="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" MinHeight="20"/>
+            </Grid.RowDefinitions>
+            <CheckBox x:Name="sunday" Grid.Column="1" Grid.Row="1" FontSize="18" IsHitTestVisible="false" >Sunday</CheckBox>
+            <CheckBox x:Name="monday" Grid.Column="3" Grid.Row="1" FontSize="18" IsHitTestVisible="false" >Monday</CheckBox>
+            <CheckBox x:Name="tuesday" Grid.Column="5" Grid.Row="1" FontSize="18" IsHitTestVisible="false" >Tuesday</CheckBox>
+            <CheckBox x:Name="wednesday" Grid.Column="7" Grid.Row="1" FontSize="18" IsHitTestVisible="false" >Wednesday</CheckBox>
+            <CheckBox x:Name="thursday" Grid.Column="9" Grid.Row="1" FontSize="18" IsHitTestVisible="false" >Thursday</CheckBox>
+            <CheckBox x:Name="friday" Grid.Column="11" Grid.Row="1" FontSize="18" IsHitTestVisible="false" >Friday</CheckBox>
+            <CheckBox x:Name="saturday" Grid.Column="13" Grid.Row="1" FontSize="18" IsHitTestVisible="false" >Saturday</CheckBox>
+        </Grid>
+
+        <Button x:Name="CancelBtn" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="16" Click="CancelBtn_Click" Style="{StaticResource ButtonStyle}" Margin="200,0,200,0">
+            <TextBlock Text="Close" FontWeight="Bold"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20"/>
+        </Button>
+
+
+    </Grid>
+</Window>

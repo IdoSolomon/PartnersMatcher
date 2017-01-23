@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GUI</RootNamespace>
     <AssemblyName>GUI</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,193 +57,224 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataGridRecords\ActivityCatagory.cs" />
-    <Compile Include="DataGridRecords\GroupMessageRecord.cs" />
-    <Compile Include="DataGridRecords\ActivityRecord.cs" />
+    <Compile Include="classes\Activity.cs" />
+    <Compile Include="classes\Ad.cs" />
+    <Compile Include="classes\Preference.cs" />
+    <Compile Include="classes\Request.cs" />
+    <Compile Include="classes\User.cs" />
+    <Compile Include="Controller\IController.cs" />
+    <Compile Include="Controller\PartnersMatcherController.cs" />
+    <Compile Include="classes\DataGridRecords\ActivityCatagory.cs" />
+    <Compile Include="classes\DataGridRecords\GroupMessageRecord.cs" />
+    <Compile Include="classes\DataGridRecords\ActivityRecord.cs" />
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\PartnersMatcherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="SignUpWindow.xaml.cs">
+    <Compile Include="View\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesWindows\AdvancedSearchWindow.xaml.cs">
+    <Compile Include="View\IView.cs" />
+    <Compile Include="View\Windows\ActivitiesWindows\AdvancedSearchWindow.xaml.cs">
       <DependentUpon>AdvancedSearchWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesWindows\CreateNewActivityWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesWindows\CreateNewActivityWindow.xaml.cs">
       <DependentUpon>CreateNewActivityWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesWindows\SearchResultsWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesWindows\CreateNewFieldWindow.xaml.cs">
+      <DependentUpon>CreateNewFieldWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\ActivitiesWindows\SearchResultsWindow.xaml.cs">
       <DependentUpon>SearchResultsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesWindows\SearchWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesWindows\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\ActivitiesWindows\WatchYourPendingRequestsWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesWindows\SingleActivityWindow.xaml.cs">
+      <DependentUpon>SingleActivityWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\ActivitiesWindows\WatchYourPendingRequestsWindow.xaml.cs">
       <DependentUpon>WatchYourPendingRequestsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesYouManageWindows\AddNewContractToActivityWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesYouManageWindows\AddNewContractToActivityWindow.xaml.cs">
       <DependentUpon>AddNewContractToActivityWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesYouManageWindows\ApprovePendingRequestsAsManagerWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesYouManageWindows\ApprovePendingRequestsAsManagerWindow.xaml.cs">
       <DependentUpon>ApprovePendingRequestsAsManagerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesYouManageWindows\SetNewPaymentInActivityWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesYouManageWindows\SetNewPaymentInActivityWindow.xaml.cs">
       <DependentUpon>SetNewPaymentInActivityWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ActivitiesYouManageWindows\WatchActivitesYouManageWindow.xaml.cs">
+    <Compile Include="View\Windows\ActivitiesYouManageWindows\WatchActivitesYouManageWindow.xaml.cs">
       <DependentUpon>WatchActivitesYouManageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ChatWindows\SeeAllConversationsWindow.xaml.cs">
+    <Compile Include="View\Windows\ChatWindows\SeeAllConversationsWindow.xaml.cs">
       <DependentUpon>SeeAllConversationsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ChatWindows\WriteNewGroupMessageWindow.xaml.cs">
+    <Compile Include="View\Windows\ChatWindows\WriteNewGroupMessageWindow.xaml.cs">
       <DependentUpon>WriteNewGroupMessageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PartnerInActivitiesWindows\AddBillToActivirtyWindow.xaml.cs">
+    <Compile Include="View\Windows\PartnerInActivitiesWindows\AddBillToActivirtyWindow.xaml.cs">
       <DependentUpon>AddBillToActivirtyWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PartnerInActivitiesWindows\ApprovePendingRequestsAsPaertnerWindow.xaml.cs">
+    <Compile Include="View\Windows\PartnerInActivitiesWindows\ApprovePendingRequestsAsPaertnerWindow.xaml.cs">
       <DependentUpon>ApprovePendingRequestsAsPaertnerWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PartnerInActivitiesWindows\PendingContractsWindow.xaml.cs">
+    <Compile Include="View\Windows\PartnerInActivitiesWindows\PendingContractsWindow.xaml.cs">
       <DependentUpon>PendingContractsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PartnerInActivitiesWindows\PendingPaymentsWindow.xaml.cs">
+    <Compile Include="View\Windows\PartnerInActivitiesWindows\PendingPaymentsWindow.xaml.cs">
       <DependentUpon>PendingPaymentsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PartnerInActivitiesWindows\WatchAllActivitiesYourePartnerInWindow.xaml.cs">
+    <Compile Include="View\Windows\PartnerInActivitiesWindows\WatchAllActivitiesYourePartnerInWindow.xaml.cs">
       <DependentUpon>WatchAllActivitiesYourePartnerInWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PartnerInActivitiesWindows\WatchAllContractsYouSignedWindow.xaml.cs">
+    <Compile Include="View\Windows\PartnerInActivitiesWindows\WatchAllContractsYouSignedWindow.xaml.cs">
       <DependentUpon>WatchAllContractsYouSignedWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PartnerInActivitiesWindows\WatchYourPaymentsHistoryWindow.xaml.cs">
+    <Compile Include="View\Windows\PartnerInActivitiesWindows\WatchYourPaymentsHistoryWindow.xaml.cs">
       <DependentUpon>WatchYourPaymentsHistoryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ProfileWindows\ChangePasswordWindow.xaml.cs">
+    <Compile Include="View\Windows\ProfileWindows\ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ProfileWindows\DomainSelectionWindow.xaml.cs">
+    <Compile Include="View\Windows\ProfileWindows\DomainSelectionWindow.xaml.cs">
       <DependentUpon>DomainSelectionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ProfileWindows\EditProfileWindow.xaml.cs">
+    <Compile Include="View\Windows\ProfileWindows\EditProfileWindow.xaml.cs">
       <DependentUpon>EditProfileWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ProfileWindows\UpdateEmailWindow.xaml.cs">
+    <Compile Include="View\Windows\ProfileWindows\UpdateEmailWindow.xaml.cs">
       <DependentUpon>UpdateEmailWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ProfileWindows\UpdatePreferencesWindow.xaml.cs">
+    <Compile Include="View\Windows\ProfileWindows\UpdatePreferencesWindow.xaml.cs">
       <DependentUpon>UpdatePreferencesWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="LoginWindow.xaml">
+    <Compile Include="View\Windows\ProfileWindows\ViewProfileWindow.xaml.cs">
+      <DependentUpon>ViewProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="LoginWindow.xaml.cs">
+    <Compile Include="View\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SignUpWindow.xaml">
+    <Page Include="View\SignUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesWindows\AdvancedSearchWindow.xaml">
+    <Page Include="View\Windows\ActivitiesWindows\AdvancedSearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesWindows\CreateNewActivityWindow.xaml">
+    <Page Include="View\Windows\ActivitiesWindows\CreateNewActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesWindows\SearchResultsWindow.xaml">
+    <Page Include="View\Windows\ActivitiesWindows\CreateNewFieldWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesWindows\SearchWindow.xaml">
+    <Page Include="View\Windows\ActivitiesWindows\SearchResultsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesWindows\WatchYourPendingRequestsWindow.xaml">
+    <Page Include="View\Windows\ActivitiesWindows\SearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesYouManageWindows\AddNewContractToActivityWindow.xaml">
+    <Page Include="View\Windows\ActivitiesWindows\SingleActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesYouManageWindows\ApprovePendingRequestsAsManagerWindow.xaml">
+    <Page Include="View\Windows\ActivitiesWindows\WatchYourPendingRequestsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesYouManageWindows\SetNewPaymentInActivityWindow.xaml">
+    <Page Include="View\Windows\ActivitiesYouManageWindows\AddNewContractToActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ActivitiesYouManageWindows\WatchActivitesYouManageWindow.xaml">
+    <Page Include="View\Windows\ActivitiesYouManageWindows\ApprovePendingRequestsAsManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ChatWindows\SeeAllConversationsWindow.xaml">
+    <Page Include="View\Windows\ActivitiesYouManageWindows\SetNewPaymentInActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ChatWindows\WriteNewGroupMessageWindow.xaml">
+    <Page Include="View\Windows\ActivitiesYouManageWindows\WatchActivitesYouManageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PartnerInActivitiesWindows\AddBillToActivirtyWindow.xaml">
+    <Page Include="View\Windows\ChatWindows\SeeAllConversationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PartnerInActivitiesWindows\ApprovePendingRequestsAsPaertnerWindow.xaml">
+    <Page Include="View\Windows\ChatWindows\WriteNewGroupMessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PartnerInActivitiesWindows\PendingContractsWindow.xaml">
+    <Page Include="View\Windows\PartnerInActivitiesWindows\AddBillToActivirtyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PartnerInActivitiesWindows\PendingPaymentsWindow.xaml">
+    <Page Include="View\Windows\PartnerInActivitiesWindows\ApprovePendingRequestsAsPaertnerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PartnerInActivitiesWindows\WatchAllActivitiesYourePartnerInWindow.xaml">
+    <Page Include="View\Windows\PartnerInActivitiesWindows\PendingContractsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PartnerInActivitiesWindows\WatchAllContractsYouSignedWindow.xaml">
+    <Page Include="View\Windows\PartnerInActivitiesWindows\PendingPaymentsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PartnerInActivitiesWindows\WatchYourPaymentsHistoryWindow.xaml">
+    <Page Include="View\Windows\PartnerInActivitiesWindows\WatchAllActivitiesYourePartnerInWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ProfileWindows\ChangePasswordWindow.xaml">
+    <Page Include="View\Windows\PartnerInActivitiesWindows\WatchAllContractsYouSignedWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ProfileWindows\DomainSelectionWindow.xaml">
+    <Page Include="View\Windows\PartnerInActivitiesWindows\WatchYourPaymentsHistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ProfileWindows\EditProfileWindow.xaml">
+    <Page Include="View\Windows\ProfileWindows\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ProfileWindows\UpdateEmailWindow.xaml">
+    <Page Include="View\Windows\ProfileWindows\DomainSelectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ProfileWindows\UpdatePreferencesWindow.xaml">
+    <Page Include="View\Windows\ProfileWindows\EditProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\ProfileWindows\UpdateEmailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\ProfileWindows\UpdatePreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\ProfileWindows\ViewProfileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -268,12 +300,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PartnersMatcher\PartnersMatcher.csproj">
-      <Project>{b6de193d-7dff-4a9d-9ce1-5987c004700c}</Project>
-      <Name>PartnersMatcher</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
