@@ -42,9 +42,6 @@ namespace GUI
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            //for testing purposes
-            if (UserNameBox.Text != "guest" || PasswordBox.Password != "guest")
-            {
 
                 if (UserNameBox.Text == "")
                 {
@@ -66,7 +63,6 @@ namespace GUI
                     System.Windows.MessageBox.Show("The user name and/or password entered are incorrect.", "Wrong Username or Password", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return;
                 }
-            }
             //MainWindow main = new MainWindow(ref controller);
             //main.Show();
             controller.SetConnected(true);
