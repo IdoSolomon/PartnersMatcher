@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI.Windows.ActivitiesWindows"
         mc:Ignorable="d"
-        Title="Activity View" Height="790" Width="800"
+        Title="Activity View" Height="900" Width="800"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" >
     <Grid x:Name="mainGrid" Style="{StaticResource GridStyle}">
@@ -33,7 +33,7 @@
             <RowDefinition Height="0.085*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.085*" MinHeight="20"/>
-            <RowDefinition Height="0.1*" MinHeight="20"/>
+            <RowDefinition Height="0.02*" MinHeight="20"/>
             <RowDefinition Height="0.1*" MinHeight="20"/>
             <RowDefinition Height="0.01*" MinHeight="20"/>
 

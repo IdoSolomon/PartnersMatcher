@@ -168,6 +168,8 @@ namespace GUI.Windows.ProfileWindows
             {
                 if (!String.IsNullOrEmpty(priceTextbox.Text))
                     pref.maxPrice = price;
+                else
+                    pref.maxPrice = 0;
                 priceTextbox.Background = Brushes.White;
             }
             
@@ -200,6 +202,8 @@ namespace GUI.Windows.ProfileWindows
             {
                 if (!String.IsNullOrEmpty(numOfParticipantsComboBox.Text))
                     pref.numberOfParticipants = numOfParticipants;
+                else
+                    pref.numberOfParticipants = 0;
                 priceTextbox.Background = Brushes.White;
             }
 
@@ -216,6 +220,8 @@ namespace GUI.Windows.ProfileWindows
             {
                 if (!String.IsNullOrEmpty(minAgeTextbox.Text))
                     pref.minAge = minAge;
+                else
+                    pref.minAge = 0;
                 minAgeTextbox.Background = Brushes.White;
             }
             int maxAge = -1;
@@ -229,13 +235,18 @@ namespace GUI.Windows.ProfileWindows
             {
                 if (!String.IsNullOrEmpty(maxAgeTextbox.Text))
                     pref.maxAge = maxAge;
+                else
+                    pref.maxAge = 0;
                 maxAgeTextbox.Background = Brushes.White;
             }
             if (!String.IsNullOrEmpty(sHour.Text) && !String.IsNullOrEmpty(sMinute.Text))
                 pref.startHour = new TimeSpan(Convert.ToInt32(sHour.Text), Convert.ToInt32(sMinute.Text), 0);
+            else
+                pref.startHour = new TimeSpan();
             if (!String.IsNullOrEmpty(eHour.Text) && !String.IsNullOrEmpty(eMinute.Text))
                 pref.endHour = new TimeSpan(Convert.ToInt32(eHour.Text), Convert.ToInt32(sMinute.Text), 0);
-
+            else
+                pref.endHour = new TimeSpan();
             if (smokes.IsChecked == true)
                 pref.smokes = true;
             else pref.smokes = false;
