@@ -29,6 +29,10 @@ namespace GUI
         BackgroundWorker bgworker;
         string user;
         string pass;
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController"></param>
         public SignUpWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -39,6 +43,11 @@ namespace GUI
             bgworker.WorkerReportsProgress = true;
         }
 
+        /// <summary>
+        /// background worker for sending registration email
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void bgworker_DoWork(object sender, DoWorkEventArgs e)
         {
             Boolean sent = controller.SendRegistrationMail(user, pass);
@@ -46,6 +55,11 @@ namespace GUI
                 System.Windows.MessageBox.Show("SMTP service is blocked on this computer." + System.Environment.NewLine + "Please check your anti-virus software blocking rules.", "SMTP Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// logic for submit button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             string[] data = new string[12];
@@ -86,6 +100,11 @@ namespace GUI
         }
 
         #region validation
+        /// <summary>
+        /// data validation
+        /// </summary>
+        /// <param name="data">user data</param>
+        /// <returns></returns>
         private Boolean ValidateFields(string[] data)
         {
             if (data[0] == "")
@@ -163,19 +182,25 @@ namespace GUI
 
         #endregion
 
+        /// <summary>
+        /// logic for cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        /// <summary>
+        /// event to force number input on certain textboxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
-        }
-
-        private void ActivityBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

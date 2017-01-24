@@ -9,6 +9,11 @@ namespace GUI.Windows.ChatWindows
     public partial class WriteNewGroupMessageWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public WriteNewGroupMessageWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -18,11 +23,21 @@ namespace GUI.Windows.ChatWindows
             GroupComboBox.Items.Add("Protesting for Mondays");
         }
 
+        /// <summary>
+        /// submit changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// closes window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();

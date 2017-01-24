@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace GUI.classes
 {
+    /// <summary>
+    /// user preferences object
+    /// </summary>
     public class Preference
     {
+        /// <summary>
+        /// ctor, sets the bool array
+        /// </summary>
         public Preference()
         {
             days = new bool[7];

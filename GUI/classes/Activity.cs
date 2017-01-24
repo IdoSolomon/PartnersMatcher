@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GUI.classes
 {
+    /// <summary>
+    /// activiry object
+    /// </summary>
     public class Activity
     {
         public int id { get; set; }
@@ -25,6 +28,9 @@ namespace GUI.classes
 
         public static int NextId { get; set; }
 
+        /// <summary>
+        /// ctor, sets activity ID via static counter
+        /// </summary>
         public Activity()
         {
 

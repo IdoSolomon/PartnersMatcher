@@ -10,17 +10,31 @@ namespace GUI.Windows.ActivitiesWindows
     {
         private PartnersMatcherController controller;
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public CreateNewFieldWindow(PartnersMatcherController PMController)
         {
             controller = PMController;
             InitializeComponent();
         }
 
+        /// <summary>
+        /// closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// validates user input and creates new field in DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreatehBtn_Click(object sender, RoutedEventArgs e)
         {
             if (fieldNameTextBox.Text == "")

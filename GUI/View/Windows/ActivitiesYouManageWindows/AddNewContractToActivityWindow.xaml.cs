@@ -10,6 +10,11 @@ namespace GUI.Windows.ActivitiesYouManageWindows
     public partial class AddNewContractToActivityWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public AddNewContractToActivityWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();

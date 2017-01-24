@@ -15,6 +15,11 @@ namespace GUI
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// on start up, generate the model, controller and view (main window) and launch the main window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnStartup(object sender, StartupEventArgs e)
         {
             PartnersMatcherModel model = new PartnersMatcherModel();

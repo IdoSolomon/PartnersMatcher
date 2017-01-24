@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GUI.classes
 {
+    /// <summary>
+    /// request object
+    /// </summary>
     public class Request
     {
         public string recipientEmail { get; set; }

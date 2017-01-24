@@ -9,6 +9,11 @@ namespace GUI.Windows.ActivitiesWindows
     public partial class SingleActivityWindow : Window
     {
         Activity _activity;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="activity">activity</param>
         public SingleActivityWindow(Activity activity)
         {
             InitializeComponent();
@@ -16,6 +21,9 @@ namespace GUI.Windows.ActivitiesWindows
             SetActivity();
         }
 
+        /// <summary>
+        /// sets activity details into window
+        /// </summary>
         private void SetActivity()
         {
             nameTextBox.Text = _activity.name;
@@ -40,6 +48,11 @@ namespace GUI.Windows.ActivitiesWindows
             saturday.IsChecked = days[6];
         }
 
+        /// <summary>
+        /// closes window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();

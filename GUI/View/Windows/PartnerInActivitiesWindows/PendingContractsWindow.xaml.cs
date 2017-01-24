@@ -9,6 +9,11 @@ namespace GUI.Windows.PartnerInActivitiesWindows
     public partial class PendingContractsWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public PendingContractsWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();

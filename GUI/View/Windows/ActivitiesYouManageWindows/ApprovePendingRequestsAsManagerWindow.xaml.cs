@@ -9,6 +9,11 @@ namespace GUI.Windows.ActivitiesYouManageWindows
     public partial class ApprovePendingRequestsAsManagerWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public ApprovePendingRequestsAsManagerWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();

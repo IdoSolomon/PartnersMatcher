@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GUI.classes
 {
+    /// <summary>
+    /// ad object
+    /// </summary>
     public class Ad : Preference
     {
         public DateTime postTime { get; set; }

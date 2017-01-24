@@ -16,6 +16,11 @@ namespace GUI.Windows.ChatWindows
         ObservableCollection<GroupMessageRecord> messages2;
         ObservableCollection<GroupMessageRecord> messages3;
         ObservableCollection<GroupMessageRecord> empty;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public SeeAllConversationsWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -27,6 +32,9 @@ namespace GUI.Windows.ChatWindows
             InitCollections();
         }
 
+        /// <summary>
+        /// inits sample message collections
+        /// </summary>
         private void InitCollections()
         {
             messages1 = new ObservableCollection<GroupMessageRecord>();
@@ -46,16 +54,31 @@ namespace GUI.Windows.ChatWindows
             messages3.Add(new GroupMessageRecord("Student", "B", "We want cake", new DateTime(2016, 12, 24, 20, 0, 0), "Caaaaaaake."));
         }
 
+        /// <summary>
+        /// open message creation dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MessageBtn_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// change message grid contents according to combobox selection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GroupComboBox_DropDownClosed(object sender, EventArgs e)
         {
             if (GroupComboBox.Text == "Scumbag lawyer renting his apartment")
