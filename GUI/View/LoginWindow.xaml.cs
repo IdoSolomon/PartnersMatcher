@@ -23,6 +23,10 @@ namespace GUI
     {
         PartnersMatcherController controller;
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController"></param>
         public LoginWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -40,6 +44,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// logic for login button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -70,16 +79,31 @@ namespace GUI
             Close();
         }
 
+        /// <summary>
+        /// logic for signing up as guest
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GuestBtn_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// logic for password retrival hyperlink
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show("This service is not available at the moment.", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// logic for signup button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
             SignUpWindow sign = new SignUpWindow(ref controller);

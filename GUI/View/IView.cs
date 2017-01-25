@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GUI.View
 {
+    /// <summary>
+    /// interface for MVC view object
+    /// </summary>
     public interface IView
     {
     }

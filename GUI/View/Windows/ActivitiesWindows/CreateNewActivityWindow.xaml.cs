@@ -15,7 +15,10 @@ namespace GUI.Windows.ActivitiesWindows
         private PartnersMatcherController controller;
         private bool[] days;
 
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public CreateNewActivityWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -27,6 +30,11 @@ namespace GUI.Windows.ActivitiesWindows
             genderComboBox.ItemsSource = controller.GetGenders();
         }
 
+        /// <summary>
+        /// calls a new field window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewFieldBtn_Click(object sender, RoutedEventArgs e)
         {
             fieldsComboBox.IsDropDownOpen = false;
@@ -34,6 +42,11 @@ namespace GUI.Windows.ActivitiesWindows
             win.ShowDialog();
         }
 
+        /// <summary>
+        /// validates user input and creates new activity in DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
             Activity activity = new Activity();
@@ -43,7 +56,12 @@ namespace GUI.Windows.ActivitiesWindows
             System.Windows.MessageBox.Show("The new activity was create successfuly.", "Success", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             Close();
         }
-
+        
+        /// <summary>
+        /// input validation function
+        /// </summary>
+        /// <param name="activity">input</param>
+        /// <returns></returns>
         private bool ValidateFields(ref Activity activity)
         {
             bool validationSucceeded = true;
@@ -256,6 +274,10 @@ namespace GUI.Windows.ActivitiesWindows
             return validationSucceeded;
         }
 
+        /// <summary>
+        /// days validation function
+        /// </summary>
+        /// <returns>true if valid, false otherwise</returns>
         private bool validDays()
         {
             int numOfDays = 0;
@@ -265,7 +287,14 @@ namespace GUI.Windows.ActivitiesWindows
             return numOfDays > 0;
         }
 
-
+        /// <summary>
+        /// hour validation function
+        /// </summary>
+        /// <param name="txtBox">user input</param>
+        /// <param name="hours">output</param>
+        /// <param name="minutes">output</param>
+        /// <param name="errMsg">possible error message</param>
+        /// <returns>true if valid, false otherwise</returns>
         private bool validHour(TextBox txtBox, ref int hours, ref int minutes, ref string errMsg)
         {
             string text = txtBox.Text;
@@ -302,83 +331,164 @@ namespace GUI.Windows.ActivitiesWindows
             return true;
         }
 
+        /// <summary>
+        /// closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
         #region days`
+
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sunday_Checked(object sender, RoutedEventArgs e)
         {
             days[0] = true;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sunday_Unchecked(object sender, RoutedEventArgs e)
         {
             days[0] = false;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void monday_Checked(object sender, RoutedEventArgs e)
         {
             days[1] = true;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void monday_Unchecked(object sender, RoutedEventArgs e)
         {
             days[1] = false;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tuesday_Checked(object sender, RoutedEventArgs e)
         {
             days[2] = true;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tuesday_Unchecked(object sender, RoutedEventArgs e)
         {
             days[2] = false;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void wednesday_Checked(object sender, RoutedEventArgs e)
         {
             days[3] = true;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void wednesday_Unchecked(object sender, RoutedEventArgs e)
         {
             days[3] = false;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thursday_Checked(object sender, RoutedEventArgs e)
         {
             days[4] = true;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void thursday_Unchecked(object sender, RoutedEventArgs e)
         {
             days[4] = false;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void friday_Checked(object sender, RoutedEventArgs e)
         {
             days[5] = true;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void friday_Unchecked(object sender, RoutedEventArgs e)
         {
             days[5] = false;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saturday_Checked(object sender, RoutedEventArgs e)
         {
             days[6] = true;
         }
 
+        /// <summary>
+        /// sets days array bool value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saturday_Unchecked(object sender, RoutedEventArgs e)
         {
             days[6] = false;
         }
         #endregion
 
+        /// <summary>
+        /// sets itemsource for the fields combobox on opening
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fieldsComboBox_DropDownOpened(object sender, EventArgs e)
         {
             fieldsComboBox.ItemsSource = controller.GetFields();

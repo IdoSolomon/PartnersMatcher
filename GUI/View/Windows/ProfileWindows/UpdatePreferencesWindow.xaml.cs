@@ -17,6 +17,10 @@ namespace GUI.Windows.ProfileWindows
     {
         PartnersMatcherController controller;
         Preference pref;
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public UpdatePreferencesWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -32,6 +36,12 @@ namespace GUI.Windows.ProfileWindows
             setPrefs();
         }
 
+        /// <summary>
+        /// adds empty item to a given Observable collection
+        /// </summary>
+        /// <param name="options">the collection</param>
+        /// <param name="defaultiveOption">the empty item</param>
+        /// <returns></returns>
         private ObservableCollection<string> AddEmptyOption(ObservableCollection<string> options,string defaultiveOption)
         {
             ObservableCollection<string> results = new ObservableCollection<string>();
@@ -41,6 +51,9 @@ namespace GUI.Windows.ProfileWindows
             return results;
         }
 
+        /// <summary>
+        /// set current preferences into window
+        /// </summary>
         private void setPrefs()
         {
             if (pref.location != null)
@@ -101,7 +114,10 @@ namespace GUI.Windows.ProfileWindows
             if (pref.days[6])
                 saturday.IsChecked = true;
         }
-
+        
+        /// <summary>
+        /// set the values for the time comboboxes
+        /// </summary>
         private void setTimeComboBox()
         {
             ObservableCollection<string> hours = new ObservableCollection<string>();
@@ -131,6 +147,11 @@ namespace GUI.Windows.ProfileWindows
             sMinute.ItemsSource = minutes;
         }
 
+        /// <summary>
+        /// submit new preferences to DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
             string errMsg = String.Empty;
@@ -149,6 +170,11 @@ namespace GUI.Windows.ProfileWindows
 
         }
 
+        /// <summary>
+        /// validate user input
+        /// </summary>
+        /// <param name="errMsg">possible error message</param>
+        /// <returns></returns>
         private bool ValidateAllParametersSubmitted(ref string errMsg)
         {
             bool validationSucceeded = true;
@@ -282,6 +308,9 @@ namespace GUI.Windows.ProfileWindows
             return validationSucceeded;
         }
 
+        /// <summary>
+        /// save user preferences into object
+        /// </summary>
         private void GetPrefs()
         {
             if (!String.IsNullOrEmpty(areaComboBox.Text))
@@ -341,12 +370,22 @@ namespace GUI.Windows.ProfileWindows
 
         }
 
+        /// <summary>
+        /// force numerical input-only on certain text boxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        /// <summary>
+        /// closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();

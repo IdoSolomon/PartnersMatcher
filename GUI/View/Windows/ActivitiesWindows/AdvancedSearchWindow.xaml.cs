@@ -13,6 +13,10 @@ namespace GUI.Windows.ActivitiesWindows
     public partial class AdvancedSearchWindow : Window
     {
         PartnersMatcherController controller;
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public AdvancedSearchWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -24,6 +28,12 @@ namespace GUI.Windows.ActivitiesWindows
             difficultyComboBox.ItemsSource = controller.GetDifficulty();
 
         }
+        
+        /// <summary>
+        /// validates user input and query DB for results
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             if (areaComboBox.SelectedItem == null || fieldsComboBox.SelectedItem == null)
@@ -66,13 +76,21 @@ namespace GUI.Windows.ActivitiesWindows
             }
         }
 
-        
-
+        /// <summary>
+        /// closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// sets the earliest date selectable in endsOnDatePick as the date selected in startsOnEndPick
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startsOnDatePick_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             endsOnDatePick.DisplayDateStart = startsOnDatePick.SelectedDate;

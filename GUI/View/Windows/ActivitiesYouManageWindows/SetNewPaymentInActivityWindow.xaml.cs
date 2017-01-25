@@ -21,6 +21,11 @@ namespace GUI.Windows.ActivitiesYouManageWindows
     public partial class SetNewPaymentInActivityWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public SetNewPaymentInActivityWindow(ref PartnersMatcherController PMController)
         {
             InitializeComponent();

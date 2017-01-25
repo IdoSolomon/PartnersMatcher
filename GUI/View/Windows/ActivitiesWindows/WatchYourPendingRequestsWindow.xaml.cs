@@ -9,6 +9,11 @@ namespace GUI.Windows.ActivitiesWindows
     public partial class WatchYourPendingRequestsWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public WatchYourPendingRequestsWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();

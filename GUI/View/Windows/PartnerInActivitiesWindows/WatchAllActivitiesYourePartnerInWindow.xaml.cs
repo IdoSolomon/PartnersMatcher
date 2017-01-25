@@ -9,6 +9,11 @@ namespace GUI.Windows.PartnerInActivitiesWindows
     public partial class WatchAllActivitiesYourePartnerInWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public WatchAllActivitiesYourePartnerInWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();

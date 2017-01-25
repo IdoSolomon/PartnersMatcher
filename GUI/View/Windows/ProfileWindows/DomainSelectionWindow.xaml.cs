@@ -9,6 +9,10 @@ namespace GUI.Windows.ProfileWindows
     public partial class DomainSelectionWindow : Window
     {
         PartnersMatcherController controller;
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public DomainSelectionWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();

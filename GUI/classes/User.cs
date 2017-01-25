@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GUI.classes
 {
+    /// <summary>
+    /// user object
+    /// </summary>
     public class User
     {
         public string email { get; set; }

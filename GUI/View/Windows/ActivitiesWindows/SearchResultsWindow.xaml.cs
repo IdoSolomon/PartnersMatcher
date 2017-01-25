@@ -14,6 +14,10 @@ namespace GUI.Windows.ActivitiesWindows
     {
         ObservableCollection<ActivityRecord> RecommendedActivities = new ObservableCollection<ActivityRecord>();
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="dbSearchResults">results</param>
         public SearchResultsWindow(DataSet dbSearchResults)
         {
             InitializeComponent();
@@ -26,11 +30,21 @@ namespace GUI.Windows.ActivitiesWindows
 
         }
 
+        /// <summary>
+        /// closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// call a single activity window on activity selection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowBtn_Click(object sender, RoutedEventArgs e)
         {
             ActivityRecord obj = ((FrameworkElement)sender).DataContext as ActivityRecord;

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GUI.DataGridRecords
 {
+    /// <summary>
+    /// activity object for datagrid representation
+    /// </summary>
     public class ActivityRecord
     {
         private DataRow dataRow;
@@ -34,6 +37,16 @@ namespace GUI.DataGridRecords
         public string Description { get; set; }
         public string Days { get; set; }
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="category">catagory name</param>
+        /// <param name="activity">activity name</param>
+        /// <param name="description">activity description</param>
+        /// <param name="place">activity location</param>
+        /// <param name="startsOn">activity start date</param>
+        /// <param name="frequency">activity frequency</param>
+        /// <param name="days">activity days</param>
         public ActivityRecord(string category, string activity, string description, string place, DateTime startsOn, string frequency, string days)
         {
             Catagory = category;
@@ -44,30 +57,10 @@ namespace GUI.DataGridRecords
             Frequency = frequency;
             Days = days;
         }
-
-        public ActivityRecord(string activity, string catagory, int numOfParticipate, string place, DateTime startsOn, DateTime finishOn, TimeSpan startHour, TimeSpan finishHour, string difficulty, string frequency, string price, bool sunday, bool monday, bool tuesday, bool wednesday, bool thursday, bool friday, bool saturday)
-        {
-            Activity = activity;
-            Catagory = catagory;
-            NumOfParticipate = numOfParticipate;
-            Place = place;
-            StartsOn = startsOn;
-            FinishOn = finishOn;
-            StartHour = startHour;
-            FinishHour = finishHour;
-            Difficulty = difficulty;
-            Frequency = frequency;
-            Price = price;
-            Sunday = sunday;
-            Monday = monday;
-            Tuesday = tuesday;
-            Wednesday = wednesday;
-            Thursday = thursday;
-            Friday = friday;
-            Saturday = saturday;
-            Days = "";
-        }
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="dataRow">datarow from SQL query</param>
         public ActivityRecord(DataRow dataRow)
         {
             Activity = (string)dataRow[1];

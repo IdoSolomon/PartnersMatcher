@@ -11,6 +11,11 @@ namespace GUI.Windows.ProfileWindows
     {
         PartnersMatcherController controller;
         User _user;
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
+        /// <param name="user">user profile</param>
         public ViewProfileWindow(PartnersMatcherController PMController, User user)
         {
             InitializeComponent();
@@ -19,6 +24,9 @@ namespace GUI.Windows.ProfileWindows
             SetUser();
         }
 
+        /// <summary>
+        /// sets user details into window
+        /// </summary>
         private void SetUser()
         {
             userNameTextBox.Text = _user.email;
@@ -33,6 +41,11 @@ namespace GUI.Windows.ProfileWindows
 
         }
 
+        /// <summary>
+        /// closes the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();

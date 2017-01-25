@@ -15,6 +15,9 @@ using GUI.DataGridRecords;
 
 namespace GUI.Model
 {
+    /// <summary>
+    /// our model object
+    /// </summary>
     public class PartnersMatcherModel : IModel
     {
         private ObservableCollection<string> fields;
@@ -31,6 +34,9 @@ namespace GUI.Model
         private string user = "";
         
         #region email settings
+        /// <summary>
+        /// setting for SMTP client
+        /// </summary>
         private string sender = "dbpd2016@gmail.com";
         private string sender_pass = "ISSE2016";
         private string smtp = "smtp.gmail.com";
@@ -39,20 +45,23 @@ namespace GUI.Model
 
 
         
-
+        /// <summary>
+        /// ctor
+        /// </summary>
         public PartnersMatcherModel()
         {
             dbPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\PartnersMatcher.accdb";
             InitStructures();
         }
 
-        
+
 
         #region db
 
         /// <summary>
-        /// Requires the "Microsoft Access Database Engine 2010 Redistributable"
+        /// Connects to the access DB; Requires the "Microsoft Access Database Engine 2010 Redistributable"
         /// </summary>
+        /// <returns>true if successful, false otherwise</returns>
         public Boolean dbConnect()
         {
             connection = new OleDbConnection();
@@ -68,11 +77,19 @@ namespace GUI.Model
             return true;
         }
 
+        /// <summary>
+        /// disconnects from the access db
+        /// </summary>
         public void dbClose()
         {
             connection.Close();
         }
 
+        /// <summary>
+        /// adds new activity record to DB
+        /// </summary>
+        /// <param name="activity">field name</param>
+        /// <returns>true if successful, false otherwise</returns>
         public Boolean CreateNewActivity(Activity activity)
         {
 
@@ -129,6 +146,9 @@ namespace GUI.Model
 
         }
 
+        /// <summary>
+        /// ups the activity ID static counter
+        /// </summary>
         public void UpdateActivityNextId()
         {
             if (dbConnect())
@@ -148,6 +168,10 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// adds user as manager of activity in DB
+        /// </summary>
+        /// <param name="activity">activity object</param>
         private void UpdateActivityMenegment(Activity activity)
         {
             if (dbConnect())
@@ -174,6 +198,10 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// get fields from DB
+        /// </summary>
+        /// <returns>ObservableCollection of fields</returns>
         private ObservableCollection<string> GetFieldsFromDatabase()
         {
             if (!dbConnect())
@@ -199,6 +227,10 @@ namespace GUI.Model
             return databaseFieldes;
         }
 
+        /// <summary>
+        /// get locations from DB
+        /// </summary>
+        /// <returns>ObservableCollection of locations</returns>
         private ObservableCollection<string> GetAreasFromDatabase()
         {
             if (!dbConnect())
@@ -224,6 +256,11 @@ namespace GUI.Model
             return geographicAreas;
         }
 
+        /// <summary>
+        /// checks if a field exists in DB
+        /// </summary>
+        /// <param name="field">field name</param>
+        /// <returns>true if exists, false otherwise</returns>
         public Boolean FiledExist(string field)
         {
             fields = GetFieldsFromDatabase();
@@ -233,6 +270,11 @@ namespace GUI.Model
         }
 
 
+        /// <summary>
+        /// adds new field record to DB
+        /// </summary>
+        /// <param name="field">field name</param>
+        /// <returns>true if successful, false otherwise</returns>
         public Boolean CreateNewField(string field)
         {
 
@@ -262,6 +304,11 @@ namespace GUI.Model
 
         }
 
+        /// <summary>
+        /// inserts a new user record into DB
+        /// </summary>
+        /// <param name="data">array of user data</param>
+        /// <returns>true if successful, false otherwise</returns>
         public Boolean InsertToUserTable(params string[] data)
         {
             if (!dbConnect())
@@ -310,6 +357,11 @@ namespace GUI.Model
             return true;
         }
 
+        /// <summary>
+        /// gets a registered user's password
+        /// </summary>
+        /// <param name="email">user email</param>
+        /// <returns>user password</returns>
         public string RetrieveUserLogin(string email)
         {
             if (!dbConnect())
@@ -331,6 +383,12 @@ namespace GUI.Model
             return login;
         }
 
+        /// <summary>
+        /// searchs DB for activity records
+        /// </summary>
+        /// <param name="geographicArea">activity location</param>
+        /// <param name="field">activity field</param>
+        /// <returns>dataset with results</returns>
         public DataSet Search(string geographicArea, string field)
         {
             OleDbDataAdapter adapter = new OleDbDataAdapter();
@@ -350,6 +408,11 @@ namespace GUI.Model
             return ds;
         }
 
+        /// <summary>
+        /// checks whether an email is already in use by an existing user
+        /// </summary>
+        /// <param name="email">email address</param>
+        /// <returns>true if exists, false otherwise</returns>
         public Boolean emailExists(string email)
         {
             if (!dbConnect())
@@ -371,6 +434,11 @@ namespace GUI.Model
             return false;
         }
 
+        /// <summary>
+        /// generates an SQL command string for a SELECT query
+        /// </summary>
+        /// <param name="criteria">activity object with search criteria</param>
+        /// <returns>SQL query string for advanced search</returns>
         private string BuildAdvSearchCmd(Activity criteria)
         {
             string cmd = "SELECT * FROM Activities WHERE [Field] = '" + criteria.field + "' AND [Location] = '" + criteria.location + "'";
@@ -407,6 +475,11 @@ namespace GUI.Model
             return cmd;
         }
 
+        /// <summary>
+        /// searches DB for activity records
+        /// </summary>
+        /// <param name="criteria">activity object with search criteria</param>
+        /// <returns>dataset with results</returns>
         public DataSet AdvSearch(Activity criteria)
         {
             OleDbDataAdapter adapter = new OleDbDataAdapter();
@@ -425,6 +498,10 @@ namespace GUI.Model
             return ds;
         }
 
+        /// <summary>
+        /// pulls current user's preferences from DB
+        /// </summary>
+        /// <returns>true if successful, false otherwise</returns>
         public Preference GetUserPreference()
         {
             Preference pref = new Preference();
@@ -478,6 +555,11 @@ namespace GUI.Model
             return pref;
         }
 
+        /// <summary>
+        /// sets current user preferences in DB
+        /// </summary>
+        /// <param name="pref">user's updated preferences</param>
+        /// <returns>true if successful, false otherwise</returns>
         public bool SetUserPreferences(Preference pref)
         {
             if (!RemovePref())
@@ -487,6 +569,10 @@ namespace GUI.Model
             return true;
         }
 
+        /// <summary>
+        /// deletes current user's preference record from DB
+        /// </summary>
+        /// <returns>true if successful, false otherwise</returns>
         private Boolean RemovePref()
         {
             if (!dbConnect())
@@ -506,6 +592,11 @@ namespace GUI.Model
         }
 
 
+        /// <summary>
+        /// inserts current user's preference record into DB
+        /// </summary>
+        /// <param name="pref">user's updated preferences</param>
+        /// <returns>true if successful, false otherwise</returns>
         private Boolean InsertPref(Preference pref)
         {
             //int check: x > 0
@@ -590,12 +681,11 @@ namespace GUI.Model
         #endregion
 
         #region Init
+        /// <summary>
+        /// inits various ObservableCollections to be used by the GUI
+        /// </summary>
         private void InitStructures()
         {
-            //Create the InsertCommand.
-            //InitFields();
-            //InitGeographicAreas();
-            //InitActivities();
 
             numOfParticipates = new ObservableCollection<string>();
             numOfParticipates.Add("2");
@@ -623,94 +713,40 @@ namespace GUI.Model
             gender.Add("Mixed");
         }
 
-        /*private void InitActivities()
-        {
-            if (!dbConnect())
-                return;
-            DataSet ds = new DataSet();
-            activities = new Dictionary<string, ObservableCollection<string>>();
-            OleDbCommand command;
-            foreach (string field in Fields)
-            {
-                command = new OleDbCommand(
-                "SELECT [Activity Name] FROM Activities WHERE [Field] = '" + field + "'", connection);
-                OleDbDataAdapter adapter = new OleDbDataAdapter();
-                adapter.SelectCommand = command;
-                adapter.Fill(ds);
-                //TODO "Key Not Found Exception"
-                ObservableCollection<string> collection = new ObservableCollection<string>();
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    collection.Add(ds.Tables[0].Rows[i].ItemArray[0].ToString());
-                }
-                activities.Add(field, collection);
-                ds.Clear();
-            }
-            dbClose();
-        }*/
-
-        /*private void InitGeographicAreas()
-        {
-            if (!dbConnect())
-                return;
-
-            geographicAreas = new ObservableCollection<string>();
-            DataSet ds = new DataSet();
-            OleDbCommand command = new OleDbCommand(
-                "SELECT [Location] FROM Activities", connection);
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            adapter.SelectCommand = command;
-            adapter.Fill(ds);
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                string location = ds.Tables[0].Rows[i].ItemArray[0].ToString();
-                if (!geographicAreas.Contains(location))
-                    geographicAreas.Add(location);
-            }
-            dbClose();
-
-        }*/
-
-        /*private void InitFields()
-        {
-            if (!dbConnect())
-                return;
-            DataSet ds = new DataSet();
-            OleDbCommand command = new OleDbCommand(
-                "SELECT [Field Name] FROM Fields", connection);
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
-            adapter.SelectCommand = command;
-            adapter.Fill(ds);
-            fields = new ObservableCollection<string>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                string f = ds.Tables[0].Rows[i].ItemArray[0].ToString();
-                if(!fields.Contains(f))
-                fields.Add(f);
-            }
-            dbClose();
-
-        }*/
-
         #endregion
 
         #region properties
 
+        /// <summary>
+        /// show whether a user is currently connected
+        /// </summary>
+        /// <returns>true if connected, fals
         public Boolean IsConnected()
         {
             return connected;
         }
 
+        /// <summary>
+        /// sets the current logged on user
+        /// </summary>
+        /// <param name="login">user email</param>
         public void SetUser(string login)
         {
             user = login;
         }
 
+        /// <summary>
+        /// "logs out" the current active user
+        /// </summary>
         public void RemoveUser()
         {
             user = "";
         }
 
+        /// <summary>
+        /// changes the user connection status
+        /// </summary>
+        /// <param name="mode">status</param>
         public void SetConnected(Boolean mode)
         {
             connected = mode;
@@ -718,6 +754,9 @@ namespace GUI.Model
                 user = "";
         }
 
+        /// <summary>
+        /// ObservableCollection of activity fields
+        /// </summary>
         private ObservableCollection<string> Fields
         {
             get
@@ -730,13 +769,19 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// get fields from DB for GUI
+        /// </summary>
+        /// <returns>ObservableCollection of fields</returns>
         public ObservableCollection<string> GetFields()
         {
             fields = GetFieldsFromDatabase();
             return fields;
         }
 
-
+        /// <summary>
+        /// ObservableCollection of activity locations
+        /// </summary>
         private ObservableCollection<string> GeographicAreas
         {
             get
@@ -750,6 +795,9 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// pulls activity locations from DB
+        /// </summary>
         private ObservableCollection<string> GetLocationsFromDatabase()
         {
             if (!dbConnect())
@@ -775,17 +823,28 @@ namespace GUI.Model
             return databaseLocatins;
         }
 
+        /// <summary>
+        /// get locations from DB for GUI
+        /// </summary>
+        /// <returns>ObservableCollection of locations</returns>
         public ObservableCollection<string> GetGeographicAreas()
         {
             geographicAreas = GetAreasFromDatabase();
             return geographicAreas;
         }
 
+        /// <summary>
+        /// get genders for GUI
+        /// </summary>
+        /// <returns>ObservableCollection of genders</returns>
         public ObservableCollection<string> GetGenders()
         {
             return gender;
         }
 
+        /// <summary>
+        /// Dictionary of activity fields and matching ObservableCollections of activities
+        /// </summary>
         private Dictionary<string, ObservableCollection<string>> Activities
         {
             get
@@ -798,11 +857,18 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// get activities from DB for GUI
+        /// </summary>
+        /// <returns>Dictionary of fields and corrosponding activities</returns>
         public Dictionary<string, ObservableCollection<string>> GetActivities()
         {
             return activities;
         }
 
+        /// <summary>
+        /// ObservableCollection of activity strt dates
+        /// </summary>
         private ObservableCollection<DateTime> StartOn
         {
             get
@@ -815,11 +881,18 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// get start dates from DB for GUI
+        /// </summary>
+        /// <returns>ObservableCollection of start dates</returns>
         public ObservableCollection<DateTime> GetStartOn()
         {
             return startOn;
         }
 
+        /// <summary>
+        /// ObservableCollection of activity participant amounts
+        /// </summary>
         private ObservableCollection<string> NumOfParticipates
         {
             get
@@ -832,11 +905,18 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// get participant numbers for GUI
+        /// </summary>
+        /// <returns>ObservableCollection of participant numbers</returns>
         public ObservableCollection<string> GetNumOfParticipates()
         {
             return numOfParticipates;
         }
 
+        /// <summary>
+        /// ObservableCollection of activity frequencies
+        /// </summary>
         private ObservableCollection<string> Frequency
         {
             get
@@ -849,11 +929,18 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// get frequencies numbers for GUI
+        /// </summary>
+        /// <returns>ObservableCollection of frequencies</returns>
         public ObservableCollection<string> GetFrequency()
         {
             return frequency;
         }
 
+        /// <summary>
+        /// ObservableCollection of activity difficulties
+        /// </summary>
         private ObservableCollection<string> Difficulty
         {
             get
@@ -866,6 +953,10 @@ namespace GUI.Model
             }
         }
 
+        /// <summary>
+        /// get difficulties for GUI
+        /// </summary>
+        /// <returns>ObservableCollection of difficulties</returns>
         public ObservableCollection<string> GetDifficulty()
         {
             return difficulty;
@@ -873,6 +964,12 @@ namespace GUI.Model
 
         #endregion
 
+        /// <summary>
+        /// validates user details from DB
+        /// </summary>
+        /// <param name="user">user email</param>
+        /// <param name="pass">password</param>
+        /// <returns>true if there's a match, false otherwise</returns>
         public Boolean ValidateUser(string user, string pass)
         {
             if(!emailExists(user))
@@ -886,6 +983,11 @@ namespace GUI.Model
             return true;
         }
 
+        /// <summary>
+        /// validates email string format
+        /// </summary>
+        /// <param name="email">email address</param>
+        /// <returns>true if valid, false otherwise</returns>
         public Boolean emailCheck(string email)
         {
             if (!email.Contains("@"))
@@ -905,6 +1007,12 @@ namespace GUI.Model
             return true;
         }
 
+        /// <summary>
+        /// sends mail to new user
+        /// </summary>
+        /// <param name="target">user email</param>
+        /// <param name="pass">user password<param>
+        /// <returns>true if successful, false otherwise</returns>
         public Boolean SendRegistrationMail(string target, string pass)
         {
                 Thread.CurrentThread.IsBackground = true;

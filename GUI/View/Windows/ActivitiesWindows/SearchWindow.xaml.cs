@@ -11,6 +11,11 @@ namespace GUI.Windows.ActivitiesWindows
     public partial class SearchWindow : Window
     {
         PartnersMatcherController controller;
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="PMController">MVC controller</param>
         public SearchWindow(PartnersMatcherController PMController)
         {
             InitializeComponent();
@@ -19,6 +24,11 @@ namespace GUI.Windows.ActivitiesWindows
             fieldsComboBox.ItemsSource = controller.GetFields();
         }
 
+        /// <summary>
+        /// validate user input and query DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             if (areaComboBox.Text == "" || fieldsComboBox.Text == "")
@@ -43,20 +53,14 @@ namespace GUI.Windows.ActivitiesWindows
             }
         }
 
-
+        /// <summary>
+        /// closes window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void fieldsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void areaComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
     }
