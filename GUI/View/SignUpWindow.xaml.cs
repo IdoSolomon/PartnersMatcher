@@ -54,7 +54,10 @@ namespace GUI
             data[2] = EmailTextBox.Text;
             data[3] = PasswordBox1.Password;
             data[4] = PasswordBox2.Password;
-            data[5] = DatePick.SelectedDate.Value.Date.ToShortDateString();
+            if (DatePick.SelectedDate != null)
+                data[5] = DatePick.SelectedDate.Value.Date.ToShortDateString();
+            else
+                data[5] = "";
             data[6] = SexComboBox.Text;
             data[7] = PhoneTextBox.Text;
             data[8] = LocationTextBox.Text;
